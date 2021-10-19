@@ -3,6 +3,10 @@
   --white-low: #E5E5E5;
   --orange: #FFAF00;
   --gray: #C4C4C4;
+  --red: #FF0742;
+  --red-low: rgba(236, 122, 122, 0.15);
+  --green: #0ACF83;
+  --green-low: rgba(11, 220, 95, .15);
 
   /* section for theme */
   --bg-default: var(--white-low);
@@ -13,16 +17,29 @@
   --bg-input: var(--gray);
 
   /* section for button */
+  
   --bg-btn-theme: var(--orange);
+  --bg-btn-warning: var(--orange);
+  --bg-btn-danger: var(--red);
+  --bg-btn-danger-outer: var(--red-low);
+  --bg-btn-success: var(--green);
+  --bg-btn-success-outer: var(--green-low);
+
+  /* section for text */
+  --text-warning: var(--orange);
+  --text-danger: var(--red);
+  --text-success: var(--green);
 
   --card-theme: var(--white);
 }
 
+@font-face { font-family: 'Product Sans Bold'; src: url('./assets/font/Product\ Sans\ Bold.ttf') }
+@font-face { font-family: 'Product Sans Thin'; src: url('./assets/font/Product\ Sans\ Regular.ttf') }
+@font-face { font-family: 'Avenir'; src: url('./assets/font/Avenir-Roman.otf') }
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Avenir', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -1,8 +1,12 @@
 import './App.css'
+import { Header, Footer } from '../components'
 
 const App = () => {
     return (
-        <div className="app">Halo</div>
+        <div>
+            <Header />
+            <Footer />
+        </div>
     )
 }
 
