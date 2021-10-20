@@ -1,5 +1,6 @@
 :root {
     --white: #fff;
+    --white-second: rgba(255, 255, 255, 1);
     --white-low: #E5E5E5;
     --orange: #FFAF00;
     --gray: #C4C4C4;
@@ -7,6 +8,10 @@
     --red-low: rgba(236, 122, 122, 0.15);
     --green: #0ACF83;
     --green-low: rgba(11, 220, 95, .15);
+
+    /* section for border */
+    --border-trendy: 5px;
+    --border-smooth: 13px;
 
     /* section for theme  */
     --bg-default: var(--white-low);
@@ -32,6 +37,7 @@
     /* section for font  */
     --font-heading: 'Product Sans Thin';
     --font-subheading: 'Product Sans Thin';
+    --font-button: 18px;
 
     /* section  */
     --card-theme: var(--white);

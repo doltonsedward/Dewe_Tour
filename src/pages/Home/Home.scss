@@ -1,10 +1,12 @@
 .home-page {
     .hero {
+        padding: 20px 104px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: calc(100vh / 2);
-        background: url('../../assets/img/hero.jpg');
+        height: 547px;
+        background: url('../../assets/img/hero.jpg') no-repeat center;
+        background-size: cover;
     }
 }
 
