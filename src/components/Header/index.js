@@ -1,7 +1,9 @@
-const Header = () => {
+import './Header.scss'
+
+const Header = ({logo}) => {
     return (
         <header>
-            Logo
+            <img src={logo} alt="this is logo image" />
         </header>
     )
 }
