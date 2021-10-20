@@ -9,15 +9,7 @@
 @font-face { font-family: 'Avenir'; src: url('./assets/font/Avenir-Roman.otf') }
 
 /* shortcut */
-.text-white { color: var(--white) }
-.text-heading { 
-  letter-spacing: 1.5px;
-  font-family: var(--font-heading) 
-}
-.text-subheading { 
-  font-weight: 300;
-  font-family: var(--font-subheading) 
-}
+
 /* tutup */
 
 
