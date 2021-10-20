@@ -1,0 +1,37 @@
+:root {
+    --white: #fff;
+    --white-low: #E5E5E5;
+    --orange: #FFAF00;
+    --gray: #C4C4C4;
+    --red: #FF0742;
+    --red-low: rgba(236, 122, 122, 0.15);
+    --green: #0ACF83;
+    --green-low: rgba(11, 220, 95, .15);
+  
+    /* section for theme */
+    --bg-default: var(--white-low);
+    --bg-theme: var(--orange);
+    --bg-footer: var(--orange);
+  
+    /* section for input */
+    --bg-input: var(--gray);
+  
+    /* section for button */
+    --bg-btn-theme: var(--orange);
+    --bg-btn-warning: var(--orange);
+    --bg-btn-danger: var(--red);
+    --bg-btn-danger-outer: var(--red-low);
+    --bg-btn-success: var(--green);
+    --bg-btn-success-outer: var(--green-low);
+  
+    /* section for text */
+    --text-warning: var(--orange);
+    --text-danger: var(--red);
+    --text-success: var(--green);
+  
+    /* section for font */
+    --font-heading: 'Product Sans Thin';
+    --font-subheading: 'Product Sans Thin';
+  
+    --card-theme: var(--white);
+  }
