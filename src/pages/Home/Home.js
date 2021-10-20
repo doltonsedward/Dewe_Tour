@@ -1,5 +1,6 @@
 import './Home.scss'
 import { Gap, Input } from '../../components'
+import { Card } from '../../components'
 
 const Home = () => {
     return (
@@ -10,10 +11,12 @@ const Home = () => {
                     <h2 className="text-subheading">your amazing</h2>
                 </div>
                 <div className="section-input__hero">
-                    <p>Find great place to holiday</p>
-                    <Gap height={20} />
-                    <Input label="Input Name" type="text" placeholder="Input your name.." />
+                    <Gap height={64} />
+                    <Input label="Find great place to holiday" variant="search-btn" type="text" />
                 </div>
+            </div>
+            <div className="main">
+                <Card variant="box" />
             </div>
         </div>
     )
