@@ -1,6 +1,9 @@
 @import './mixin';
 
+.bg-btn-warning { background-color: var(--bg-btn-warning) }
+.bg-btn-success { background-color: var(--bg-btn-success) }
 
+.d-flex { display: flex }
 .text-white { color: var(--white) }
 .text-heading { 
   letter-spacing: 1.5px;
