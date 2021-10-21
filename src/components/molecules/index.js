@@ -1,5 +1,5 @@
 import Header from './Header'
 import Footer from './Footer'
-import Card from './Card'
+import Box from './Box'
 
-export { Header, Footer, Card }
+export { Header, Footer, Box }
