@@ -5,7 +5,8 @@
 }
 
 @font-face { font-family: 'Product Sans Bold'; src: url('./assets/font/Product\ Sans\ Bold.ttf') }
-@font-face { font-family: 'Product Sans Thin'; src: url('./assets/font/Product\ Sans\ Regular.ttf') }
+@font-face { font-family: 'Product Sans Thin'; src: url('./assets/font/Product\ Sans\ Thin.ttf') }
+@font-face { font-family: 'Product Sans'; src: url('./assets/font/Product\ Sans\ Regular.ttf') }
 @font-face { font-family: 'Avenir'; src: url('./assets/font/Avenir-Roman.otf') }
 
 /* shortcut */
@@ -34,6 +35,10 @@ input, button {
   border: none;
   font-family: 'Product Sans Bold' 
 }
+
+label { font-size: 18px }
+
+button { cursor: pointer }
 
 h1 { font-size: var(--h1-size) }
 h2 { font-size: var(--h2-size) }

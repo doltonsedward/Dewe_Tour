@@ -7,7 +7,7 @@ const InputSearch = ({label, className, ...rest}) => {
                 <p>{label}</p>
                 <div className={className}>
                     <input {...rest} />
-                    <button className="btn-submit__hero bg-btn-warning">Submit</button>
+                    <button className="btn-submit__hero btn-warning">Submit</button>
                 </div>
             </label>
         </>
