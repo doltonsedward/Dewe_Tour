@@ -1,17 +1,26 @@
 .home-page {
     .hero {
-        padding: 20px 104px;
+        position: relative;
+        padding: 0 104px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         height: 547px;
         background: url('../../assets/img/hero.jpg') no-repeat center;
         background-size: cover;
+        z-index: var(--z-index);
     }
 
     .main {
+        position: relative;
         width: 100%;
         background-color: lavenderblush;
+
+        .hibicus-icon {
+            top: -60px;
+            right: 0;
+        }
     }
 }
+
 

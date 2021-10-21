@@ -1,5 +1,21 @@
 header {
-    position: fixed;
+    width: 100%;
+    padding: 0 104px;
+    position: absolute;
     top: 0;
     left: 0;
+    z-index: calc(var(--z-index) + 1);
+
+    .section-button__header {
+        button {
+            &.btn-login {
+                background-color: transparent;
+                border: 1px solid var(--color-primary);
+            }
+
+            padding: 6px 33px;
+            color: var(--color-primary);
+            border-radius: var(--border-trendy);
+        }
+    }
 }

@@ -1,8 +1,9 @@
 import './Home.scss'
 import { LogoGuarante, LogoHeart, LogoAgent, LogoSupport } from '../../assets/'
-import { ImgTour1, ImgTour2, ImgTour3, ImgTour4, ImgTour5 } from '../../assets/'
+import { IconPalm, IconHibicus } from '../../assets/'
 import { Gap, Input } from '../../components'
 import { Box } from '../../components'
+import data from '../../assets/json/list-tour.json'
 
 const Home = () => {
     return (
@@ -10,7 +11,7 @@ const Home = () => {
             <div className="hero text-white">
                 <div className="section-heading__hero">
                     <h1 className="text-heading">Explore</h1>
-                    <h2 className="text-subheading">your amazing</h2>
+                    <h2 className="text-subheading">your amazing city together</h2>
                 </div>
                 <div className="section-input__hero">
                     <Gap height={64} />
@@ -46,42 +47,25 @@ const Home = () => {
                         heading="Best Price Guarantee" 
                         text="A small river named Duren flows by their place and supplies" 
                     />
+                    <img className="p-absolute hibicus-icon" src={IconHibicus} alt="" />
                 </div>
                 <Gap height={72} />
                 <div className="group-tour">
+                    <img className="p-absolute" src={IconPalm} alt="" />
                     <h2 className="text-center">Group Tour</h2>
                     <Gap height={77} />
                     <div className="row">
-                        <Box className="col-4 col-s-6"
+                    {data.map((item) => (
+                        <Box key={item.id} className="col-4 col-s-6"
                             variant="content" 
-                            image={ImgTour1}
-                            heading="Best Price Guarantee" 
+                            item={item}
                             price="IDR. 12,398,000"
                             subtext="Australia"
                         />
-                        <Box className="col-4 col-s-6"
-                            variant="content" 
-                            image={ImgTour2}
-                            heading="Best Price Guarantee" 
-                            price="IDR. 12,398,000"
-                            subtext="Australia"
-                        />
-                        <Box className="col-4 col-s-6"
-                            variant="content" 
-                            image={ImgTour3}
-                            heading="Best Price Guarantee" 
-                            price="IDR. 12,398,000"
-                            subtext="Australia"
-                        />
-                        <Box className="col-4 col-s-6"
-                            variant="content" 
-                            image={ImgTour4}
-                            heading="Best Price Guarantee" 
-                            price="IDR. 12,398,000"
-                            subtext="Australia"
-                        />
+                    ))}
                     </div>
                 </div>
+                <Gap height={121} />
             </div>
         </div>
     )
