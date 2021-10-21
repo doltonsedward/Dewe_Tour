@@ -1,0 +1,50 @@
+[
+    {
+      "id": "1",
+      "name": "6D/4N Fun Tassie Vacation ...",
+      "type": "IDR.",
+      "price": "12,398,000",
+      "country": "Australia",
+      "image": "tour1.jpg"
+    },
+    {
+      "id": "2",
+      "name": "6D/4N Exciting Summer in ...",
+      "type": "IDR.",
+      "price": "10,288,000",
+      "country": "South Korea",
+      "image": "tour2.jpg"
+    },
+    {
+      "id": "3",
+      "name": "8D/6N Wonderful Autum ...",
+      "type": "IDR.",
+      "price": "28,999,000",
+      "country": "Japan",
+      "image": "tour3.jpg"
+    },
+    {
+      "id": "4",
+      "name": "4D/3N Overland Jakarta B...",
+      "type": "IDR.",
+      "price": "3,188,000",
+      "country": "Indonesia",
+      "image": "tour4.jpg"
+    },
+    {
+      "id": "5",
+      "name": "6D/4N Exciting Summer in ...",
+      "type": "IDR.",
+      "price": "10,288,000",
+      "country": "South Korea",
+      "image": "tour5.jpg"
+    },
+    {
+      "id": "6",
+      "name": "8D/6N Wonderful Autum ...",
+      "type": "IDR.",
+      "price": "28,999,000",
+      "country": "Japan",
+      "image": "tour6.jpg"
+    }
+  ]
