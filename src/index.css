@@ -23,3 +23,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:focus { outline: none }
+
+input {
+  border-radius: var(--border-trendy);
+}
+
+input, button { 
+  border: none;
+  font-family: 'Product Sans Bold' 
+}
+
+h1 { font-size: var(--h1-size) }
+h2 { font-size: var(--h2-size) }

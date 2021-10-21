@@ -1,12 +1,12 @@
 import './App.css'
-import logo from '../assets/icon/logo.png'
+import { Logo } from '../assets'
 import { Header, Footer } from '../components'
 import { Home } from './'
 
 const App = () => {
     return (
         <>
-            <Header logo={logo} />
+            <Header logo={Logo} />
                 <Home />
             <Footer />
         </>
