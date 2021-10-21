@@ -15,6 +15,7 @@
     --border-smooth: 13px;
 
     /* section for theme  */
+    --color-primary: var(--white);
     --color-theme: var(--orange);
     --bg-default: var(--white-low);
     --bg-theme: var(--orange);
@@ -37,7 +38,8 @@
     --text-success: var(--green);
 
     /* section for font  */
-    --font-heading: 'Product Sans Thin';
+    --font-heading-default: 'Product Sans';
+    --font-heading: 'Product Sans Bold';
     --font-subheading: 'Product Sans Thin';
     --font-button: 18px;
 
@@ -45,6 +47,13 @@
     --h1-size: 64px;
     --h2-size: 48px;
 
+    /* section for footer */
+    --color-footer: var(--white);
+
     /* section  */
     --card-theme: var(--white);
+
+
+    /* section for logic */
+    --z-index: 2;
 }
