@@ -3,6 +3,7 @@ import { showLoginModal, showRegisterModal } from '../../../utils'
 import { ProfileDefault } from '../../../assets'
 import { IconUser, IconBill, IconLogout } from '../../../assets'
 import store from '../../../store'
+import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
 
@@ -12,17 +13,10 @@ const Header = ({logo}) => {
     }
     
     // const isLoginSession = useSelector(state => state.isLogin) || JSON.parse(localStorage.getItem('user'))
-    const isLoginSession = JSON.parse(localStorage.getItem('user'))
-    
-    useEffect(()=> {
-        console.log("GuestGreeting component did mount ", isLoginSession);
-        return () => {
-            console.log("GuestGreeting component will unmount");
-        };
-    })
+    const isLoginSession = useSelector(state => state.isLogin)
 
     const logoutSession = () => {
-        // localStorage.removeItem('user')
+        localStorage.removeItem('user')
         store.dispatch({
             type: 'LOGOUT',
             payload: {
