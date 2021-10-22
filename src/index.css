@@ -28,6 +28,7 @@ code {
 :focus { outline: none }
 
 input {
+  font-size: 18px;
   border-radius: var(--border-trendy);
 }
 
@@ -42,3 +43,4 @@ button { cursor: pointer }
 
 h1 { font-size: var(--h1-size) }
 h2 { font-size: var(--h2-size) }
+

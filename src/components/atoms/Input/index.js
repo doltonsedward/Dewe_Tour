@@ -27,9 +27,9 @@ const Input = ({label, variant, ...rest}) => {
         default:
             return (
                 <>
-                    <label className="wrapper-input">
-                        <p>{label}</p>
-                        <input {...rest} />
+                    <label className="wrapper-input default">
+                        <p style={{fontSize: rest.fontSize}}>{label}</p>
+                        <input className="input-theme" {...rest} />
                     </label>
                 </>
             )

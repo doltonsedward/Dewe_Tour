@@ -1,3 +1,5 @@
+// import { Route } from 'react-router'
+
 import './App.css'
 import { Logo } from '../assets'
 import { Header, Footer } from '../components'

@@ -10,11 +10,16 @@ import IconPalm from './icon/palm.png'
 import IconHibicus from './icon/hibicus.png'
 
 // image for box
-import ImgTour1 from './img/tour/tour1.jpg'
-import ImgTour2 from './img/tour/tour2.jpg'
-import ImgTour3 from './img/tour/tour3.jpg'
-import ImgTour4 from './img/tour/tour4.jpg'
-import ImgTour5 from './img/tour/tour5.jpg'
+// import ImgTour1 from './img/tour/tour1.jpg'
+// import ImgTour2 from './img/tour/tour2.jpg'
+// import ImgTour3 from './img/tour/tour3.jpg'
+// import ImgTour4 from './img/tour/tour4.jpg'
+// import ImgTour5 from './img/tour/tour5.jpg'
+
+// icon for login register
+import IconPalm2 from './icon/palm1.png'
+import IconHibicus2 from './icon/hibicus1.png'
+
 
 export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus }
-export { ImgTour1, ImgTour2, ImgTour3, ImgTour4, ImgTour5 }
+export { IconPalm2, IconHibicus2 }

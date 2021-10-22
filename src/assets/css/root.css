@@ -4,7 +4,9 @@
     --white-low: #E5E5E5;
     --orange: #FFAF00;
     --gray: #C4C4C4;
+    --gray-low: #D2D2D240;
     --gray-second: #878787;
+    --gray-third: #B1B1B1;
     --red: #FF0742;
     --red-low: rgba(236, 122, 122, 0.15);
     --green: #0ACF83;
@@ -22,7 +24,7 @@
     --bg-footer: var(--orange);
 
     /* section for input  */
-    --bg-input: var(--gray);
+    --bg-input: var(--gray-low);
 
     /* section for button  */
     --bg-btn-theme: var(--orange);
