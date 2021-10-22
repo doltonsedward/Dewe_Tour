@@ -1,6 +1,14 @@
 const rootReducer = (state, action) => {
-    if (action.type === 'INCREMENT') {
-        return {...state}
+    if (action.type === 'LOGIN') {
+        return {
+            ...state,
+            isLogin: true
+        }
+    } else if (action.type === 'NOT_LOGIN') {
+        return {
+            ...state,
+            isLogin: false
+        }
     }
     return state
 }
