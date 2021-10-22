@@ -21,5 +21,14 @@ import IconPalm2 from './icon/palm1.png'
 import IconHibicus2 from './icon/hibicus1.png'
 
 
+// icon for footer
+import IconLeaf from './icon/leaf.png'
+
+
+// img for profile
+import ProfileDefault from './img/profile/radif.jpg'
+
+
 export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus }
-export { IconPalm2, IconHibicus2 }
+export { IconPalm2, IconHibicus2, IconLeaf }
+export { ProfileDefault }

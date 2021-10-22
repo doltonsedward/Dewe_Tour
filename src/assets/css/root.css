@@ -15,6 +15,7 @@
     /* section for border */
     --border-trendy: 5px;
     --border-smooth: 13px;
+    --border-circle: 50%;
 
     /* section for theme  */
     --color-primary: var(--white);
