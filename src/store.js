@@ -1,7 +1,9 @@
 import { createStore } from 'redux'
 import rootReducer from './rootReducer'
 
-const store = createStore(rootReducer, false)
+const initialValue = JSON.parse(localStorage.getItem('user'))
+
+const store = createStore(rootReducer, initialValue)
 store.subscribe(() =>{
     console.log('Current state', store.getState())
 })

@@ -1,5 +1,5 @@
 import './Modal.scss'
-import * as React from 'react';
+import { useState } from 'react';
 
 import { Gap, Input } from '../../atoms'
 import { IconPalm2, IconHibicus2 } from '../../../assets'
@@ -9,10 +9,12 @@ import store from '../../../store'
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
+import { Alert } from '@mui/material';
 
 const ModalLogin = () => {
-    const [open, setOpen] = React.useState(false);
-    const [message, setMessage] = React.useState('Not found')
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState('Not found')
+    const [severity, setSeverity] = useState('success')
     
     const handleClick = () => {
         setOpen(true)
@@ -38,15 +40,31 @@ const ModalLogin = () => {
 
     function loginSession(event) {
         event.preventDefault()
+        
+        const dataUser = JSON.parse(localStorage.getItem('user'))
 
-                            
-        const dataUser = JSON.parse(window.localStorage.getItem('user'))
-        if (dataUser.email === event.target.email.value && dataUser.password === event.target.password.value) {
-            store.dispatch({ type: 'LOGIN' })
+        const emailValue = event.target.email.value
+        const passValue = event.target.password.value
+        if (!dataUser) {
+            setMessage('Email or password are incorrect')
+            setSeverity('error')
+            return 
+        }
+
+        if (dataUser.email === emailValue && dataUser.password === passValue) {
+            store.dispatch({ 
+                type: 'LOGIN', 
+                payload: {
+                    email: emailValue,
+                    password: passValue
+                }
+            })
             setMessage('Login Success')
+            setSeverity('success')
         } else {
             store.dispatch({ type: 'NOT_LOGIN'})
             setMessage('Email or password are incorrect')
+            setSeverity('error')
         }
     }
 
@@ -64,7 +82,7 @@ const ModalLogin = () => {
                         <Gap height={20} />
                         <Input label="Password" fontSize={24} name="password" required />
                         <Gap height={20} />
-                        <button className="btn-warning full" onClick={handleClick}>Login</button>
+                        <button className="btn-warning full" onClick={handleClick} type="submit">Login</button>
                         <Gap height={23} />
                         <p className="text-center disclamer">Don't have an account? Klik Here</p>
                     </form>
@@ -80,14 +98,28 @@ const ModalLogin = () => {
                 open={open}
                 autoHideDuration={6000}
                 onClose={handleClose}
-                message={message}
                 action={action}
-            />
+            >
+                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                    {message}
+                </Alert>
+            </Snackbar>
         </>
     )
 }
 
 const ModalRegister = () => {
+    function registerSession(event) {
+        event.preventDefault()
+        const person = {
+            fullName: event.target.fullname.value,
+            email: event.target.email.value,
+            password: event.target.password.value
+        }
+        
+        localStorage.setItem('user', JSON.stringify(person));
+    }
+
     return (
         <div className="modal" id="modal-register">   
             <div className="heading-modal">
@@ -96,17 +128,7 @@ const ModalRegister = () => {
             </div>
             <div className="content-modal">
                 <p className="title">Register</p>
-                <form onSubmit={function(e) {
-                            e.preventDefault()
-                            const person = {
-                                fullName: e.target.fullname.value,
-                                email: e.target.email.value,
-                                password: e.target.password.value
-                            }
-                            
-                            window.localStorage.setItem('user', JSON.stringify(person));
-                        }
-                    }>
+                <form onSubmit={registerSession}>
                     <Input label="Fullname" fontSize={24} name="fullname" required />
                     <Gap height={20} />
                     <Input label="Email" fontSize={24} name="email" required />
@@ -115,7 +137,6 @@ const ModalRegister = () => {
                     <Gap height={20} />
                     <button className="btn-warning full">Register</button>
                     <Gap height={23} />
-                    <p className="text-center disclamer">Don't have an account? Klik Here</p>
                 </form>
             </div>
         </div>

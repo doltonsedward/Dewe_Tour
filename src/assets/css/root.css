@@ -56,6 +56,10 @@
     /* section  */
     --card-theme: var(--white);
 
+    /* section for shadow */
+    --box-shadow-theme: 0 0 50px rgba(0, 0, 0, .3);
+    --box-shadow-primary: 0 0 50px rgba(0, 0, 0, .6);
+
 
     /* section for logic */
     --z-index: 2;

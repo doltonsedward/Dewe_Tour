@@ -16,6 +16,7 @@
     background-color: var(--white);
     border-radius: var(--border-trendy);
     z-index: var(--z-index);
+    box-shadow: var(--box-shadow-theme);
 
     .heading__card-box {
         font-weight: 700;
@@ -39,6 +40,7 @@
     margin: calc(68px / 2) auto;
     background-color: var(--white);
     border-radius: var(--border-trendy);
+    box-shadow: var(--box-shadow-theme);
     z-index: 10;
 
     .content-cover-image {
