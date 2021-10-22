@@ -13,10 +13,7 @@ const rootReducer = (state, action) => {
             }
             
         case 'LOGOUT':
-            localStorage.setItem('user', JSON.stringify({
-                isLogin: false,
-                user: payload
-            }))
+            localStorage.removeItem('user')
             return {
                 ...state,
                 isLogin: false
