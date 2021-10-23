@@ -13,9 +13,9 @@ const CardBox = ({logo, heading, text}) => {
     )
 }
 
-const ContentBox = ({img, heading, type, price, subtext, className}) => {
+const ContentBox = ({img, heading, type, price, subtext, className, ...rest}) => {
     return (
-        <div className={className}>
+        <div className={className} {...rest}>
             <div className="content-box c-pointer">
                 <img src={'/assets/img/tour/' + img} className="content-cover-image" alt={heading} />
                 <Gap height={11} />
@@ -30,17 +30,17 @@ const ContentBox = ({img, heading, type, price, subtext, className}) => {
     )
 }
 
-const Box = ({variant, logo, heading, text, className, item}) => {
+const Box = ({variant, logo, heading, text, className, img, item, ...rest}) => {
     switch (variant) {
         case 'card':
             return <CardBox logo={logo} heading={heading} text={text} />
         case 'content':
-            return <ContentBox className={className} img={item.image} heading={item.name} type={item.type} price={item.price} subtext={item.country} />
+            return <ContentBox className={className} img={item.image} heading={item.name} type={item.type} price={item.price} subtext={item.country} {...rest} />
     
         default:
             return (
                 <div className="card-box">
-                    <img src={logo} alt={heading} />
+                    <img src={img} alt={heading} />
                     <Gap height={24} />
                     <p className="heading__card-box">{heading}</p>
                     <Gap height={9} />

@@ -2,10 +2,12 @@ import './Home.scss'
 import { LogoGuarante, LogoHeart, LogoAgent, LogoSupport } from '../../assets/'
 import { IconPalm, IconHibicus } from '../../assets/'
 import { Gap, Input } from '../../components'
-import { Box, Modal } from '../../components'
+import { Box } from '../../components'
 import data from '../../assets/json/list-tour.json'
+import { useHistory } from 'react-router'
 
 const Home = () => {
+    const history = useHistory()
     return (
         <div className="home-page">
             <div className="hero text-white">
@@ -59,8 +61,8 @@ const Home = () => {
                         <Box key={item.id} className="col-4 col-s-6"
                             variant="content" 
                             item={item}
-                            price="IDR. 12,398,000"
                             subtext="Australia"
+                            onClick={()=> history.push('/detail-trip/' + item.id)}
                         />
                     ))}
                     </div>
@@ -68,8 +70,7 @@ const Home = () => {
                 <Gap height={121} />
             </div>
             
-            <Modal variant="modal-login" />
-            <Modal variant="modal-register" />
+            
         </div>
     )
 }

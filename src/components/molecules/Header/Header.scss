@@ -2,6 +2,7 @@ header {
     width: 100%;
     padding: 0 104px;
     position: absolute;
+    background-size: cover;
     top: 0;
     left: 0;
     z-index: calc(var(--z-index) + 1);

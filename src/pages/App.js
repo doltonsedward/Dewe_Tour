@@ -1,18 +1,29 @@
-// import { Route } from 'react-router'
 
 import './App.css'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Logo } from '../assets'
-import { Header, Footer } from '../components'
-import { Home } from './'
-
-import { useSelector } from 'react-redux'
+import { Header, Footer, Modal } from '../components'
+import { Home, DetailTrip } from './'
 
 const App = () => {
     return (
         <>
+        <Router>
             <Header logo={Logo} />
-                <Home />
+                <Switch>
+                    <Route exact path="/">
+                        <Home />
+                        <Modal variant="modal-login" />
+                        <Modal variant="modal-register" />
+                    </Route>
+                    <Route path="/detail-trip/:id">
+                        <DetailTrip />
+                        <Modal variant="modal-login" />
+                        <Modal variant="modal-register" />
+                    </Route>
+                </Switch>
             <Footer />
+        </Router>
         </>
     )
 }

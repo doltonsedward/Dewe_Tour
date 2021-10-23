@@ -56,6 +56,13 @@
     /* section  */
     --card-theme: var(--white);
 
+    /* section for hero */
+    --hero-height: 547px;
+    --hero-height-alternate: calc(var(--hero-height) / 7);
+
+    /* section for main */
+    --main-padding: 0 104px;
+
     /* section for shadow */
     --box-shadow-theme: 0 0 50px rgba(0, 0, 0, .3);
     --box-shadow-primary: 0 0 50px rgba(0, 0, 0, .6);

@@ -5,7 +5,12 @@
       "type": "IDR.",
       "price": "12,398,000",
       "country": "Australia",
-      "image": "tour1.jpg"
+      "image": "tour1.jpg",
+      "allImage": [
+        "tour1-1.jpg",
+        "tour1-2.jpg",
+        "tour1-3.jpg"
+      ]
     },
     {
       "id": "2",
@@ -13,7 +18,12 @@
       "type": "IDR.",
       "price": "10,288,000",
       "country": "South Korea",
-      "image": "tour2.jpg"
+      "image": "tour2.jpg",
+      "allImage": [
+        "tour1-1.jpg",
+        "tour1-2.jpg",
+        "tour1-3.jpg"
+      ]
     },
     {
       "id": "3",
@@ -21,7 +31,12 @@
       "type": "IDR.",
       "price": "28,999,000",
       "country": "Japan",
-      "image": "tour3.jpg"
+      "image": "tour3.jpg",
+      "allImage": [
+        "tour1-1.jpg",
+        "tour1-2.jpg",
+        "tour1-3.jpg"
+      ]
     },
     {
       "id": "4",
@@ -29,7 +44,12 @@
       "type": "IDR.",
       "price": "3,188,000",
       "country": "Indonesia",
-      "image": "tour4.jpg"
+      "image": "tour4.jpg",
+      "allImage": [
+        "tour1-1.jpg",
+        "tour1-2.jpg",
+        "tour1-3.jpg"
+      ]
     },
     {
       "id": "5",
@@ -37,7 +57,12 @@
       "type": "IDR.",
       "price": "10,288,000",
       "country": "South Korea",
-      "image": "tour5.jpg"
+      "image": "tour5.jpg",
+      "allImage": [
+        "tour1-1.jpg",
+        "tour1-2.jpg",
+        "tour1-3.jpg"
+      ]
     },
     {
       "id": "6",
@@ -45,6 +70,11 @@
       "type": "IDR.",
       "price": "28,999,000",
       "country": "Japan",
-      "image": "tour6.jpg"
+      "image": "tour6.jpg",
+      "allImage": [
+        "tour1-1.jpg",
+        "tour1-2.jpg",
+        "tour1-3.jpg"
+      ]
     }
   ]

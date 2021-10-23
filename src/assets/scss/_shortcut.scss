@@ -85,6 +85,9 @@
   align-items: center;
 }
 
+.flex-responsive {
+  flex-wrap: wrap;
+}
 
 // margin
 .ml-s { margin-left: 8px; } 
@@ -92,6 +95,7 @@
 
 
 .text-center { text-align: center }
+.text-right { text-align: right }
 .text-white { color: var(--white) }
 .text-heading { 
   letter-spacing: 1.5px;
@@ -105,8 +109,9 @@
 
 // color
 .color-theme { color: var(--color-theme) }
+.color-second { color: var(--gray-second) }
 
-
+.clear-both { clear: both; }
 
 .text-subheading { 
   font-weight: 300;

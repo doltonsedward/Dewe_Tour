@@ -42,6 +42,7 @@ const ModalLogin = () => {
         event.preventDefault()
         
         const dataUser = JSON.parse(localStorage.getItem('user'))
+        console.log(dataUser)
 
         const emailValue = event.target.email.value
         const passValue = event.target.password.value
@@ -51,7 +52,7 @@ const ModalLogin = () => {
             return 
         }
 
-        if (dataUser.email === emailValue && dataUser.password === passValue) {
+        if (dataUser.user.email === emailValue && dataUser.user.password === passValue) {
             store.dispatch({ 
                 type: 'LOGIN', 
                 payload: {
@@ -112,10 +113,18 @@ const ModalRegister = () => {
     function registerSession(event) {
         event.preventDefault()
         const person = {
-            fullName: event.target.fullname.value,
-            email: event.target.email.value,
-            password: event.target.password.value
+            isLogin: false,
+            user: {
+                fullName: event.target.fullname.value,
+                email: event.target.email.value,
+                password: event.target.password.value
+            }
         }
+
+        store.dispatch({
+            type: 'LOGOUT',
+            payload: person
+        })
         
         localStorage.setItem('user', JSON.stringify(person));
     }
