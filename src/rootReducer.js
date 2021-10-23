@@ -1,5 +1,6 @@
 const rootReducer = (state, action) => {
     const {type, payload} = action
+    console.log(payload)
     switch (type) {
         case 'LOGIN':
             localStorage.setItem('user', JSON.stringify({
@@ -8,17 +9,28 @@ const rootReducer = (state, action) => {
             }))
 
             return {
+                ...state,
                 isLogin: true,
                 user: payload
             }
             
         case 'LOGOUT':
-            localStorage.removeItem('user')
+            localStorage.setItem('user', JSON.stringify({
+                isLogin: false,
+                user: payload
+            }))
+            
             return {
-                ...state,
-                isLogin: false
+                isLogin: false,
+                user: payload
             }
 
+        case 'REGISTER':
+            return {
+                ...state,
+                isLogin: false,
+                user: payload
+            }
         default:
             return state
     }
