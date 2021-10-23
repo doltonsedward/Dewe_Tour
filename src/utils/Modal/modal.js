@@ -2,32 +2,24 @@
 
 
 const showLoginModal = () => {
-    setTimeout(() => {
-        document.getElementById('modal-login').classList.toggle('active');
-        document.getElementById('modalLoginEffect').classList.toggle('active');
-    }, 0);
+    document.getElementById('modal-login').classList.toggle('active');
+    document.getElementById('modalLoginEffect').classList.toggle('active');
 }
 
 
 const closeLoginModal = () => {
-    setTimeout(() => {
-        document.getElementById('modal-login').classList.toggle('active')
-        document.getElementById('modalLoginEffect').classList.toggle('active')
-    }, 0);
+    document.getElementById('modal-login').classList.toggle('active')
+    document.getElementById('modalLoginEffect').classList.toggle('active')
 }
 
 const showRegisterModal = () => {
-    setTimeout(() => {
-        document.getElementById('modal-register').classList.toggle('active');
-        document.getElementById('modalRegisterEffect').classList.toggle('active');
-    }, 0);
+    document.getElementById('modal-register').classList.toggle('active');
+    document.getElementById('modalRegisterEffect').classList.toggle('active');
 }
 
 const closeRegisterModal = () => {
-    setTimeout(() => {
-        document.getElementById('modal-register').classList.toggle('active')
-        document.getElementById('modalRegisterEffect').classList.toggle('active')
-    }, 0);
+    document.getElementById('modal-register').classList.toggle('active')
+    document.getElementById('modalRegisterEffect').classList.toggle('active')
 }
 
 export { showLoginModal, closeLoginModal, showRegisterModal, closeRegisterModal }
