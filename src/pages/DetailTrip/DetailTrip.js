@@ -1,7 +1,7 @@
 import './DetailTrip.scss'
 import { useParams } from "react-router"
 import { Gap, Text } from '../../components'
-import { DataTour } from '../../assets'
+import { DataTour, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar } from '../../assets'
 import Button from '@mui/material/Button'
 import { muiButton } from '../../utils'
 import { useState } from 'react'
@@ -43,35 +43,35 @@ const DetailTrip = () => {
                             <li>
                                 <Text variant="p" title="Accomodation" className="color-second" />
                                 <div className="wrapper-iconic">
-                                    <i className="fas fa-home"></i>
+                                    <img src={IconHotel} alt="Hotel 4 Nights" />
                                     <Text variant="bold" title="Hotel 4 Nights" />
                                 </div>
                             </li>
                             <li>
                                 <Text variant="p" title="Transportation" className="color-second" />
                                 <div className="wrapper-iconic">
-                                    <i className="fas fa-home"></i>
+                                <img src={IconPlane} alt="Qatar Airways" />
                                     <Text variant="bold" title="Qatar Airways" />
                                 </div>
                             </li>
                             <li>
                                 <Text variant="p" title="Transportation" className="color-second" />
                                 <div className="wrapper-iconic">
-                                    <i className="fas fa-home"></i>
+                                    <img src={IconMeal} alt="Included as ltinerary" />
                                     <Text variant="bold" title="Included as ltinerary" />
                                 </div>
                             </li>
                             <li>
                                 <Text variant="p" title="Transportation" className="color-second" />
                                 <div className="wrapper-iconic">
-                                    <i className="fas fa-home"></i>
+                                    <img src={IconTime} alt="6 Day 4 Night" />
                                     <Text variant="bold" title="6 Day 4 Night" />
                                 </div>
                             </li>
                             <li>
                                 <Text variant="p" title="Transportation" className="color-second" />
                                 <div className="wrapper-iconic">
-                                    <i className="fas fa-home"></i>
+                                    <img src={IconCalendar} alt="26 August 2020" />
                                     <Text variant="bold" title="26 August 2020" />
                                 </div>
                             </li>
