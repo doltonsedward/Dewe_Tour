@@ -13,16 +13,16 @@ const CardBox = ({logo, heading, text}) => {
     )
 }
 
-const ContentBox = ({img, heading, price, subtext, className}) => {
+const ContentBox = ({img, heading, type, price, subtext, className}) => {
     return (
         <div className={className}>
-            <div className="content-box">
-                <img src={img} className="content-cover-image" alt={heading} />
+            <div className="content-box c-pointer">
+                <img src={'/assets/img/tour/' + img} className="content-cover-image" alt={heading} />
                 <Gap height={11} />
                 <p className="heading__content-box">{heading}</p>
                 <Gap height={10} />
                 <div className="d-flex-between">
-                    <p className="subheading__content-box color-theme">{price}</p>
+                    <p className="subheading__content-box color-theme">{type} {price}</p>
                     <p className="country__content-box">{subtext}</p>
                 </div>
             </div>
@@ -30,12 +30,12 @@ const ContentBox = ({img, heading, price, subtext, className}) => {
     )
 }
 
-const Box = ({variant, logo, image, heading, text, price, subtext, className}) => {
+const Box = ({variant, logo, heading, text, className, item}) => {
     switch (variant) {
         case 'card':
             return <CardBox logo={logo} heading={heading} text={text} />
         case 'content':
-            return <ContentBox className={className} img={image} heading={heading} price={price} subtext={subtext} />
+            return <ContentBox className={className} img={item.image} heading={item.name} type={item.type} price={item.price} subtext={item.country} />
     
         default:
             return (

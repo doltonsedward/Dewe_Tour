@@ -7,7 +7,7 @@ const InputSearch = ({label, className, ...rest}) => {
                 <p>{label}</p>
                 <div className={className}>
                     <input {...rest} />
-                    <button className="btn-submit__hero bg-btn-warning">Submit</button>
+                    <button className="btn-submit__hero btn-warning">Submit</button>
                 </div>
             </label>
         </>
@@ -27,9 +27,9 @@ const Input = ({label, variant, ...rest}) => {
         default:
             return (
                 <>
-                    <label className="wrapper-input">
-                        <p>{label}</p>
-                        <input {...rest} />
+                    <label className="wrapper-input default">
+                        <p style={{fontSize: rest.fontSize}}>{label}</p>
+                        <input className="input-theme" {...rest} />
                     </label>
                 </>
             )

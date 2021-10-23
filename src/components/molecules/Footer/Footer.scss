@@ -1,4 +1,12 @@
 footer {
-    padding: calc(27px / 3);
+    position: relative;
+    color: var(--color-footer);
+    height: 54px;
     background: var(--bg-footer);
+
+    .icon-footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
 }

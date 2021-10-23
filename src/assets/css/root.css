@@ -4,7 +4,9 @@
     --white-low: #E5E5E5;
     --orange: #FFAF00;
     --gray: #C4C4C4;
+    --gray-low: #D2D2D240;
     --gray-second: #878787;
+    --gray-third: #B1B1B1;
     --red: #FF0742;
     --red-low: rgba(236, 122, 122, 0.15);
     --green: #0ACF83;
@@ -13,15 +15,17 @@
     /* section for border */
     --border-trendy: 5px;
     --border-smooth: 13px;
+    --border-circle: 50%;
 
     /* section for theme  */
+    --color-primary: var(--white);
     --color-theme: var(--orange);
     --bg-default: var(--white-low);
     --bg-theme: var(--orange);
     --bg-footer: var(--orange);
 
     /* section for input  */
-    --bg-input: var(--gray);
+    --bg-input: var(--gray-low);
 
     /* section for button  */
     --bg-btn-theme: var(--orange);
@@ -37,7 +41,8 @@
     --text-success: var(--green);
 
     /* section for font  */
-    --font-heading: 'Product Sans Thin';
+    --font-heading-default: 'Product Sans';
+    --font-heading: 'Product Sans Bold';
     --font-subheading: 'Product Sans Thin';
     --font-button: 18px;
 
@@ -45,6 +50,17 @@
     --h1-size: 64px;
     --h2-size: 48px;
 
+    /* section for footer */
+    --color-footer: var(--white);
+
     /* section  */
     --card-theme: var(--white);
+
+    /* section for shadow */
+    --box-shadow-theme: 0 0 50px rgba(0, 0, 0, .3);
+    --box-shadow-primary: 0 0 50px rgba(0, 0, 0, .6);
+
+
+    /* section for logic */
+    --z-index: 2;
 }
