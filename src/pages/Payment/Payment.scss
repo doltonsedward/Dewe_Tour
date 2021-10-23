@@ -1,0 +1,20 @@
+.payment {
+    
+    .hero {
+        height: var(--hero-height-alternate);
+    }
+
+    .main {
+        width: 1035px;
+        margin: 0 auto;
+
+        .content__payment {
+            border: 1px solid var(--gray-fourth);
+            border-radius: var(--border-trendy);
+
+            .detail-heading__payment {
+                padding: 10px 58px 0;
+            }
+        }
+    }
+}

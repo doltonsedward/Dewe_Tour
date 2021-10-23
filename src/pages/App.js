@@ -3,7 +3,7 @@ import './App.css'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Logo } from '../assets'
 import { Header, Footer, Modal } from '../components'
-import { Home, DetailTrip } from './'
+import { Home, DetailTrip, Payment } from './'
 
 const App = () => {
     return (
@@ -18,6 +18,11 @@ const App = () => {
                     </Route>
                     <Route path="/detail-trip/:id">
                         <DetailTrip />
+                        <Modal variant="modal-login" />
+                        <Modal variant="modal-register" />
+                    </Route>
+                    <Route path="/payment">
+                        <Payment />
                         <Modal variant="modal-login" />
                         <Modal variant="modal-register" />
                     </Route>
