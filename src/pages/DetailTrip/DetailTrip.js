@@ -3,7 +3,7 @@ import { useParams } from "react-router"
 import { Gap, Text } from '../../components'
 import { DataTour } from '../../assets'
 import Button from '@mui/material/Button'
-import { muiButton, floatRight } from '../../utils'
+import { muiButton } from '../../utils'
 import { useState } from 'react'
 
 const DetailTrip = () => {
@@ -97,7 +97,7 @@ const DetailTrip = () => {
                         <Text variant="bold" title={`${type} ${totalPriceInString}`} fontSize={24} className="total-count" />
                     </div>
                     <p className="text-right">
-                        <Button variant="contained" sx={floatRight}>Book now</Button>
+                        <Button variant="contained" sx={muiButton}>Book now</Button>
                     </p>
                     <Gap height={44} />
                 </div>
