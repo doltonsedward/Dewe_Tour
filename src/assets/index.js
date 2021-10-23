@@ -22,8 +22,10 @@ import IconLeaf from './icon/leaf.png'
 
 // img for profile
 import ProfileDefault from './img/profile/radif.jpg'
+import DataTour from './json'
 
 
 export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus }
 export { IconPalm2, IconHibicus2, IconLeaf, IconUser, IconBill, IconLogout }
 export { ProfileDefault }
+export { DataTour }
