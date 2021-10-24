@@ -21,6 +21,15 @@ const paymentButton = {
     }
 }
 
+const profileCoverButton = {
+    width: '100%',
+    height: '50px',
+    backgroundColor: '#FFAF00',
+    '&:hover': {
+        backgroundColor: '#e7bb5a'
+    }
+}
+
 const warningButton = {
     color: '#EC7A7A',
     backgroundColor: 'rgba(255, 0, 0, .08)',
@@ -45,4 +54,4 @@ const successButton = {
     }
 }
 
-export { muiButton, floatRight, paymentButton, warningButton, pendingButton, successButton }
+export { muiButton, floatRight, paymentButton, profileCoverButton, warningButton, pendingButton, successButton }
