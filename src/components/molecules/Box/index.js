@@ -44,12 +44,14 @@ const ShowButton = ({status, ...rest}) => {
         ) 
     } else {
         // need fixed
-        return <p></p>
+        return (
+            <Button sx={{display: 'none'}}></Button>
+        )
     }
 }
 const PaymentBox = ({name, country, type, count, totalPayment, status, ...rest}) => {
     let boxStatus, textBoxStatus
-    console.log(status)
+    
     switch (status) {
         case 'waiting':
             boxStatus = warningButton
