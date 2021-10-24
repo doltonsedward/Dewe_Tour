@@ -43,6 +43,16 @@
     box-shadow: var(--box-shadow-theme);
     z-index: 10;
 
+    .capacity__tour {
+        font-weight: 800;
+        padding: 11px 7px 12px 8px;
+        position: absolute;
+        top: calc(10px + 15px);
+        right: 10px;
+        border-radius: 5px 0px 0px 5px;
+        background-color: var(--color-primary);
+    }
+
     .content-cover-image {
         width: 328px;
         height: 241px;
@@ -70,49 +80,54 @@
         height: var(--hero-height-alternate);
     }
 
-    .main {
-        width: 1035px;
-        margin: 0 auto;
+}
+.main {
+    width: 1035px;
+    margin: 0 auto;
+    
 
-        .content__payment {
-            border: 1px solid var(--gray-fourth);
-            border-radius: var(--border-trendy);
+    .content__payment {
+        border: 1px solid var(--gray-fourth);
+        border-radius: var(--border-trendy);
+        background-color: white;
+        
 
-            .detail-heading__payment {
-                padding: 10px 58px 0;
+        .detail-heading__payment {
+            padding: 10px 58px 0;
+            
 
-                .left-side__heading_payment {
-                    width: 70%;
+            .left-side__heading_payment {
+                width: 70%;
+                
 
-                    b {
-                        line-height: 24px;
-                    }
-                }
-
-                .right-side__heading_payment {
-                    text-align: right;
-
-                    img { border: 3px solid black }
+                b {
+                    line-height: 24px;
                 }
             }
 
-            .detail-body__payment {
-                table {
-                    text-align: center;
-                    width: 100%;
-                    
-                    th, td {
-                        padding: 20px;
-                        
-                    }
+            .right-side__heading_payment {
+                text-align: right;
 
-                    td {
-                        border-top: 1px solid var(--gray-fifth);
-                    }
+                img { border: 3px solid black }
+            }
+        }
+
+        .detail-body__payment {
+            table {
+                text-align: center;
+                width: 100%;
+                
+                th, td {
+                    padding: 20px;
                     
-                    td:not(.table-bold) {
-                        color: var(--gray-third);
-                    }
+                }
+
+                td {
+                    border-top: 1px solid var(--gray-fifth);
+                }
+                
+                td:not(.table-bold) {
+                    color: var(--gray-third);
                 }
             }
         }
