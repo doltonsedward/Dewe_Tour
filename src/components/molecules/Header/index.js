@@ -1,20 +1,19 @@
 import './Header.scss'
 import { dropDown, showLoginModal, showRegisterModal } from '../../../utils'
 import { ProfileDefault } from '../../../assets'
-import { IconUser, IconBill, IconLogout } from '../../../assets'
+import { IconUser, IconBill, IconLogout, IconTrip } from '../../../assets'
 import store from '../../../store'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 
-
-
 const Header = ({logo}) => {
-
     const history = useHistory()
     
     // const isLoginSession = useSelector(state => state.isLogin) || JSON.parse(localStorage.getItem('user'))
     const isLoginSession = useSelector(state => state.isLogin)
     
+    const currentUser = useSelector(state => state.user)
+    const admin = JSON.parse(localStorage.getItem('admin'))
     const logoutSession = () => {
         const currentState = store.getState()
         const email = currentState.user.email
@@ -28,7 +27,25 @@ const Header = ({logo}) => {
         })
     }
 
-    if (isLoginSession) {
+    if (currentUser.email === admin.email && currentUser.password === admin.password && isLoginSession) {
+        return (
+            <header className="d-flex-between">
+                <img src={logo} alt="this is logo" onClick={()=> history.push('/')} />
+                <div className="section-button__header">
+                    <div className="profile" onClick={dropDown}>
+                        <img className="profile-image" src={ProfileDefault} alt="profile" />
+                        <div className="dropdown">
+                            <ul>
+                                <li onClick={()=> history.push('/list-transaction')}><img src={IconTrip} alt="profile" /> Trip</li>
+                                <hr style={{ background: '#A8A8A8', border: '1px solid #A8A8A8' }} />
+                                <li onClick={logoutSession}><img src={IconLogout} alt="logout if you want to exit from this website" /> Logout</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        )
+    } else if (isLoginSession) {
         return (
             <header className="d-flex-between">
                 <img src={logo} alt="this is logo" onClick={()=> history.push('/')} />
