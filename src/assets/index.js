@@ -29,13 +29,19 @@ import IconCalendar from './icon/calendar.svg'
 // img for profile
 import ProfileDefault from './img/profile/radif.jpg'
 import DataTour from './json'
+import IconUserCircle from './icon/user-circle.png'
+import IconEmail from './icon/email.png'
+import IconPhone from './icon/phone.png'
+import IconLocation from './icon/location.png'
 
 // img for payment
 import ImgTransfer from './img/transfer/tf-1.jpg'
+import ImgQrCode from './img/qr-code/qr-code1.svg'
 
 
 export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus }
 export { IconPalm2, IconHibicus2, IconLeaf, IconUser, IconBill, IconLogout, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar }
 export { ProfileDefault }
-export { ImgTransfer }
+export { ImgTransfer, ImgQrCode }
 export { DataTour }
+export { IconUserCircle, IconEmail, IconPhone, IconLocation }
