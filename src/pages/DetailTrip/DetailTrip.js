@@ -2,13 +2,39 @@ import './DetailTrip.scss'
 import { useParams } from "react-router"
 import { Gap, Text } from '../../components'
 import { DataTour, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar } from '../../assets'
-import Button from '@mui/material/Button'
 import { muiButton, setData } from '../../utils'
 import { useState } from 'react'
+
+
+// mui component
+import Button from '@mui/material/Button'
+import Snackbar from '@mui/material/Snackbar'
+import IconButton from '@mui/material/IconButton'
+import { Alert } from '@mui/material'
 
 const DetailTrip = () => {
     const { id } = useParams()
     const [count, setCount] = useState(1)
+    const [open, setOpen] = useState(false);
+
+    
+    const handleClick = () => { setOpen(true) }
+    const handleClose = () => { setOpen(false) }
+
+    const action = (
+        <>
+            <Button color="secondary" size="small" onClick={handleClose}>
+                CLOSE
+            </Button>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+            </IconButton>
+        </>
+    )
 
     const listTour = DataTour.filter((item) => item.id === id)
         .map((item) => {
@@ -107,10 +133,23 @@ const DetailTrip = () => {
                         <Text variant="bold" fontSize={24} className="total-count">{`${type} ${totalPriceInString}`}</Text>
                     </div>
                     <p className="text-right">
-                        <Button variant="contained" sx={muiButton} onClick={() => setData('payment', paymentInfo)}>Book now</Button>
+                        <Button variant="contained" sx={muiButton} onClick={() => {setData('payment', paymentInfo); handleClick()}}>Book now</Button>
                     </p>
                     <Gap height={44} />
                 </div>
+                <Snackbar sx={{
+                    position: 'fixed',
+                    bottom: 0,
+                    zIndex: 999999999,
+                    transform: 'translate(50px, -25px) scale(1.2)',
+                    boxShadow: '0 0 50px rgba(0, 0, 0, .26)'
+                }} open={open} autoHideDuration={6000} onClose={handleClose} action={action}>
+
+                    <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
+                        Booking Success
+                    </Alert>
+
+                </Snackbar>
             </div>
         )
     })

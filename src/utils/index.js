@@ -1,5 +1,5 @@
 export * from './Modal/modal'
 export * from './CustomButton/MuiButton'
 export * from './Dropdown/dropDown'
-export * from './SetData/setData'
-export * from './RemoveData/removeData'
+export * from './HandlerData'
+export * from './HandlerMethod'
