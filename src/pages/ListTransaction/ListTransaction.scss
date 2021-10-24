@@ -1,0 +1,31 @@
+.transaction-info {
+    width: 1266.17px;
+    max-width: 95%;
+    margin: 0 auto;
+
+    th {
+        background-color: var(--color-primary);
+    }
+
+    tr {
+        text-align: left;
+        height: 73.14px;
+
+        th, td { 
+            width: 211.17px !important;
+            padding: 8px;
+            border-bottom: 1.5px solid #C4C4C4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    tr:nth-child(odd) {
+        background-color: #F9F9F9;
+    }
+
+    tr:nth-child(even) {
+        background-color: var(--color-primary);
+    }
+}
