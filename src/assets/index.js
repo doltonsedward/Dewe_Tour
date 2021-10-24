@@ -30,8 +30,12 @@ import IconCalendar from './icon/calendar.svg'
 import ProfileDefault from './img/profile/radif.jpg'
 import DataTour from './json'
 
+// img for payment
+import ImgTransfer from './img/transfer/tf-1.jpg'
+
 
 export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus }
 export { IconPalm2, IconHibicus2, IconLeaf, IconUser, IconBill, IconLogout, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar }
 export { ProfileDefault }
+export { ImgTransfer }
 export { DataTour }
