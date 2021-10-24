@@ -50,15 +50,23 @@ const DetailTrip = () => {
         // object for payment, will send to localstorage
         const totalPayment = totalPriceInString
         const status = 'waiting'
-        const paymentInfo = { name, country, type, price, count, totalPayment, status }
+        const filterName = name.split(' ')
+        const nameFromFIltering = filterName.splice(0, 4).join(' ')
+        const paymentInfo = { 
+            ...item,
+            status: status,
+            name: nameFromFIltering,
+            count: count,
+            totalPayment: totalPayment
+        }
         
         return (
             <div className="listTour">
-                <Text variant="h1">{name}</Text>
+                <Text variant="h1" fontSize={48}>{name}</Text>
                 <Text variant="p" className="color-second">{country}</Text>
                 <Gap height={27} />
                 <div className="content__listTour">
-                    <img className="heading-img__listTour" src={"/assets/img/tour/" + item.image} alt="new york" />
+                    <img className="heading-img__listTour" src={"/assets/img/tour/" + item.tourCover} alt="new york" />
                     <ul className="wrapper-child__listTour">
                         {
                             item.allImage.map((listImg) => {
@@ -129,7 +137,7 @@ const DetailTrip = () => {
                         </div>
                     </div>
                     <div className="group-total d-flex-between">
-                        <Text variant="bold" title="Total: " fontSize={24} className="total-count" />
+                        <Text variant="bold" fontSize={24} className="total-count">Total :</Text>
                         <Text variant="bold" fontSize={24} className="total-count">{`${type} ${totalPriceInString}`}</Text>
                     </div>
                     <p className="text-right">
