@@ -73,16 +73,9 @@ const Payment = () => {
                     handleClick()
                 }} />
 
-            <Snackbar sx={{
-                position: 'fixed',
-                bottom: 0,
-                zIndex: 999999999,
-                transform: 'translate(50px, -25px) scale(1.2)',
-                boxShadow: '0 0 50px rgba(0, 0, 0, .26)'
-            }} open={open} autoHideDuration={6000} onClose={handleClose} action={action}>
-
-                <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
-                    Payment success
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} action={action}>
+                <Alert sx={{boxShadow: '0 0 50px rgba(0, 0, 0, .26)'}} onClose={handleClose} severity='success'>
+                <p>Your payment will be confirmed within 1 x 24 hours thank you</p>
                 </Alert>
 
             </Snackbar>

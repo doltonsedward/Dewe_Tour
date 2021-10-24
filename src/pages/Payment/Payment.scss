@@ -1,6 +1,11 @@
 .payment {
+    
     .hero {
         height: var(--hero-height-alternate);
+    }
+
+    .content__payment {
+        background-color: var(--color-primary);
     }
 }
 
