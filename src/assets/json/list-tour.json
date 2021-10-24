@@ -7,6 +7,7 @@
       "country": "Australia",
       "image": "tour1.jpg",
       "tourCover": "tour-cover.jpg",
+      "capacity": "12",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -21,6 +22,7 @@
       "country": "South Korea",
       "image": "tour2.jpg",
       "tourCover": "tour2.jpg",
+      "capacity": "14",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -35,6 +37,7 @@
       "country": "Japan",
       "image": "tour3.jpg",
       "tourCover": "tour3.jpg",
+      "capacity": "10",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -49,6 +52,7 @@
       "country": "Indonesia",
       "image": "tour4.jpg",
       "tourCover": "tour4.jpg",
+      "capacity": "8",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -63,6 +67,7 @@
       "country": "Indonesia",
       "image": "tour5.jpg",
       "tourCover": "tour5.jpg",
+      "capacity": "14",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -77,6 +82,7 @@
       "country": "Japan",
       "image": "tour6.jpg",
       "tourCover": "tour6.jpg",
+      "capacity": "10",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",

@@ -1,13 +1,13 @@
 import './Home.scss'
 import { LogoGuarante, LogoHeart, LogoAgent, LogoSupport } from '../../assets/'
-import { IconPalm, IconHibicus } from '../../assets/'
+import { IconPalm, IconHibicus, DataTour } from '../../assets/'
 import { Gap, Input } from '../../components'
 import { Box } from '../../components'
-import data from '../../assets/json/list-tour.json'
 import { useHistory } from 'react-router'
 
 const Home = () => {
     const history = useHistory()
+    
     return (
         <div className="home-page">
             <div className="hero text-white">
@@ -57,7 +57,7 @@ const Home = () => {
                     <h2 className="text-center">Group Tour</h2>
                     <Gap height={77} />
                     <div className="row">
-                    {data.map((item) => (
+                    {DataTour.map((item) => (
                         <Box key={item.id} className="col-4 col-s-6"
                             variant="content" 
                             item={item}
