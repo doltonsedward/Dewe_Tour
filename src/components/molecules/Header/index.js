@@ -37,7 +37,7 @@ const Header = ({logo}) => {
                         <img className="profile-image" src={ProfileDefault} alt="profile" />
                         <div className="dropdown">
                             <ul>
-                                <li><img src={IconUser} alt="profile" /> Profile</li>
+                                <li onClick={()=> history.push('/profile')}><img src={IconUser} alt="profile" /> Profile</li>
                                 <li onClick={()=> history.push('/payment')}><img src={IconBill} alt="pay if you ready to it" /> Pay</li>
                                 <hr style={{ background: '#A8A8A8', border: '1px solid #A8A8A8' }} />
                                 <li onClick={logoutSession}><img src={IconLogout} alt="logout if you want to exit from this website" /> Logout</li>

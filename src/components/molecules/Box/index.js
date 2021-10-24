@@ -160,6 +160,14 @@ const PaymentBox = ({name, country, type, count, totalPayment, status, ...rest})
     )
 }
 
+const ProfileBox = () => {
+    return (
+        <div>
+            hello
+        </div>
+    )
+}
+
 
 const Box = ({variant, logo, heading, text, img, item, status, ...rest}) => {
     switch (variant) {
@@ -169,6 +177,8 @@ const Box = ({variant, logo, heading, text, img, item, status, ...rest}) => {
             return <ContentBox img={item.image} heading={item.name} type={item.type} price={item.price} subtext={item.country} {...rest} />
         case 'payment':
             return <PaymentBox status={status} {...rest} />
+        case 'profile':
+            return <ProfileBox />
     
         default:
             return (

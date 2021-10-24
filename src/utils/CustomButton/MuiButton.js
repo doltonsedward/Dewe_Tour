@@ -33,7 +33,7 @@ const pendingButton = {
     color: '#ecc47a',
     backgroundColor: 'rgba(255, 204, 0, 0.078)',
     '&:hover': {
-        backgroundColor: 'rgba(255, 204, 0, 0.5)'
+        backgroundColor: 'rgba(255, 204, 0, .05)'
     }
 }
 
@@ -41,7 +41,7 @@ const successButton = {
     color: '#7aeca0',
     backgroundColor: 'rgba(0, 255, 106, 0.078)',
     '&:hover': {
-        backgroundColor: 'rgba(0, 255, 106, 0.5)'
+        backgroundColor: 'rgba(0, 255, 106, .05)'
     }
 }
 
