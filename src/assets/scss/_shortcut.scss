@@ -93,6 +93,11 @@
 .ml-s { margin-left: 8px; } 
 .ml-m { margin-left: 15px; } 
 
+.mr-s { margin-right: 8px }
+.mr-m { margin-right: 16px }
+.mr-l { margin-right: 24px }
+.mr-x { margin-right: 32px }
+
 
 .text-elipsis {
   white-space: nowrap;
@@ -117,7 +122,9 @@
 .color-theme { color: var(--color-theme) }
 .color-second { color: var(--gray-second) }
 .color-gray-medium { color: var(--gray-medium) }
-.color-warning { color: var(--color-warning) }
+.color-warning { color: #FF0742 }
+.color-success { color: #0ACF83 }
+.color-pending { color: #F7941E }
 
 .clear-both { clear: both; }
 
