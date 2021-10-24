@@ -1,20 +1,24 @@
 .payment {
-    
     .hero {
         height: var(--hero-height-alternate);
     }
+}
 
-    .main {
-        width: 1035px;
-        margin: 0 auto;
+.table-bold {
+    font-weight: 800;
+}
 
-        .content__payment {
-            border: 1px solid var(--gray-fourth);
-            border-radius: var(--border-trendy);
+.empty-cases {
+    min-height: 100vh;
+}
 
-            .detail-heading__payment {
-                padding: 10px 58px 0;
-            }
-        }
+.testing {
+    width: 150px;
+    height: 50px;
+    color: #7aeca0;
+    background: rgba(0, 255, 106, 0.078);
+
+    &:hover {
+        background: rgba(0, 255, 106, 0.5);
     }
 }

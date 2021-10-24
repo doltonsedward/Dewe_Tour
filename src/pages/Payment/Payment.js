@@ -1,41 +1,38 @@
 import './Payment.scss'
 
-import { LogoSecond } from '../../assets'
-import { Gap, Text } from '../../components'
-import { Button } from '@mui/material'
-import { muiButton } from '../../utils'
+import { Box, Gap } from '../../components'
+import { setData, removeData } from '../../utils' 
 
 const Payment = () => {
-    const listPayment = {}
-    
+    // get data from api localstorage
+    const payment = JSON.parse(localStorage.getItem('payment'))
+    // const paymentHistory = JSON.parse(localStorage.getItem('paymentHistory'))
+
+    const { name, country, type, count, totalPayment } = payment
+    console.log(payment.status)
+
+    function statusPayment() {
+        return {
+            ...payment,
+            status: 'pending'
+        }
+    }
+
+    console.log(statusPayment())
     return (
         <div className="payment">
             <div className="hero"></div>
             <Gap height={66} />
-            <div className="main">
-                <div className="content__payment">
-                    <div className="detail-heading__payment">
-                        <img src={LogoSecond} alt="" />
-                    </div>
-                    <div className="detail-body__payment">
-                        <table>
-                            <tr>
-                                <th>No</th>
-                                <th>Full Name</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <Gap height={28} />
-                <p className="text-right">
-                    <Button variant="contained" sx={muiButton}>
-                        pay
-                    </Button>
-                </p>
-            </div>
-            <Gap height={86} />
+            
+            <Box 
+                variant='payment' 
+                name={name} 
+                country={country} 
+                type={type} 
+                count={count} 
+                totalPayment={totalPayment}
+                status={payment.status}
+                onClick={()=> setData('payment', statusPayment())} />
         </div>
     )
 }
