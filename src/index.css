@@ -33,6 +33,7 @@ input {
   border-radius: var(--border-trendy);
 }
 
+b { display: block }
 ul:not(.primitive) li { list-style: none }
 
 input, button { 
