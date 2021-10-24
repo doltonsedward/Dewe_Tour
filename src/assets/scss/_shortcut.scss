@@ -94,6 +94,12 @@
 .ml-m { margin-left: 15px; } 
 
 
+.text-elipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .text-center { text-align: center }
 .text-right { text-align: right }
 .text-white { color: var(--white) }
@@ -110,6 +116,7 @@
 // color
 .color-theme { color: var(--color-theme) }
 .color-second { color: var(--gray-second) }
+.color-gray-medium { color: var(--gray-medium) }
 .color-warning { color: var(--color-warning) }
 
 .clear-both { clear: both; }

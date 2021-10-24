@@ -24,7 +24,7 @@ const ContentBox = ({img, heading, type, price, subtext, ...rest}) => {
             <div className="content-box c-pointer">
                 <img src={'/assets/img/tour/' + img} className="content-cover-image" alt={heading} />
                 <Gap height={11} />
-                <p className="heading__content-box">{heading}</p>
+                <p className="heading__content-box text-elipsis">{heading}</p>
                 <Gap height={10} />
                 <div className="d-flex-between">
                     <p className="subheading__content-box color-theme">{type} {price}</p>
@@ -36,7 +36,7 @@ const ContentBox = ({img, heading, type, price, subtext, ...rest}) => {
 }
 
 const ShowButton = ({status, ...rest}) => {
-    if (status == 'waiting') {
+    if (status === 'waiting') {
         return (
             <Button variant="contained" sx={paymentButton} {...rest}>
                 pay

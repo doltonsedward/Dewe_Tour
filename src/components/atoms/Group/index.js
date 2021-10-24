@@ -20,6 +20,9 @@ const Group = ({variant, ...rest}) => {
         case 'space-around':
             return <div style={spaceBetween} {...rest} />
         
+        case 'flex':
+            return <div style={{display: 'flex', alignItems: 'center'}} {...rest} />
+        
         default:
             return <div {...rest} />
     }

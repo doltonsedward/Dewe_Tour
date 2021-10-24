@@ -41,7 +41,7 @@ header {
                 top: 140%;
                 left: 50%;
                 transform: translateX(-80%);
-                box-shadow: var(--box-shadow-primary);
+                box-shadow: var(--box-shadow-theme);
 
                 &::before {
                     position: absolute;
