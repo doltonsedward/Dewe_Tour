@@ -3,7 +3,9 @@ import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Logo } from '../assets'
 import { Header, Footer, Modal } from '../components'
+import { ListTransaction } from './'
 import { Home, DetailTrip, Payment, Profile } from './'
+import { PrivateRoute } from '../config'
 
 const App = () => {
     return (
@@ -31,6 +33,7 @@ const App = () => {
                         <Modal variant="modal-login" />
                         <Modal variant="modal-register" />
                     </Route>
+                    <PrivateRoute path="/list-transaction" component={ListTransaction} />
                 </Switch>
             <Footer />
         </Router>
