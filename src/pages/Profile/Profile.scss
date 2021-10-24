@@ -1,0 +1,45 @@
+$borderProfile: 8px;
+
+.personal-info__profile {
+    width: 785px;
+    margin: 0 auto;
+    padding: 24px;
+    background-color: var(--color-primary);
+    border-radius: $borderProfile;
+
+    .list-icon-info__profile {
+        width: 40px;
+        text-align: center;
+        margin-right: 15px;
+
+
+        .wrapper-input-file__profile {
+            position: relative;
+
+            
+        }
+    }
+
+    
+}
+
+.input-file__profile {
+    width: 280px;
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.preview-thumbnail__profile {
+    width: 280px;
+    height: 345px;
+    border-radius: $borderProfile;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
