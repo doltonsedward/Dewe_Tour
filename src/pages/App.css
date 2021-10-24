@@ -1,0 +1,3 @@
+.header-default .hero {
+    height: var(--hero-height-alternate);
+}
