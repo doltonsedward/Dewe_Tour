@@ -5,31 +5,72 @@ import { paymentButton, warningButton, pendingButton, successButton } from '../.
 
 // mui component
 import { Button } from '@mui/material'
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
+
+import { useState } from 'react'
 
 const CardBox = ({logo, heading, text}) => {
+    const [loading, setLoading] = useState(true)
+
+    setTimeout(()=> {
+        setLoading(false)
+    }, 2000)
+
     return (
+        
         <div className="card-box">
-            <img src={logo} alt={heading} />
-            <Gap height={24} />
-            <p className="heading__card-box">{heading}</p>
-            <Gap height={9} />
-            <p className="subheading__card-box">{text}</p>
+            {
+                loading ? 
+                <Stack spacing={1}>
+                    <Skeleton variant="circular" width={70} height={70} sx={{margin: '0 auto'}} />
+                    <Skeleton variant="text" width={210} height={66} />
+                    <Skeleton variant="text" />
+                    <Skeleton variant="text" />
+                </Stack>
+                :
+                <>
+                    <img src={logo} alt={heading} />
+                    <Gap height={24} />
+                    <p className="heading__card-box">{heading}</p>
+                    <Gap height={9} />
+                    <p className="subheading__card-box">{text}</p>
+                </>
+            }
         </div>
     )
 }
 
-const ContentBox = ({img, heading, type, price, subtext, ...rest}) => {
+const ContentBox = ({img, heading, type, price, capacity, subtext, ...rest}) => {
+    const [loading, setLoading] = useState(true)
+
+    setTimeout(()=> {
+        setLoading(false)
+    }, 3000)
     return (
         <div {...rest}>
             <div className="content-box c-pointer">
-                <img src={'/assets/img/tour/' + img} className="content-cover-image" alt={heading} />
-                <Gap height={11} />
-                <p className="heading__content-box text-elipsis">{heading}</p>
-                <Gap height={10} />
-                <div className="d-flex-between">
-                    <p className="subheading__content-box color-theme">{type} {price}</p>
-                    <p className="country__content-box">{subtext}</p>
-                </div>
+                {
+                    loading ? 
+                    <Stack spacing={1}>
+                        <Skeleton variant="rectangular" height={241} />
+                        <Skeleton variant="text" />
+                        <Skeleton variant="text" />
+                    </Stack>
+                    : 
+                    <>
+                        <span className="capacity__tour">{capacity} / 15</span>
+                        <img src={'/assets/img/tour/' + img} className="content-cover-image" alt={heading} />
+                        <Gap height={11} />
+                        <p className="heading__content-box text-elipsis">{heading}</p>
+                        <Gap height={10} />
+                        <div className="d-flex-between">
+                            <p className="subheading__content-box color-theme">{type} {price}</p>
+                            <p className="country__content-box">{subtext}</p>
+                        </div>
+                    </>
+                }
+                
             </div>
         </div>
     )
@@ -72,84 +113,115 @@ const PaymentBox = ({name, country, type, count, totalPayment, status, ...rest})
             break;
     }
 
+    const [loading, setLoading] = useState(true)
+
+    setTimeout(()=> {
+        setLoading(false)
+    }, 3000)
     return (
         <>
             <div className="main">
-                <div className="content__payment">
-                    <Group variant="space-between-only" className="detail-heading__payment">
-                        <div className="left-side__heading_payment">
-                            <img src={LogoSecond} alt="" />
-                            <Gap height={28} />
-                            <Group variant="space-between-only">
-                                <div>
-                                    <Text variant="bold" fontSize={24}>{name}</Text>
-                                    <Text variant="p" fontSize={14} className="color-second">{country}</Text>
-                                    <Gap height={31} />
-                                    <Button variant="text" sx={boxStatus}>{textBoxStatus}</Button>
-                                </div>
-                                <div>
-                                    <Text variant="bold" fontSize={18}>Date Trip</Text>
-                                    <Text variant="bold" fontSize={14} className="color-second">26 August 2021</Text>
-                                    <Gap height={27} />
-                                    <Text variant="bold" fontSize={18}>Accomodation</Text>
-                                    <Text variant="bold" fontSize={14} className="color-second">Hotel 4 Nights</Text>
-                                </div>
-                                <div>
-                                    <Text variant="bold" fontSize={18}>Duration</Text>
-                                    <Text variant="bold" fontSize={14} className="color-second">6 Day 4 Night</Text>
-                                    <Gap height={27} />
-                                    <Text variant="bold" fontSize={18}>Transportation</Text>
-                                    <Text variant="bold" fontSize={14} className="color-second">Qatar Airways</Text>
-                                </div>
-                            </Group>
+                {
+                    loading ? 
+                    <Stack sx={{padding: '20px'}}>
+                        <Skeleton variant="rectangular" width={159} height={68} sx={{marginBottom: '10px'}} />
+                        <Skeleton variant="rectangular" height={100} />
+                        <Gap height={76} />
+                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
                         </div>
-                        <div className="right-side__heading_payment">
-                            <Text variant="bold" fontSize={36} lineHeight="49px">Booking</Text>
-                            <Text variant="p" fontSize={18} lineHeight="25px" className="color-second">
-                                <strong>Saturday</strong> 22 july 2021
-                            </Text>
-                            <Gap height={20} />
-                            <Group className="text-center">
-                                <img src={ImgTransfer} alt="transfer proof" />
-                                <Gap height={12.63} />
-                                <Text variant="p" fontSize={13} lineHeight="15px" className="color-second">Upload payment proof</Text>
-                            </Group>
+                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
+                            <Skeleton variant="text" width={100} />
                         </div>
-                    </Group>
-                    <Gap height={9.18} />
-                    <div className="detail-body__payment">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Full Name</th>
-                                    <th>Gender</th>
-                                    <th>Phone</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Doltons Edward</td>
-                                    <td>Male</td>
-                                    <td>083896833112</td>
-                                    <td className="table-bold">Qty</td>
-                                    <td className="table-bold">:</td>
-                                    <td className="table-bold">{count}</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td className="table-bold">Total</td>
-                                    <td className="table-bold">:</td>
-                                    <td className="table-bold color-warning">{type} {totalPayment}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    </Stack>
+                    : 
+                    <div className="content__payment">
+                        <Group variant="space-between-only" className="detail-heading__payment">
+                            <div className="left-side__heading_payment">
+                                <img src={LogoSecond} alt="" />
+                                <Gap height={28} />
+                                <Group variant="space-between-only">
+                                    <div>
+                                        <Text variant="bold" fontSize={24}>{name}</Text>
+                                        <Text variant="p" fontSize={14} className="color-second">{country}</Text>
+                                        <Gap height={31} />
+                                        <Button variant="text" sx={boxStatus}>{textBoxStatus}</Button>
+                                    </div>
+                                    <div>
+                                        <Text variant="bold" fontSize={18}>Date Trip</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">26 August 2021</Text>
+                                        <Gap height={27} />
+                                        <Text variant="bold" fontSize={18}>Accomodation</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">Hotel 4 Nights</Text>
+                                    </div>
+                                    <div>
+                                        <Text variant="bold" fontSize={18}>Duration</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">6 Day 4 Night</Text>
+                                        <Gap height={27} />
+                                        <Text variant="bold" fontSize={18}>Transportation</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">Qatar Airways</Text>
+                                    </div>
+                                </Group>
+                            </div>
+                            <div className="right-side__heading_payment">
+                                <Text variant="bold" fontSize={36} lineHeight="49px">Booking</Text>
+                                <Text variant="p" fontSize={18} lineHeight="25px" className="color-second">
+                                    <strong>Saturday</strong> 22 july 2021
+                                </Text>
+                                <Gap height={20} />
+                                <Group className="text-center">
+                                    <img src={ImgTransfer} alt="transfer proof" />
+                                    <Gap height={12.63} />
+                                    <Text variant="p" fontSize={13} lineHeight="15px" className="color-second">Upload payment proof</Text>
+                                </Group>
+                            </div>
+                        </Group>
+                        <Gap height={9.18} />
+                        <div className="detail-body__payment">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Full Name</th>
+                                        <th>Gender</th>
+                                        <th>Phone</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Doltons Edward</td>
+                                        <td>Male</td>
+                                        <td>083896833112</td>
+                                        <td className="table-bold">Qty</td>
+                                        <td className="table-bold">:</td>
+                                        <td className="table-bold">{count}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td className="table-bold">Total</td>
+                                        <td className="table-bold">:</td>
+                                        <td className="table-bold color-warning">{type} {totalPayment}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                }
+                
                 <Gap height={28} />
                 <p className="text-right">
                     <ShowButton status={status} {...rest} />
@@ -174,7 +246,7 @@ const Box = ({variant, logo, heading, text, img, item, status, ...rest}) => {
         case 'card':
             return <CardBox logo={logo} heading={heading} text={text} />
         case 'content':
-            return <ContentBox img={item.image} heading={item.name} type={item.type} price={item.price} subtext={item.country} {...rest} />
+            return <ContentBox img={item.image} heading={item.name} type={item.type} capacity={item.capacity} price={item.price} subtext={item.country} {...rest} />
         case 'payment':
             return <PaymentBox status={status} {...rest} />
         case 'profile':
