@@ -64,3 +64,57 @@
         @extend .subheading-box;
     }
 }
+
+.payment {
+    .hero {
+        height: var(--hero-height-alternate);
+    }
+
+    .main {
+        width: 1035px;
+        margin: 0 auto;
+
+        .content__payment {
+            border: 1px solid var(--gray-fourth);
+            border-radius: var(--border-trendy);
+
+            .detail-heading__payment {
+                padding: 10px 58px 0;
+
+                .left-side__heading_payment {
+                    width: 70%;
+
+                    b {
+                        line-height: 24px;
+                    }
+                }
+
+                .right-side__heading_payment {
+                    text-align: right;
+
+                    img { border: 3px solid black }
+                }
+            }
+
+            .detail-body__payment {
+                table {
+                    text-align: center;
+                    width: 100%;
+                    
+                    th, td {
+                        padding: 20px;
+                        
+                    }
+
+                    td {
+                        border-top: 1px solid var(--gray-fifth);
+                    }
+                    
+                    td:not(.table-bold) {
+                        color: var(--gray-third);
+                    }
+                }
+            }
+        }
+    }
+}
