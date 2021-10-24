@@ -7,10 +7,15 @@
     --gray-low: #D2D2D240;
     --gray-second: #878787;
     --gray-third: #B1B1B1;
+    --gray-fourth: #B7B7B7;
+    --gray-fifth: rgba(183, 183, 183, 0.5);
     --red: #FF0742;
     --red-low: rgba(236, 122, 122, 0.15);
     --green: #0ACF83;
     --green-low: rgba(11, 220, 95, .15);
+
+    /* section for color */
+    --color-warning: var(--red);
 
     /* section for border */
     --border-trendy: 5px;
