@@ -15,6 +15,7 @@ import IconHibicus2 from './icon/hibicus1.png'
 import IconUser from './icon/user.svg'
 import IconBill from './icon/bill.svg'
 import IconLogout from './icon/logout.svg'
+import IconTrip from './icon/journey.svg'
 
 // icon for footer
 import IconLeaf from './icon/leaf.png'
@@ -38,10 +39,11 @@ import IconLocation from './icon/location.png'
 import ImgTransfer from './img/transfer/tf-1.jpg'
 import ImgQrCode from './img/qr-code/qr-code1.svg'
 
+import IconSearch from './icon/search.svg'
 
-export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus }
+export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus, IconTrip }
 export { IconPalm2, IconHibicus2, IconLeaf, IconUser, IconBill, IconLogout, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar }
 export { ProfileDefault }
 export { ImgTransfer, ImgQrCode }
 export { DataTour }
-export { IconUserCircle, IconEmail, IconPhone, IconLocation }
+export { IconUserCircle, IconEmail, IconPhone, IconLocation, IconSearch }
