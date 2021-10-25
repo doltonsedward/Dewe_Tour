@@ -4,6 +4,7 @@
 - add skeleton
 - add strict mode for access list transaction 
 - add modal in incoming transaction pages
+- fix modal in list-transfer
 
 - fix feature for admin when login
 - dynamic list in dropdown
