@@ -12,7 +12,7 @@ const InputSearch = ({label, className, onClick, ...rest}) => {
     )
 }
 
-const InputSearch = ({label, className, onClick, ...rest}) => {
+const InputMultiple = ({label, className, onClick, ...rest}) => {
     return (
         <>
             <label className="wrapper-input">
@@ -46,7 +46,7 @@ const Input = ({label, variant, onClick, ...rest}) => {
             classForLabel += ' d-flex'
         
             return (
-                <InputSearch label={label} className={classForLabel} onClick={onClick} {...rest} />
+                <InputMultiple label={label} className={classForLabel} onClick={onClick} {...rest} />
             )
         default:
             return (
