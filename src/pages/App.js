@@ -3,7 +3,7 @@ import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Logo } from '../assets'
 import { Header, Footer, Modal } from '../components'
-import { Home, DetailTrip, Payment, Profile, ListTransaction, Trip } from './'
+import { Home, DetailTrip, Payment, Profile, ListTransaction, Trip, AddTrip } from './'
 import { PrivateRoute } from '../config'
 
 const App = () => {
@@ -34,6 +34,7 @@ const App = () => {
                     </Route>
                     <PrivateRoute path="/list-transaction" component={ListTransaction} />
                     <PrivateRoute path="/trip" component={Trip} />
+                    <PrivateRoute path="/add-trip" component={AddTrip} />
                 </Switch>
             <Footer />
         </Router>
