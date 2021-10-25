@@ -1,10 +1,5 @@
-# Feature List-transaction
+# Feature add-trip
 
-- add capacity to data tour and show capacity to home
-- add skeleton
-- add strict mode for access list transaction 
-- add modal in incoming transaction pages
-- fix modal in list-transfer
-
-- fix feature for admin when login
-- dynamic list in dropdown
+- add navigation to list-transaction in dropdown admin
+- fix route if not exist, redirect to /not-found
+- fix add trip
