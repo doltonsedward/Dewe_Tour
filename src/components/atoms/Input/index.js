@@ -1,4 +1,5 @@
 import './Input.scss';
+import { IconFile } from '../../../assets';
 
 const InputSearch = ({label, className, onClick, ...rest}) => {
     return (
@@ -26,6 +27,23 @@ const InputMultiple = ({label, className, onClick, ...rest}) => {
     )
 }
 
+const InputFile = ({label, className, onClick, ...rest}) => {
+    return (
+        <>
+            <label className="wrapper-input">
+                <p style={{fontWeight: 800}}>{label}</p>
+                <div className={className}>
+                    <button className="input-theme">
+                        Attach here
+                        <img src={IconFile} alt="add your file here" />
+                        <input type="file" {...rest} onClick={onclick} />
+                    </button>
+                </div>
+            </label>
+        </>
+    )
+}
+
 const Input = ({label, variant, onClick, ...rest}) => {
     let classForLabel = 'input-section'
 
@@ -38,16 +56,16 @@ const Input = ({label, variant, onClick, ...rest}) => {
     switch (variant) {
         case 'search-btn':
             classForLabel += ' d-flex'
-        
-            return (
-                <InputSearch label={label} className={classForLabel} onClick={onClick} {...rest} />
-            )
+            return <InputSearch label={label} className={classForLabel} onClick={onClick} {...rest} />
+
         case 'multiple-input':
             classForLabel += ' d-flex'
-        
-            return (
-                <InputMultiple label={label} className={classForLabel} onClick={onClick} {...rest} />
-            )
+            return <InputMultiple label={label} className={classForLabel} onClick={onClick} {...rest} />
+
+        case 'file':
+            classForLabel += ' root--input-file'
+            return <InputFile label={label} className={classForLabel} onClick={onClick} {...rest} />
+
         default:
             return (
                 <>
