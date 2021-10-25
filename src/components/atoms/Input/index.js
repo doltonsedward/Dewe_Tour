@@ -1,20 +1,20 @@
 import './Input.scss';
 
-const InputSearch = ({label, className, ...rest}) => {
+const InputSearch = ({label, className, onClick, ...rest}) => {
     return (
         <>
             <label className="wrapper-input">
                 <p>{label}</p>
                 <div className={className}>
                     <input {...rest} />
-                    <button className="btn-submit__hero btn-warning">Submit</button>
+                    <button className="btn-submit__hero btn-warning" onClick={onClick}>Submit</button>
                 </div>
             </label>
         </>
     )
 }
 
-const Input = ({label, variant, ...rest}) => {
+const Input = ({label, variant, onClick, ...rest}) => {
     let classForLabel = 'input-section'
 
     switch (variant) {
@@ -22,7 +22,7 @@ const Input = ({label, variant, ...rest}) => {
             classForLabel += ' d-flex'
         
             return (
-                <InputSearch label={label} className={classForLabel} {...rest} />
+                <InputSearch label={label} className={classForLabel} onClick={onClick} {...rest} />
             )
         default:
             return (
