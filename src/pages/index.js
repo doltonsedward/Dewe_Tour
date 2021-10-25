@@ -2,6 +2,6 @@ import Home from './Home/Home'
 import DetailTrip from './DetailTrip/DetailTrip'
 import Payment from './Payment/Payment'
 import Profile from './Profile/Profile'
-import ListTransaction from './ListTransaction/ListTransaction'
+import { ListTransaction, Trip } from './Admin'
 
-export { Home, DetailTrip, Payment, Profile, ListTransaction }
+export { Home, DetailTrip, Payment, Profile, ListTransaction, Trip }
