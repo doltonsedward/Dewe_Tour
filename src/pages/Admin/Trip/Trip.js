@@ -17,7 +17,7 @@ const Trip = () => {
                 <div className="wrapper-list-trip">
                     <Group variant="space-between">
                         <Text variant="h1" fontSize={36}>Income Trip</Text>
-                        <Button variant="contained" sx={muiButton}>add trip</Button>
+                        <Button variant="contained" sx={muiButton} onClick={()=> history.push('/add-trip')}>add trip</Button>
                     </Group>
                     <div className="row">
                         {DataTour.map((item) => (
