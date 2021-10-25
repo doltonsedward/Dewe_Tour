@@ -123,7 +123,7 @@ const PaymentBox = ({name, country, type, count, totalPayment, status, ...rest})
             <div className="main">
                 {
                     loading ? 
-                    <Stack sx={{padding: '20px'}}>
+                    <Stack sx={{padding: '20px', backgroundColor: 'white', borderRadius: '5px'}}>
                         <Skeleton variant="rectangular" width={159} height={68} sx={{marginBottom: '10px'}} />
                         <Skeleton variant="rectangular" height={100} />
                         <Gap height={76} />
