@@ -17,7 +17,7 @@ const Home = () => {
                 </div>
                 <div className="section-input__hero">
                     <Gap height={64} />
-                    <Input label="Find great place to holiday" variant="search-btn" type="text" />
+                    <Input label="Find great place to holiday" variant="search-btn" onClick={()=> history.push('/search')} type="text" />
                 </div>
             </div>
             <div className="main">
@@ -69,8 +69,6 @@ const Home = () => {
                 </div>
                 <Gap height={121} />
             </div>
-            
-            
         </div>
     )
 }
