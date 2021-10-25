@@ -5,7 +5,6 @@ import { DataTour, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar } from
 import { muiButton, setData } from '../../utils'
 import { useState } from 'react'
 
-
 // mui component
 import Button from '@mui/material/Button'
 import Snackbar from '@mui/material/Snackbar'
