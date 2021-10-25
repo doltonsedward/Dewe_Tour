@@ -25,6 +25,8 @@ const Header = ({logo}) => {
                 password: password
             }
         })
+
+        history.push('/')
     }
 
     if (currentUser.email === admin.email && currentUser.password === admin.password && isLoginSession) {

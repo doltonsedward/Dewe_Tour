@@ -40,10 +40,14 @@ import ImgTransfer from './img/transfer/tf-1.jpg'
 import ImgQrCode from './img/qr-code/qr-code1.svg'
 
 import IconSearch from './icon/search.svg'
+import IconFile from './icon/file.svg'
+
+// image for httprequest error
+import ImgPageNotFound from './img/not-found.svg'
 
 export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus, IconTrip }
 export { IconPalm2, IconHibicus2, IconLeaf, IconUser, IconBill, IconLogout, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar }
 export { ProfileDefault }
-export { ImgTransfer, ImgQrCode }
+export { ImgTransfer, ImgQrCode, ImgPageNotFound }
 export { DataTour }
-export { IconUserCircle, IconEmail, IconPhone, IconLocation, IconSearch }
+export { IconUserCircle, IconEmail, IconPhone, IconLocation, IconSearch, IconFile }
