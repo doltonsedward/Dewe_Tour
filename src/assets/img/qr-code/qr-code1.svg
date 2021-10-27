@@ -1,0 +1,25 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M31.25 0H0V31.25H31.25V0ZM25 25H6.25V6.25H25V25Z" fill="black"/>
+<path d="M18.75 12.5H12.5V18.75H18.75V12.5Z" fill="black"/>
+<path d="M68.75 0V31.25H100V0H68.75ZM93.75 25H75V6.25H93.75V25Z" fill="black"/>
+<path d="M87.5 12.5H81.25V18.75H87.5V12.5Z" fill="black"/>
+<path d="M0 100H31.25V68.75H0V100ZM6.25 75H25V93.75H6.25V75Z" fill="black"/>
+<path d="M18.75 81.25H12.5V87.5H18.75V81.25Z" fill="black"/>
+<path d="M62.5 0H50V6.25H62.5V0Z" fill="black"/>
+<path d="M50 25H56.25V18.75H62.5V12.5H43.75V6.25H37.5V12.5V15.625V18.75H50V25Z" fill="black"/>
+<path d="M43.75 25H37.5V31.25H43.75V25Z" fill="black"/>
+<path d="M62.5 31.25H56.25V37.5H37.5V43.75H62.5V31.25Z" fill="black"/>
+<path d="M6.25 56.25H12.5V50H6.25V37.5H0V62.5H6.25V56.25Z" fill="black"/>
+<path d="M18.75 37.5H12.5V43.75H18.75V37.5Z" fill="black"/>
+<path d="M37.5 62.5H50V56.25H43.75V50H31.25V37.5H25V50H18.75V62.5H25V56.25H28.125H31.25H37.5V62.5Z" fill="black"/>
+<path d="M62.5 50H56.25V62.5H62.5V50Z" fill="black"/>
+<path d="M56.25 68.75H37.5V75H50V93.75H37.5V100H56.25V93.75H68.75V87.5H56.25V68.75Z" fill="black"/>
+<path d="M43.75 81.25H37.5V87.5H43.75V81.25Z" fill="black"/>
+<path d="M68.75 68.75H62.5V81.25H68.75V68.75Z" fill="black"/>
+<path d="M93.75 81.25H75V100H81.25V87.5H93.75V81.25Z" fill="black"/>
+<path d="M100 93.75H87.5V100H100V93.75Z" fill="black"/>
+<path d="M100 68.75H93.75V75H100V68.75Z" fill="black"/>
+<path d="M75 75H81.25V56.25H68.75V62.5H75V75Z" fill="black"/>
+<path d="M87.5 43.75H81.25V37.5H75V43.75H68.75V50H93.75V43.75H100V37.5H87.5V43.75Z" fill="black"/>
+<path d="M100 56.25H87.5V62.5H100V56.25Z" fill="black"/>
+</svg>

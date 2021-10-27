@@ -1,6 +1,6 @@
 const rootReducer = (state, action) => {
     const {type, payload} = action
-    console.log(payload)
+    
     switch (type) {
         case 'LOGIN':
             localStorage.setItem('user', JSON.stringify({

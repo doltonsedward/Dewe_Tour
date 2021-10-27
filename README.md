@@ -1,8 +1,5 @@
-# Feature detail-trip
+# Feature add-trip
 
-Whats new ?
-I changed my mindset towards the logic in login and register, instead of changing the code, I'd better change my mindset.
-
-- use material ui (MUI)
-- FIX Login Register
-- dinamic content by params
+- add navigation to list-transaction in dropdown admin
+- fix route if not exist, redirect to /not-found
+- fix add trip

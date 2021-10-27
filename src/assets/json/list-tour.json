@@ -1,11 +1,13 @@
 [
     {
       "id": "1",
-      "name": "6D/4N Fun Tassie Vacation ...",
+      "name": "6D/4N Fun Tassie Vacation + Sydney",
       "type": "IDR.",
       "price": "12,398,000",
       "country": "Australia",
       "image": "tour1.jpg",
+      "tourCover": "tour-cover.jpg",
+      "capacity": "12",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -14,11 +16,13 @@
     },
     {
       "id": "2",
-      "name": "6D/4N Exciting Summer in ...",
+      "name": "6D/4N Exciting Summer in Korea",
       "type": "IDR.",
       "price": "10,288,000",
       "country": "South Korea",
       "image": "tour2.jpg",
+      "tourCover": "tour2.jpg",
+      "capacity": "14",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -27,11 +31,13 @@
     },
     {
       "id": "3",
-      "name": "8D/6N Wonderful Autum ...",
+      "name": "8D/6N Wonderful Autum From Japan",
       "type": "IDR.",
       "price": "28,999,000",
       "country": "Japan",
       "image": "tour3.jpg",
+      "tourCover": "tour3.jpg",
+      "capacity": "10",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -40,11 +46,13 @@
     },
     {
       "id": "4",
-      "name": "4D/3N Overland Jakarta B...",
+      "name": "4D/3N Overland Jakarta Bogor",
       "type": "IDR.",
       "price": "3,188,000",
       "country": "Indonesia",
       "image": "tour4.jpg",
+      "tourCover": "tour4.jpg",
+      "capacity": "8",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -53,11 +61,13 @@
     },
     {
       "id": "5",
-      "name": "6D/4N Exciting Summer in ...",
+      "name": "4D/3N Labuan Bajo Delight",
       "type": "IDR.",
-      "price": "10,288,000",
-      "country": "South Korea",
+      "price": "10,488,000",
+      "country": "Indonesia",
       "image": "tour5.jpg",
+      "tourCover": "tour5.jpg",
+      "capacity": "14",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",
@@ -66,11 +76,13 @@
     },
     {
       "id": "6",
-      "name": "8D/6N Wonderful Autum ...",
+      "name": "5D/4N Magic Tokyo Fun",
       "type": "IDR.",
-      "price": "28,999,000",
+      "price": "11,188,000",
       "country": "Japan",
       "image": "tour6.jpg",
+      "tourCover": "tour6.jpg",
+      "capacity": "10",
       "allImage": [
         "tour1-1.jpg",
         "tour1-2.jpg",

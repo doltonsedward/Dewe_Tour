@@ -15,6 +15,7 @@ import IconHibicus2 from './icon/hibicus1.png'
 import IconUser from './icon/user.svg'
 import IconBill from './icon/bill.svg'
 import IconLogout from './icon/logout.svg'
+import IconTrip from './icon/journey.svg'
 
 // icon for footer
 import IconLeaf from './icon/leaf.png'
@@ -29,9 +30,24 @@ import IconCalendar from './icon/calendar.svg'
 // img for profile
 import ProfileDefault from './img/profile/radif.jpg'
 import DataTour from './json'
+import IconUserCircle from './icon/user-circle.png'
+import IconEmail from './icon/email.png'
+import IconPhone from './icon/phone.png'
+import IconLocation from './icon/location.png'
 
+// img for payment
+import ImgTransfer from './img/transfer/tf-1.jpg'
+import ImgQrCode from './img/qr-code/qr-code1.svg'
 
-export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus }
+import IconSearch from './icon/search.svg'
+import IconFile from './icon/file.svg'
+
+// image for httprequest error
+import ImgPageNotFound from './img/not-found.svg'
+
+export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus, IconTrip }
 export { IconPalm2, IconHibicus2, IconLeaf, IconUser, IconBill, IconLogout, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar }
 export { ProfileDefault }
+export { ImgTransfer, ImgQrCode, ImgPageNotFound }
 export { DataTour }
+export { IconUserCircle, IconEmail, IconPhone, IconLocation, IconSearch, IconFile }

@@ -19,6 +19,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
+  background-color: lavenderblush;
 }
 
 code {
@@ -33,16 +34,18 @@ input {
   border-radius: var(--border-trendy);
 }
 
+b { display: block }
 ul:not(.primitive) li { list-style: none }
 
 input, button { 
   border: none;
+  font-size: 18px;
   font-family: 'Product Sans Bold' 
 }
 
 label { font-size: 18px }
 
-button { cursor: pointer }
+button, input[type="file"] { cursor: pointer }
 
 h1 { font-size: var(--h1-size) }
 h2 { font-size: var(--h2-size) }

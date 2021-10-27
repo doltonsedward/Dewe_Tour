@@ -31,3 +31,27 @@
     }
 }
 
+.root--input-file {
+    button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 18px;
+        padding: 0 9px;
+        text-align: left;
+        width: 312px;
+        height: 49px;
+        position: relative;
+        color: var(--color-theme);
+        background-color: #C4C4C480;
+        border: 2px solid #B1B1B1;
+        border-radius: var(--border-trendy);
+
+        input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+    }
+}
