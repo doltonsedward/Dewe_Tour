@@ -9,7 +9,6 @@ const rootReducer = (state, action) => {
             }))
 
             return {
-                ...state,
                 isLogin: true,
                 user: payload
             }
@@ -27,7 +26,6 @@ const rootReducer = (state, action) => {
 
         case 'REGISTER':
             return {
-                ...state,
                 isLogin: false,
                 user: payload
             }

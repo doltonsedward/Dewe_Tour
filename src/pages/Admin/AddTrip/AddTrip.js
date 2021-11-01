@@ -7,9 +7,6 @@ const AddTrip = () => {
         padding: '0 calc(136px - 87px)'
     }
 
-    muiButton.width = '250px'
-    muiButton.height = '40px'
-
     return (
         <div className="header-default">
             <div className="hero"></div>
