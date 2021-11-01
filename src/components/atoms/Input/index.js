@@ -6,8 +6,8 @@ const InputSearch = ({label, className, onClick, ...rest}) => {
         <label className="wrapper-input">
             <p>{label}</p>
             <div className={className}>
-                <input {...rest} />
-                <button className="btn-submit__hero btn-warning" onClick={onClick}>Submit</button>
+                <input className="input-search" {...rest} />
+                <button className="btn-submit__hero btn-warning" onClick={onClick}>Search</button>
             </div>
         </label>
     )

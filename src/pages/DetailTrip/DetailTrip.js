@@ -1,8 +1,8 @@
 import './DetailTrip.scss'
-import { useParams } from "react-router"
+import { useHistory, useParams } from "react-router"
 import { Gap, Text } from '../../components'
 import { DataTour, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar } from '../../assets'
-import { muiButton, setData } from '../../utils'
+import { muiButton, setData, showLoginModal } from '../../utils'
 import { useState } from 'react'
 
 // mui component
@@ -16,6 +16,12 @@ const DetailTrip = () => {
     const [count, setCount] = useState(1)
     const [open, setOpen] = useState(false);
 
+    const history = useHistory()
+    if (!Number(id)) {
+        history.push('/')
+    }
+
+    const user = JSON.parse(localStorage.getItem('user'))
     
     const handleClick = () => { setOpen(true) }
     const handleClose = () => { setOpen(false) }
@@ -35,9 +41,24 @@ const DetailTrip = () => {
         </>
     )
 
+    
     const listTour = DataTour.filter((item) => item.id === id)
-        .map((item) => {
-        const { name, country, type, price } = item
+    // get data
+    .map((item) => {
+        const { 
+            name, 
+            country, 
+            type, 
+            price, 
+            accomodation, 
+            transportation,
+            eat,
+            duration, 
+            dateTrip
+        } = item
+
+        
+
 
         // parse price to integer
         const numberPrice = parseInt(price.split(',').join(''))
@@ -59,6 +80,16 @@ const DetailTrip = () => {
             totalPayment: totalPayment
         }
         
+        // for handling booking button
+        const handlerBooking = () => {
+            if (user.isLogin) {
+                setData('payment', paymentInfo); 
+                handleClick()
+            } else {
+                history.push('/')
+                showLoginModal()
+            }
+        }
         return (
             <div className="listTour">
                 <Text variant="h1" fontSize={48}>{name}</Text>
@@ -70,6 +101,7 @@ const DetailTrip = () => {
                         {
                             item.allImage.map((listImg) => {
                                 return (
+                                    // need watched
                                     <li><img src={"/assets/img/tour/" + listImg} alt="" /></li>
                                 )
                             })
@@ -85,35 +117,35 @@ const DetailTrip = () => {
                                 <Text variant="p" className="color-second">Accomodation</Text>
                                 <div className="wrapper-iconic">
                                     <img src={IconHotel} alt="Hotel 4 Nights" />
-                                    <Text variant="bold">Hotel 4 Nights</Text>
+                                    <Text variant="bold">{accomodation}</Text>
                                 </div>
                             </li>
                             <li>
                                 <Text variant="p" className="color-second">Transportation</Text>
                                 <div className="wrapper-iconic">
                                 <img src={IconPlane} alt="Qatar Airways" />
-                                    <Text variant="bold">Qatar Airways</Text>
+                                    <Text variant="bold">{transportation}</Text>
                                 </div>
                             </li>
                             <li>
-                                <Text variant="p" className="color-second">Transportation</Text>
+                                <Text variant="p" className="color-second">Eat</Text>
                                 <div className="wrapper-iconic">
                                     <img src={IconMeal} alt="Included as ltinerary" />
-                                    <Text variant="bold">Included as ltinerary</Text>
+                                    <Text variant="bold">{eat}</Text>
                                 </div>
                             </li>
                             <li>
-                                <Text variant="p" className="color-second">Transportation</Text>
+                                <Text variant="p" className="color-second">Duration</Text>
                                 <div className="wrapper-iconic">
                                     <img src={IconTime} alt="6 Day 4 Night" />
-                                    <Text variant="bold">6 Day 4 Night</Text>
+                                    <Text variant="bold">{duration}</Text>
                                 </div>
                             </li>
                             <li>
-                                <Text variant="p" className="color-second">Transportation</Text>
+                                <Text variant="p" className="color-second">Date Trip</Text>
                                 <div className="wrapper-iconic">
                                     <img src={IconCalendar} alt="26 August 2020" />
-                                    <Text variant="bold">26 August 2020</Text>
+                                    <Text variant="bold">{dateTrip}</Text>
                                 </div>
                             </li>
                         </ul>
@@ -130,17 +162,17 @@ const DetailTrip = () => {
                             <Text variant="bold" fontSize={24} className="ml-s">/ Person</Text>
                         </div>
                         <div className="d-flex">
-                            <Button variant="contained" sx={muiButton} onClick={() => setCount(count - 1)}>-</Button>
+                            <Button variant="contained" sx={muiButton} onClick={() => count === 1 ? '' : setCount(count - 1)}>-</Button>
                             <Text variant="bold" fontSize={24} className="total-count">{count}</Text>
                             <Button variant="contained" sx={muiButton} onClick={() => setCount(count + 1)}>+</Button>
                         </div>
                     </div>
                     <div className="group-total d-flex-between">
                         <Text variant="bold" fontSize={24} className="total-count">Total :</Text>
-                        <Text variant="bold" fontSize={24} className="total-count">{`${type} ${totalPriceInString}`}</Text>
+                        <Text variant="bold" fontSize={24} className="total-count color-theme">{`${type} ${totalPriceInString}`}</Text>
                     </div>
                     <p className="text-right">
-                        <Button variant="contained" sx={muiButton} onClick={() => {setData('payment', paymentInfo); handleClick()}}>Book now</Button>
+                        <Button variant="contained" sx={muiButton} onClick={() => handlerBooking()}>Book now</Button>
                     </p>
                     <Gap height={44} />
                 </div>

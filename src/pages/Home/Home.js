@@ -1,24 +1,41 @@
 import './Home.scss'
 import { LogoGuarante, LogoHeart, LogoAgent, LogoSupport } from '../../assets/'
-import { IconPalm, IconHibicus, DataTour } from '../../assets/'
+import { IconPalm, IconHibicus } from '../../assets/'
 import { Gap, Input } from '../../components'
 import { Box } from '../../components'
 import { useHistory } from 'react-router'
 
 const Home = () => {
     const history = useHistory()
+    const dataTour = JSON.parse(localStorage.getItem('dataTour'))
+
+    const handlerSearch = (id) => {
+        const inputSearch = document.getElementById(id).value
+        let data = []
+        for (let item of dataTour) {
+            if (item.name.includes(inputSearch)) {
+                data.push(item)
+            } 
+        } 
+
+        localStorage.setItem('searchData', JSON.stringify(data))
+        if (inputSearch) history.push('/search')
+    }
     
     return (
         <div className="home-page">
             <div className="hero text-white">
+
                 <div className="section-heading__hero">
                     <h1 className="text-heading">Explore</h1>
                     <h2 className="text-subheading">your amazing city together</h2>
                 </div>
+                
                 <div className="section-input__hero">
                     <Gap height={64} />
-                    <Input label="Find great place to holiday" variant="search-btn" onClick={()=> history.push('/search')} type="text" />
+                    <Input label="Find great place to holiday" variant="search-btn" onClick={()=> handlerSearch('inpSearchHome')}  type="text" id="inpSearchHome" required />
                 </div>
+
             </div>
             <div className="main">
                 <div className="wrapper-card d-flex-center-x">
@@ -57,7 +74,7 @@ const Home = () => {
                     <h2 className="text-center">Group Tour</h2>
                     <Gap height={77} />
                     <div className="row">
-                    {DataTour.map((item) => (
+                    {dataTour.map((item) => (
                         <Box key={item.id} className="col-4 col-s-6"
                             variant="content" 
                             item={item}
