@@ -47,6 +47,8 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, ...rest}) => 
     setTimeout(()=> {
         setLoading(false)
     }, 3000)
+
+    console.log(heading)
     return (
         <div {...rest}>
             <div className="content-box c-pointer">
@@ -60,7 +62,7 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, ...rest}) => 
                     : 
                     <>
                         <span className="capacity__tour">{capacity} / 15</span>
-                        <img src={'/assets/img/tour/' + img} className="content-cover-image" alt={heading} />
+                        <img src={img[0]} className="content-cover-image" alt={heading} />
                         <Gap height={11} />
                         <p className="heading__content-box text-elipsis">{heading}</p>
                         <Gap height={10} />
@@ -246,7 +248,7 @@ const Box = ({variant, logo, heading, text, img, item, status, ...rest}) => {
         case 'card':
             return <CardBox logo={logo} heading={heading} text={text} />
         case 'content':
-            return <ContentBox img={item.image} heading={item.name} type={item.type} capacity={item.capacity} price={item.price} subtext={item.country} {...rest} />
+            return <ContentBox img={item.image} heading={item.title} type={item.type} capacity={item.quota} price={item.price} subtext={item.country} {...rest} />
         case 'payment':
             return <PaymentBox status={status} {...rest} />
         case 'profile':

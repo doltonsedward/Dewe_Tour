@@ -4,8 +4,19 @@ import { IconPalm, IconHibicus } from '../../assets/'
 import { Gap, Input } from '../../components'
 import { Box } from '../../components'
 import { useHistory } from 'react-router'
+import axios, { Axios } from 'axios'
+import { useEffect, useState } from 'react'
 
 const Home = () => {
+    const [dataTrip, setDataTrip] = useState([])
+
+    useEffect(()=> {
+        axios.get('http://localhost:8080/api/v1/trips')
+        .then(result => setDataTrip(result.data.data))
+    }, [])
+
+    console.log(dataTrip)
+
     const history = useHistory()
     const dataTour = JSON.parse(localStorage.getItem('dataTour'))
 
@@ -74,7 +85,7 @@ const Home = () => {
                     <h2 className="text-center">Group Tour</h2>
                     <Gap height={77} />
                     <div className="row">
-                    {dataTour.map((item) => (
+                    {dataTrip.map((item) => (
                         <Box key={item.id} className="col-4 col-s-6"
                             variant="content" 
                             item={item}
