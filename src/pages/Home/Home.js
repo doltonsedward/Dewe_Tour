@@ -4,18 +4,28 @@ import { IconPalm, IconHibicus } from '../../assets/'
 import { Gap, Input } from '../../components'
 import { Box } from '../../components'
 import { useHistory } from 'react-router'
-import axios, { Axios } from 'axios'
 import { useEffect, useState } from 'react'
 
+import { API } from '../../config'
+
 const Home = () => {
+    const title = 'Trips'
+    document.title = `DeweTour | ${title}`
+    
     const [dataTrip, setDataTrip] = useState([])
 
-    useEffect(()=> {
-        axios.get('http://localhost:8080/api/v1/trips')
-        .then(result => setDataTrip(result.data.data))
-    }, [])
+    const getTrips = async () => {
+        try {
+            const response = await API.get('/trips')
+            setDataTrip(response.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
-    console.log(dataTrip)
+    useEffect(()=> {
+        getTrips()
+    }, [])
 
     const history = useHistory()
     const dataTour = JSON.parse(localStorage.getItem('dataTour'))

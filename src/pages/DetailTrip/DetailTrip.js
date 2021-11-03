@@ -3,7 +3,9 @@ import { useHistory, useParams } from "react-router"
 import { Gap, Text } from '../../components'
 import { DataTour, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar } from '../../assets'
 import { muiButton, setData, showLoginModal } from '../../utils'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { API } from '../../config'
 
 // mui component
 import Button from '@mui/material/Button'
@@ -12,7 +14,45 @@ import IconButton from '@mui/material/IconButton'
 import { Alert } from '@mui/material'
 
 const DetailTrip = () => {
+    document.title = `DeweTour | Detail Trip`
+
     const { id } = useParams()
+
+    const [detailTrip, setDetailTrip] = useState({})
+
+    const getDetailTrip = async (id) => {
+        try {
+            const response = await API.get('/trip/' + id)
+            setDetailTrip(response.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getDetailTrip(id)
+    }, [])
+
+    const { 
+        accomodation, 
+        countryId, 
+        dateTrip,  
+        day,
+        description,
+        eat,
+        image,
+        night,
+        price,
+        quota,
+        title,
+        transportation,
+        type
+    } = detailTrip
+
+    const imgDetailTrip = JSON.parse(image)
+
+    console.log(imgDetailTrip)
+    
     const [count, setCount] = useState(1)
     const [open, setOpen] = useState(false);
 

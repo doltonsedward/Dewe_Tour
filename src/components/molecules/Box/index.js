@@ -15,7 +15,7 @@ const CardBox = ({logo, heading, text}) => {
 
     setTimeout(()=> {
         setLoading(false)
-    }, 2000)
+    }, 1500)
 
     return (
         
@@ -46,9 +46,10 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, ...rest}) => 
 
     setTimeout(()=> {
         setLoading(false)
-    }, 3000)
+    }, 2000)
 
-    console.log(heading)
+    const priceInString = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
     return (
         <div {...rest}>
             <div className="content-box c-pointer">
@@ -67,7 +68,7 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, ...rest}) => 
                         <p className="heading__content-box text-elipsis">{heading}</p>
                         <Gap height={10} />
                         <div className="d-flex-between">
-                            <p className="subheading__content-box color-theme">{type} {price}</p>
+                            <p className="subheading__content-box color-theme">{type}. {priceInString}</p>
                             <p className="country__content-box">{subtext}</p>
                         </div>
                     </>
