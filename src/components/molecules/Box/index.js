@@ -46,7 +46,7 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, ...rest}) => 
 
     setTimeout(()=> {
         setLoading(false)
-    }, 2000)
+    }, 1500)
 
     const priceInString = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     

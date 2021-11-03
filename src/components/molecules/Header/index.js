@@ -6,6 +6,8 @@ import store from '../../../store'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 
+import { API } from '../../../config'
+
 const Header = ({logo}) => {
     const history = useHistory()
     
