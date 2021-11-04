@@ -22,6 +22,14 @@ const DetailTrip = () => {
     const [count, setCount] = useState(1)
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [form, setForm] = useState({
+        counterQty: '',
+        total: '',
+        status: 'Waiting payment',
+        attachment: '',
+        tripId: '',
+        userId: ''
+    })
 
     const getDetailTrip = async (id) => {
         try {
@@ -53,7 +61,7 @@ const DetailTrip = () => {
         country
     } = detailTrip
     
-    
+    const allCoverImage = image?.slice(1)
 
     const history = useHistory()
     if (!Number(id)) {
@@ -63,6 +71,61 @@ const DetailTrip = () => {
     const handleClick = () => { setOpen(true) }
     const handleClose = () => { setOpen(false) }
 
+    const totalPrice = price * count
+    
+    // convert totalprice from integer to string
+    const totalPriceInString = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const priceInString = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    // for handling booking button 
+    const users = JSON.parse(localStorage.user)
+    const userId = users.user.id
+
+    // for set data
+    useEffect(()=> {
+        setForm({
+            ...form,
+            counterQty: count,
+            total: isNaN(totalPrice) ? price : totalPrice,
+            status: 'Waiting payment',
+            attachment: '',
+            tripId: id,
+            userId
+        })
+    }, [count])
+
+    const handlerBooking = async () => { 
+
+        try { 
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+
+            const formData = new FormData()
+            formData.set('counterQty', form.counterQty)
+            formData.set('total', form.total)
+            formData.set('status', form.status)
+            formData.set('attachment', form.attachment)
+            formData.set('tripId', form.tripId)
+            formData.set('userId', form.userId)
+            
+            await API.post('/transaction', formData, config) 
+
+            if (users.isLogin) {
+                setData('payment', form); 
+                handleClick()
+            } else {
+                history.push('/')
+                showLoginModal()
+            }
+        } catch (error) {
+            console.log(error)   
+        }
+    }
+
+    // mui action
     const action = (
         <>
             <Button color="secondary" size="small" onClick={handleClose}>
@@ -77,36 +140,6 @@ const DetailTrip = () => {
             </IconButton>
         </>
     )
-
-    const totalPrice = price * count
-    
-    // convert totalprice from integer to string
-    const totalPriceInString = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    const priceInString = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    // object for payment, will send to localstorage
-    // const totalPayment = totalPriceInString
-    // const status = 'waiting'
-    // const filterName = title.split(' ')
-    // const nameFromFIltering = filterName.splice(0, 4).join(' ')
-    // const paymentInfo = { 
-    //     ...item,
-    //     status: status,
-    //     name: nameFromFIltering,
-    //     count: count,
-    //     totalPayment: totalPayment
-    // }
-    
-    // for handling booking button
-    // const handlerBooking = () => {
-    //     if (user.isLogin) {
-    //         setData('payment', paymentInfo); 
-    //         handleClick()
-    //     } else {
-    //         history.push('/')
-    //         showLoginModal()
-    //     }
-    // }
 
     setTimeout(() => {
         setLoading(false)
@@ -128,17 +161,17 @@ const DetailTrip = () => {
                             :
                             <img className="heading-img__listTour" src={detailTrip?.image[0]} alt="new york" />
                         }
-                        {/* <ul className="wrapper-child__listTour">
+                        <ul className="wrapper-child__listTour">
                             {
-                                item.allImage.map((listImg) => {
+                                allCoverImage?.map((img) => {
                                     return (
                                         // need watched
-                                        <li><img src={"/assets/img/tour/" + listImg} alt="" /></li>
+                                        <li className="child-cover-image__listTour"><img src={img} alt={img} /></li>
                                     )
                                 })
                             }
                             
-                        </ul> */}
+                        </ul>
                         <Gap height={46.88} />
                         <div className="information__listTour">
                             <Text variant="bold" title="Information trip" />
@@ -184,7 +217,7 @@ const DetailTrip = () => {
                         <Gap height={48} />
                         <Text variant="bold">Description</Text>
                         <Text variant="p" fontSize={14} className="color-second">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            {description}
                         </Text>
                         <Gap height={26} />
                         <div className="group d-flex-between">
@@ -203,7 +236,7 @@ const DetailTrip = () => {
                             <Text variant="bold" fontSize={24} className="total-count color-theme">{`${type} ${totalPriceInString}`}</Text>
                         </div>
                         <p className="text-right">
-                            {/* <Button variant="contained" sx={muiButton} onClick={() => handlerBooking()}>Book now</Button> */}
+                            <Button variant="contained" sx={muiButton} onClick={() => handlerBooking()}>Book now</Button>
                         </p>
                         <Gap height={44} />
                     </div>
