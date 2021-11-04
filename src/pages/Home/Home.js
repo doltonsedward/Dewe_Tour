@@ -2,6 +2,7 @@ import './Home.scss'
 import { LogoGuarante, LogoHeart, LogoAgent, LogoSupport } from '../../assets/'
 import { IconPalm, IconHibicus } from '../../assets/'
 import { Gap, Input } from '../../components'
+
 import { Box } from '../../components'
 import { useHistory } from 'react-router'
 import { useEffect, useState } from 'react'
@@ -27,14 +28,15 @@ const Home = () => {
         getTrips()
     }, [])
 
+    console.log(dataTrip)
+
     const history = useHistory()
-    const dataTour = JSON.parse(localStorage.getItem('dataTour'))
 
     const handlerSearch = (id) => {
         const inputSearch = document.getElementById(id).value
         let data = []
-        for (let item of dataTour) {
-            if (item.name.includes(inputSearch)) {
+        for (let item of dataTrip) {
+            if (item.title.includes(inputSearch)) {
                 data.push(item)
             } 
         } 

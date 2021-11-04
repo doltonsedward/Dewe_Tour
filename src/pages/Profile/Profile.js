@@ -1,6 +1,6 @@
 import './Profile.scss'
 import { Box, Gap, Group, Text, Input } from '../../components'
-import { ProfileDefault, IconUserCircle, IconEmail, IconPhone, IconLocation, ImgQrCode } from '../../assets'
+import { IconUserCircle, IconEmail, IconPhone, IconLocation } from '../../assets'
 import { profileCoverButton } from '../../utils'
 
 // mui compnent
@@ -19,6 +19,7 @@ const Profile = () => {
     //     const value = URL.createObjectURL(event.target.files[0])
     //     previewElement.innerHTML = `<img src=${value} style="width: 250px;" class="mb-3">`
     // }
+
     const [profile, setProfile] = useState({})
 
     const getUser = async () => {

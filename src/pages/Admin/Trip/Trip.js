@@ -1,15 +1,34 @@
 import './Trip.scss'
 
-import { DataTour } from '../../../assets/'
+import { useEffect, useState } from 'react'
 import { Gap, Text, Group, Box } from '../../../components'
 import { useHistory } from 'react-router'
 import { muiButton } from '../../../utils'
+
+// import api
+import { API } from '../../../config'
 
 // mui component
 import { Button } from '@mui/material'
 
 const Trip = () => {
     const history = useHistory()
+
+    const [dataTrip, setDataTrip] = useState([])
+
+    const getTrips = async () => {
+        try {
+            const response = await API.get('/trips')
+            setDataTrip(response.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        getTrips()
+    }, [])
+
     return (
         <div className="header-default">
             <div className="hero"></div>
@@ -20,7 +39,7 @@ const Trip = () => {
                         <Button variant="contained" sx={muiButton} onClick={()=> history.push('/add-trip')}>add trip</Button>
                     </Group>
                     <div className="row">
-                        {DataTour.map((item) => (
+                        {dataTrip.map((item) => (
                             <Box key={item.id} className="col-4 col-s-6"
                                 variant="content" 
                                 item={item}
