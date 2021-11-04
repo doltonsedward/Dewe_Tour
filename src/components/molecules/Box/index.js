@@ -1,4 +1,4 @@
-import './Box.scss'
+import './_Box.scss'
 import { LogoSecond, ImgTransfer } from '../../../assets'
 import { Gap, Group, Text } from '../../atoms'
 import { paymentButton, warningButton, pendingButton, successButton } from '../../../utils'
@@ -243,6 +243,15 @@ const ProfileBox = () => {
     )
 }
 
+const DashboardBox = ({heading, text, logo}) => {
+    return (
+        <div className="dashboard-box">
+            {heading}
+            {text}
+        </div>
+    )
+}
+
 
 const Box = ({variant, logo, heading, text, img, item, status, ...rest}) => {
     switch (variant) {
@@ -254,6 +263,8 @@ const Box = ({variant, logo, heading, text, img, item, status, ...rest}) => {
             return <PaymentBox status={status} {...rest} />
         case 'profile':
             return <ProfileBox />
+        case 'box-dashboard':
+            return <DashboardBox heading={heading} text={text} logo={logo} />
     
         default:
             return (
