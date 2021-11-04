@@ -2,8 +2,7 @@ import { Redirect, Route } from "react-router"
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const user = JSON.parse(localStorage.getItem('user'))
-    const admin = JSON.parse(localStorage.getItem('admin'))
-    const getAccess = user.user.email === admin.email ? true : false
+    const getAccess = user.user.role === 'admin' ? true : false
     return (
         <>
             {/* need watched */}
