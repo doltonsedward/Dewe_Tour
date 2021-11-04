@@ -7,6 +7,7 @@ import { Home, DetailTrip, Payment, Profile, ListTransaction, Trip, AddTrip, Not
 import { API, PrivateRoute, setAuthToken } from '../config'
 import store from '../store'
 import { useEffect } from 'react'
+import { Dashboard, Maintenance } from './Admin'
 
 const App = () => {
     useEffect(()=> {
@@ -72,6 +73,8 @@ const App = () => {
                     </Route>
 
 
+                    <PrivateRoute path="/admin/dashboard/maintenance" component={Maintenance} />
+                    <PrivateRoute path="/admin/dashboard" component={Dashboard} />
                     <PrivateRoute path="/list-transaction" component={ListTransaction} />
                     <PrivateRoute path="/trip" component={Trip} />
                     <PrivateRoute path="/add-trip" component={AddTrip} />

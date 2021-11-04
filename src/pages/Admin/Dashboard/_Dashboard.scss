@@ -1,0 +1,26 @@
+$left-side: 250px;
+
+.dashboard {
+    display: flex;
+    min-height: 79vh;
+
+    .left-section__dashboard {
+        width: $left-side;
+        height: 100%;
+        position: fixed;
+        background-color: darkslategray;
+
+        li {
+            padding: 10px 12px;
+            cursor: pointer;
+        }
+    }
+    
+    .right-section__dashboard {
+        margin-left: $left-side;
+
+        .main {
+            padding: 20px;
+        }
+    }
+}

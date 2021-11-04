@@ -69,7 +69,7 @@ const Header = ({logo}) => {
                         <img className="profile-image" src={currentState.user.avatar} alt="profile" />
                         <div className="dropdown">
                             <ul>
-                                <li onClick={()=> history.push('/list-transaction')}><img src={IconBill} alt="profile" /> Dashboard</li>
+                                <li onClick={()=> history.push('/admin/dashboard')}><img src={IconBill} alt="profile" /> Dashboard</li>
                                 <li onClick={()=> history.push('/trip')}><img src={IconTrip} alt="profile" /> Trip</li>
                                 <li onClick={()=> history.push('/list-transaction')}><img src={IconBill} alt="profile" /> Transaction</li>
                                 <hr style={{ background: '#A8A8A8', border: '1px solid #A8A8A8' }} />
