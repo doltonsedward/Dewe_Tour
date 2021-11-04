@@ -5,6 +5,9 @@ import { profileCoverButton } from '../../utils'
 
 // mui compnent
 import { Button } from '@mui/material'
+import { API } from '../../config'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 const Profile = () => {
     const payment = JSON.parse(localStorage.getItem('payment'))
@@ -16,6 +19,21 @@ const Profile = () => {
     //     const value = URL.createObjectURL(event.target.files[0])
     //     previewElement.innerHTML = `<img src=${value} style="width: 250px;" class="mb-3">`
     // }
+    const [profile, setProfile] = useState({})
+
+    const getUser = async () => {
+        try {
+            const response = await API.get('/user')
+            setProfile(response?.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        getUser()
+    }, [])
+
 
     function handlePreview(event) {
         const previewElm = document.getElementById('preview-thumbnail')
@@ -36,7 +54,7 @@ const Profile = () => {
                             <img src={IconUserCircle} alt="the user info" />
                         </Group>
                         <Group>
-                            <Text variant="bold" fontSize={14} lineHeight="20px">Doltons Edward</Text>
+                            <Text variant="bold" fontSize={14} lineHeight="20px">{profile?.fullName}</Text>
                             <Gap height={4} />
                             <Text variant="p" fontSize={12} lineHeight="16px" className="color-gray-medium">Fullname</Text>
                         </Group>
@@ -47,7 +65,7 @@ const Profile = () => {
                             <img src={IconEmail} alt="email user info" />
                         </Group>
                         <Group>
-                            <Text variant="bold" fontSize={14} lineHeight="20px">edwarddoltons@gmail.com</Text>
+                            <Text variant="bold" fontSize={14} lineHeight="20px">{profile?.email}</Text>
                             <Gap height={4} />
                             <Text variant="p" fontSize={12} lineHeight="16px" className="color-gray-medium">Email</Text>
                         </Group>
@@ -77,7 +95,7 @@ const Profile = () => {
                 </Group>
                 <Group>
                     <div id="preview-thumbnail" className="preview-thumbnail__profile">
-                        <img className="profile-img" src={ProfileDefault} alt="this is profile of user face" />
+                        <img className="profile-img" src={profile?.avatar} alt="this is profile of user face" />
                     </div>
                     <Gap height={10} />
                     <div className="wrapper-input-file__profile">

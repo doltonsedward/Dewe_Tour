@@ -61,8 +61,6 @@ const DetailTrip = () => {
     if (!Number(id)) {
         history.push('/')
     }
-
-    const user = JSON.parse(localStorage.getItem('user'))
     
     const handleClick = () => { setOpen(true) }
     const handleClose = () => { setOpen(false) }

@@ -4,9 +4,41 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import { Logo } from '../assets'
 import { Header, Footer, Modal } from '../components'
 import { Home, DetailTrip, Payment, Profile, ListTransaction, Trip, AddTrip, NotFound, Search } from './'
-import { PrivateRoute } from '../config'
+import { API, PrivateRoute, setAuthToken } from '../config'
+import store from '../store'
+import { useEffect } from 'react'
 
 const App = () => {
+    useEffect(()=> {
+        if (localStorage.token) {
+            setAuthToken(localStorage.token)
+        }
+    }, [store])
+
+    const checkUser = async () => {
+        try {
+            const response = await API.get('/user')
+
+            let payload = response.data.data.user
+
+            payload.token = localStorage.token;
+
+            store.dispatch({
+                type: "USER_SUCCESS",
+                payload,
+              });
+
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        checkUser()
+    }, [store])
+    
+    
     return (
         <>
         <Router>

@@ -1,8 +1,12 @@
-const rootReducer = (state, action) => {
+const initialValue = JSON.parse(localStorage.getItem('user'))
+
+const rootReducer = (state = initialValue, action) => {
     const {type, payload} = action
     
     switch (type) {
+        case 'USER_SUCCESS':
         case 'LOGIN':
+            localStorage.setItem('token', payload.token)
             localStorage.setItem('user', JSON.stringify({
                 isLogin: true,
                 user: payload
@@ -14,9 +18,10 @@ const rootReducer = (state, action) => {
             }
             
         case 'LOGOUT':
+            localStorage.removeItem('token', payload.token)
             localStorage.setItem('user', JSON.stringify({
                 isLogin: false,
-                user: payload
+                user: {}
             }))
             
             return {

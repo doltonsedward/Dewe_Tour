@@ -6,18 +6,37 @@ import { IconPalm2, IconHibicus2 } from '../../../assets'
 import { closeLoginModal, closeRegisterModal } from '../../../utils'
 import store from '../../../store'
 
+import { API } from '../../../config'
+
+// mui component
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import { Alert } from '@mui/material';
+import { useHistory } from 'react-router';
 
 const ModalLogin = () => {
-    const [open, setOpen] = useState(false);
+    const history = useHistory()
+    const [open, setOpen] = useState(false)
     const [message, setMessage] = useState('Not found')
     const [severity, setSeverity] = useState('success')
     
+    const [form, setForm] = useState({
+        email: "",
+        password: ""
+    })
+
     const handleClick = () => setOpen(true)
     const handleClose = () => setOpen(false)
+
+    const { email, password } = form
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })
+    }
 
     const action = (
         <>
@@ -34,31 +53,37 @@ const ModalLogin = () => {
         </>
     );
 
-    function loginSession(event) {
-        event.preventDefault()
-        
-        const dataUser = JSON.parse(localStorage.getItem('user'))
-        console.log(dataUser)
+    const loginSession = async (event) => {
+        try {
+            event.preventDefault()
 
-        const emailValue = event.target.email.value
-        const passValue = event.target.password.value
-        if (!dataUser) {
-            setMessage('Email or password are incorrect')
-            setSeverity('error')
-            return 
-        }
-
-        if (dataUser.user.email === emailValue && dataUser.user.password === passValue) {
-            store.dispatch({ 
-                type: 'LOGIN', 
-                payload: {
-                    email: emailValue,
-                    password: passValue
+            const config = {
+                headers: {
+                  "Content-type": "application/json",
                 }
-            })
-            setMessage('Login Success')
-            setSeverity('success')
-        } else {
+              }
+
+            const body = JSON.stringify(form)
+
+            const response = await API.post('/login', body, config)
+            console.log(response.data)
+
+            if (response?.status === 200) {
+                store.dispatch({ 
+                    type: 'LOGIN', 
+                    payload: response.data.data
+                })    
+
+                setMessage('Login Success')
+                setSeverity('success')
+            }
+
+            // if (response?.data.data.role === 'admin') {
+            //     history.push('/admin')
+            // }
+            
+        } catch (error) {
+            console.log(error)
             setMessage('Email or password are incorrect')
             setSeverity('error')
         }
@@ -74,9 +99,9 @@ const ModalLogin = () => {
                 <div className="content-modal">
                     <form onSubmit={loginSession}>
                         <p className="title">Login</p>
-                        <Input label="Email" fontSize={24} name="email" required />
+                        <Input label="Email" fontSize={24} name="email" value={email} onChange={handleChange} required />
                         <Gap height={20} />
-                        <Input label="Password" fontSize={24} name="password" required />
+                        <Input label="Password" fontSize={24} name="password" value={password} type="password" onChange={handleChange} required />
                         <Gap height={20} />
                         <button className="btn-warning full" onClick={handleClick} type="submit">Login</button>
                         <Gap height={23} />
@@ -88,7 +113,7 @@ const ModalLogin = () => {
             <Snackbar sx={{
                 position: 'fixed',
                 bottom: 0,
-                zIndex: 999999999,
+                zIndex: 99999999999,
                 transform: 'translate(50px, -25px) scale(1.2)'
             }}
                 open={open}
