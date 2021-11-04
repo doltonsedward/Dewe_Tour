@@ -52,8 +52,6 @@ const DetailTrip = () => {
         type,
         country
     } = detailTrip
-
-    console.log(detailTrip)
     
     
 

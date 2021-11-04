@@ -13,12 +13,9 @@ import { useState } from 'react'
 const Header = ({logo}) => {
     const history = useHistory()
     const currentState = useSelector(state => state)
-    console.log(currentState)
     
     // const isLoginSession = useSelector(state => state.isLogin) || JSON.parse(localStorage.getItem('user
     const isLoginSession = useSelector(state => state.isLogin)
-    // console.log(isLoginSession, 'islogn')
-    const [avatar, setAvatar] = useState(ProfileDefault)
     const [isAdmin, setIsAdmin] = useState(false)
 
     const getProfile = async () => {
@@ -30,8 +27,7 @@ const Header = ({logo}) => {
                 type: 'LOGIN', 
                 payload: response.data.data
             })   
-
-            setAvatar(response?.data.data.avatar)
+            
             history.push('/')
         } catch (error) {
             console.log(error)

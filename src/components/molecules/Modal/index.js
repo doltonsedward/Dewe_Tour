@@ -66,7 +66,6 @@ const ModalLogin = () => {
             const body = JSON.stringify(form)
 
             const response = await API.post('/login', body, config)
-            console.log(response.data)
 
             if (response?.status === 200) {
                 store.dispatch({ 
@@ -130,7 +129,24 @@ const ModalLogin = () => {
 }
 
 const ModalRegister = () => {
+    const [message, setMessage] = useState('Not found')
+    const [severity, setSeverity] = useState('success')
     const [open, setOpen] = useState(false);
+
+    const [form, setForm] = useState({
+        fullName: "",
+        email: "",
+        password: ""
+    })
+
+    const { fullName, email, password } = form
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })
+    }
     
     const handleClick = () => setOpen(true)
     const handleClose = () => setOpen(false)
@@ -150,23 +166,37 @@ const ModalRegister = () => {
         </>
     )
 
-    function registerSession(event) {
-        event.preventDefault()
-        const person = {
-            isLogin: false,
-            user: {
-                fullName: event.target.fullname.value,
-                email: event.target.email.value,
-                password: event.target.password.value
-            }
-        }
+    const registerSession = async (event) => {
+        try {
+            event.preventDefault()
 
-        store.dispatch({
-            type: 'LOGOUT',
-            payload: person
-        })
-        
-        localStorage.setItem('user', JSON.stringify(person));
+            const config = {
+                headers: {
+                  "Content-type": "application/json",
+                }
+              }
+
+            const body = JSON.stringify(form)
+
+            const response = await API.post('/register', body, config)
+
+            if (response?.status === 200) {
+                setMessage('Register success')
+            }
+            
+            // const person = {
+            //     isLogin: false,
+            //     user: {
+            //         fullName: event.target.fullname.value,
+            //         email: event.target.email.value,
+            //         password: event.target.password.value
+            //     }
+            // }
+        } catch (error) {
+            console.log(error)
+            setMessage('Data already exist')
+            setSeverity('error')
+        }
     }
 
     return (
@@ -179,11 +209,11 @@ const ModalRegister = () => {
                 <div className="content-modal">
                     <p className="title">Register</p>
                     <form onSubmit={registerSession}>
-                        <Input label="Fullname" fontSize={24} name="fullname" required />
+                        <Input label="Fullname" fontSize={24} name="fullName" value={fullName} onChange={handleChange} required />
                         <Gap height={20} />
-                        <Input label="Email" fontSize={24} name="email" required />
+                        <Input label="Email" fontSize={24} name="email" value={email} onChange={handleChange} required />
                         <Gap height={20} />
-                        <Input label="Password" fontSize={24} name="password" required />
+                        <Input label="Password" fontSize={24} name="password" value={password} type="password" onChange={handleChange} required />
                         <Gap height={20} />
                         <button className="btn-warning full" onClick={handleClick}>Register</button>
                         <Gap height={23} />
@@ -194,7 +224,7 @@ const ModalRegister = () => {
             <Snackbar sx={{
                 position: 'fixed',
                 bottom: 0,
-                zIndex: 999999999,
+                zIndex: 99999999999,
                 transform: 'translate(50px, -25px) scale(1.2)'
             }}
                 open={open}
@@ -202,8 +232,8 @@ const ModalRegister = () => {
                 onClose={handleClose}
                 action={action}
             >
-                <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
-                    Register success
+                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                    {message}
                 </Alert>
             </Snackbar>
         </>
