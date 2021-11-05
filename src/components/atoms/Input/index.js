@@ -44,6 +44,14 @@ const InputFile = ({label, className, onClick, ...rest}) => {
     )
 }
 
+const InputBasic = ({className, onClick, ...rest}) => {
+    return (
+        <label className="wrapper-input default">
+            <input className="input-basic" {...rest} />
+        </label>
+    )
+}
+
 const Input = ({label, variant, onClick, ...rest}) => {
     let classForLabel = 'input-section'
 
@@ -65,6 +73,10 @@ const Input = ({label, variant, onClick, ...rest}) => {
         case 'file':
             classForLabel += ' root--input-file'
             return <InputFile label={label} className={classForLabel} onClick={onClick} {...rest} />
+
+        case 'basic':
+            classForLabel += ' root--input-file'
+            return <InputBasic className={classForLabel} onClick={onClick} {...rest} />
 
         default:
             return (
