@@ -40,6 +40,17 @@ const Maintenance = () => {
         try {
             const response = await API.delete('/maintence/trips')
             setMessage(response.data.message)
+            handleClick()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const cleaningPayment = async () => {
+        try {
+            const response = await API.delete('/maintence/transactions')
+            setMessage(response.data.message)
+            handleClick()
         } catch (error) {
             console.log(error)
         }
@@ -51,7 +62,7 @@ const Maintenance = () => {
             <div className="dashboard">
                 <div className="left-section__dashboard">
                     <ul>
-                        <li>Dashboard</li>
+                        <li onClick={()=> history.push('/admin/dashboard/')}>Dashboard</li>
                         <li onClick={()=> history.push('/admin/dashboard/maintenance')}>Maintenance</li>
                         <li></li>
                     </ul>
@@ -60,8 +71,10 @@ const Maintenance = () => {
                     <div className="main">
                         <Text variant="h1" fontSize={20}>Clearing storage in backend</Text>
                         <Gap height={20} />
-                        <Button variant="contained" sx={muiButton} onClick={cleaningTrip}>Trip</Button>
-                        <Button variant="contained" sx={muiButton}>Payment</Button>
+                        <div className="d-flex">
+                            <div className="mr-s"><Button variant="contained" sx={muiButton} onClick={cleaningTrip}>Trip</Button></div>
+                            <div><Button variant="contained" sx={muiButton} onClick={cleaningPayment}>Payment</Button></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,7 +82,7 @@ const Maintenance = () => {
             <Snackbar sx={{
                 position: 'fixed',
                 bottom: 0,
-                zIndex: 99999999999,
+                zIndex: 99999999999999,
                 transform: 'translate(50px, -25px) scale(1.2)'
             }}
                 open={open}
