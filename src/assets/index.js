@@ -39,6 +39,8 @@ import IconLocation from './icon/location.png'
 import ImgTransfer from './img/transfer/tf-1.jpg'
 import ImgQrCode from './img/qr-code/qr-code1.svg'
 
+import ImgCamera from './img/camera.jpg'
+
 import IconSearch from './icon/search.svg'
 import IconFile from './icon/file.svg'
 
@@ -48,6 +50,6 @@ import ImgPageNotFound from './img/not-found.svg'
 export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus, IconTrip }
 export { IconPalm2, IconHibicus2, IconLeaf, IconUser, IconBill, IconLogout, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar }
 export { ProfileDefault }
-export { ImgTransfer, ImgQrCode, ImgPageNotFound }
+export { ImgTransfer, ImgQrCode, ImgPageNotFound, ImgCamera }
 export { DataTour }
 export { IconUserCircle, IconEmail, IconPhone, IconLocation, IconSearch, IconFile }
