@@ -73,6 +73,22 @@
         color: var(--gray-second);
         @extend .subheading-box;
     }
+
+    .action-layer {
+        display: none;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba($color: #000000, $alpha: .3);
+        border-radius: var(--border-trendy);
+        z-index: 999;
+    }
 }
 
 .payment {
@@ -136,10 +152,14 @@
 
 .dashboard-box {
     padding: 10px;
-    width: 230px;
+    width: 210px;
     height: 100px;
     color: var(--color-primary);
-    background: linear-gradient(30deg, rgba(41,209,220,1) 0%, rgba(33,91,223,1) 100%);
     border-radius: var(--border-trendy);
     box-shadow: var(--box-shadow-theme);
+
+    &.gradient-blue { background: linear-gradient(30deg, rgba(41,209,220,1) 0%, rgba(33,91,223,1) 100%) }
+    &.gradient-red { background: linear-gradient(30deg, rgb(220, 41, 41) 0%, rgb(223, 115, 33) 100%) }
+    &.gradient-green { background: linear-gradient(30deg, rgb(41, 220, 116) 0%, rgb(81, 223, 33) 100%) }
+    &.gradient-yellow { background: linear-gradient(30deg, rgb(220, 148, 41) 0%, rgb(220, 223, 33) 100%) }
 }
