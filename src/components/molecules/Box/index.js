@@ -32,7 +32,7 @@ const Box = ({variant, key, theme, logo, heading, text, img, item, status, ...re
         case 'content':
             return <ContentBox item={item} {...rest} />
         case 'payment':
-            return <PaymentBox status={status} {...rest} />
+            return <PaymentBox status={status} item={item} {...rest} />
         case 'profile':
             return <ProfileBox />
         case 'box-dashboard':

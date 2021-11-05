@@ -24,7 +24,7 @@ const ShowButton = ({status, ...rest}) => {
     }
 }
 
-const PaymentBox = ({name, country, type, count, totalPayment, status, ...rest}) => {
+const PaymentBox = ({name, country, type, count, totalPayment, status, item, ...rest}) => {
     let boxStatus, textBoxStatus
     
     switch (status) {
@@ -96,21 +96,21 @@ const PaymentBox = ({name, country, type, count, totalPayment, status, ...rest})
                                         <Text variant="bold" fontSize={14} className="color-second">26 August 2021</Text>
                                         <Gap height={27} />
                                         <Text variant="bold" fontSize={18}>Accomodation</Text>
-                                        <Text variant="bold" fontSize={14} className="color-second">Hotel 4 Nights</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">{item?.trip?.accomodation}</Text>
                                     </div>
                                     <div>
                                         <Text variant="bold" fontSize={18}>Duration</Text>
                                         <Text variant="bold" fontSize={14} className="color-second">6 Day 4 Night</Text>
                                         <Gap height={27} />
                                         <Text variant="bold" fontSize={18}>Transportation</Text>
-                                        <Text variant="bold" fontSize={14} className="color-second">Qatar Airways</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">{item?.trip?.transportation}</Text>
                                     </div>
                                 </Group>
                             </div>
                             <div className="right-side__heading_payment">
                                 <Text variant="bold" fontSize={36} lineHeight="49px">Booking</Text>
                                 <Text variant="p" fontSize={18} lineHeight="25px" className="color-second">
-                                    <strong>Saturday</strong> 22 july 2021
+                                    <strong>Friday</strong> 5 Nov 2021
                                 </Text>
                                 <Gap height={20} />
                                 <Group className="text-center">
@@ -127,16 +127,16 @@ const PaymentBox = ({name, country, type, count, totalPayment, status, ...rest})
                                     <tr>
                                         <th>No</th>
                                         <th>Full Name</th>
-                                        <th>Gender</th>
+                                        <th>Address</th>
                                         <th>Phone</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>Doltons Edward</td>
-                                        <td>Male</td>
-                                        <td>083896833112</td>
+                                        <td>{item?.user?.fullName}</td>
+                                        <td>{item?.user?.address}</td>
+                                        <td>{item?.user?.phone}</td>
                                         <td className="table-bold">Qty</td>
                                         <td className="table-bold">:</td>
                                         <td className="table-bold">{count}</td>
@@ -148,7 +148,7 @@ const PaymentBox = ({name, country, type, count, totalPayment, status, ...rest})
                                         <td></td>
                                         <td className="table-bold">Total</td>
                                         <td className="table-bold">:</td>
-                                        <td className="table-bold color-warning">{type} {totalPayment}</td>
+                                        <td className="table-bold color-warning">{type}. {item?.total}</td>
                                     </tr>
                                 </tbody>
                             </table>

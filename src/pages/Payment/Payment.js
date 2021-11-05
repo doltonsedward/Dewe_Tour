@@ -2,10 +2,10 @@ import './Payment.scss'
 
 import { Box, Gap } from '../../components'
 import { setData } from '../../utils' 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // import api
-// import { API } from '../../config'
+import { API } from '../../config'
 
 // mui component
 import Button from '@mui/material/Button'
@@ -16,10 +16,44 @@ import { Alert } from '@mui/material'
 const Payment = () => {
     // for handle mui alert effect
     const [open, setOpen] = useState(false);
+    const [dataTrans, setDataTrans] = useState([])
 
     const handleClick = () => { setOpen(true) }
     const handleClose = () => { setOpen(false) }
 
+    const getTransaction = async () => {
+        try {
+            const response = await API.get('/transaction')
+            setDataTrans(response.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    console.log(dataTrans, 'data trans')
+    
+    useEffect(()=> {
+        getTransaction()
+    }, [])
+
+    // get data from api localstorage
+    const payment = JSON.parse(localStorage.getItem('payment'))
+    const [state, setstate] = useState(payment)
+
+    // const paymentHistory = JSON.parse(localStorage.getItem('paymentHistory'))
+
+    const { totalPayment } = payment
+    // console.log(payment.status)
+
+    // for changing status payment
+    function statusPayment() {
+        return {
+            ...payment,
+            status: 'pending'
+        }
+    }
+
+    // action for button MUI
     const action = (
         <>
             <Button color="secondary" size="small" onClick={handleClose}>
@@ -34,47 +68,33 @@ const Payment = () => {
             </IconButton>
         </>
     )
-    // close
-    
-    
-    // get data from api localstorage
-    const payment = JSON.parse(localStorage.getItem('payment'))
-    const [state, setstate] = useState(payment)
-    // const paymentHistory = JSON.parse(localStorage.getItem('paymentHistory'))
-
-    const { name, country, type, count, totalPayment } = payment
-    // console.log(payment.status)
-
-    // for changing status payment
-    function statusPayment() {
-        return {
-            ...payment,
-            status: 'pending'
-        }
-    }
 
     return (
         <div className="payment">
             <div className="hero"></div>
             <Gap height={66} />
-            
-            <Box 
-                variant='payment' 
-                name={name} 
-                country={country} 
-                type={type} 
-                count={count} 
-                totalPayment={totalPayment}
-                status={state.status}
-                onClick={()=> {
-                    setstate({
-                        ...payment,
-                        status: 'pending'
-                    })
+            {dataTrans.map(item => {
+                return (
+                    <Box 
+                        variant='payment' 
+                        name={item?.trip?.title} 
+                        country='Australia'
+                        type={item?.trip?.type}  
+                        count={item?.counterQty} 
+                        totalPayment={totalPayment}
+                        status={state.status}
+                        item={item}
+                        onClick={()=> {
+                            setstate({
+                                ...payment,
+                                status: 'pending'
+                            })
 
-                    setData('payment', statusPayment())
-                    handleClick()
-                }} />
+                            setData('payment', statusPayment())
+                            handleClick()
+                        }} />
+                )
+            })}
 
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} action={action}>
                 <Alert sx={{boxShadow: '0 0 50px rgba(0, 0, 0, .26)'}} onClose={handleClose} severity='success'>
