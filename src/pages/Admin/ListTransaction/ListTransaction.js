@@ -2,21 +2,38 @@ import './ListTransaction.scss'
 import { Gap, Text, Box as BoxPayment } from '../../../components'
 import { IconSearch } from '../../../assets'
 
+// import api
+import { API } from '../../../config';
+
 // mui component
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ListTransaction = () => {
-    const dataTransaction = JSON.parse(localStorage.getItem('transaction'))
-    const dataPayment = JSON.parse(localStorage.getItem('payment'))
-
-    
     const [open, setOpen] = useState(false);
+    const [dataTransaction, setDataTransaction] = useState([])
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const getTransactions = async () => {
+        try {
+            const response = await API.get('/transactions')
+            console.log(response)
+            setDataTransaction(response.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        getTransactions()
+    }, [dataTransaction])
+
+    console.log(dataTransaction, 'sdssadfd')
 
     const style = {
         position: 'absolute',
@@ -26,7 +43,7 @@ const ListTransaction = () => {
         p: 4,
       };
     
-    const { name, country, type, count, totalPayment, status } = dataPayment
+    const { counterQty, status, total } = dataTransaction
     return (
         <div className="header-default">
             <div className="hero"></div>
@@ -45,12 +62,12 @@ const ListTransaction = () => {
                     <Box sx={style}>
                         <BoxPayment 
                             variant='payment' 
-                            name={name} 
-                            country={country} 
-                            type={type} 
-                            count={count} 
-                            totalPayment={totalPayment}
-                            status='success'
+                            name={dataTransaction?.user?.fullName} 
+                            country='Australia'
+                            type={dataTransaction?.trip?.type} 
+                            count={counterQty} 
+                            totalPayment={total}
+                            status={status}
                             onClick={handleOpen} />
                     </Box>
                 </Fade>
@@ -72,7 +89,7 @@ const ListTransaction = () => {
                     </thead>
                     <tbody>
                         {dataTransaction.map((item)=> {
-                            const { id, name, trip, buktiTransfer, status } = item
+                            const { id, status, attachment, trip, user } = item
                             const color = 
                             status === 'Approve' ? 'success' :
                             status === 'Pending' ? 'pending' : 
@@ -81,9 +98,9 @@ const ListTransaction = () => {
                             return (
                                 <tr key={id}>
                                     <td>{id}</td>
-                                    <td>{name}</td>
+                                    <td>{user?.name}</td>
                                     <td>{trip}</td>
-                                    <td>{buktiTransfer}</td>
+                                    <td>{attachment}</td>
                                     <td className={"color-" + color}>{status}</td>
                                     <td onClick={handleOpen}><img src={IconSearch} alt="for help you to search something" /></td>
                                 </tr>
