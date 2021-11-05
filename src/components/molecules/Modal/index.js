@@ -5,7 +5,6 @@ import { Gap, Input } from '../../atoms'
 import { IconPalm2, IconHibicus2 } from '../../../assets'
 import { closeLoginModal, closeRegisterModal } from '../../../utils'
 import store from '../../../store'
-import { useHistory } from 'react-router';
 
 import { API } from '../../../config'
 
@@ -16,7 +15,6 @@ import IconButton from '@mui/material/IconButton';
 import { Alert } from '@mui/material';
 
 const ModalLogin = () => {
-    const history = useHistory()
     const [open, setOpen] = useState(false)
     const [message, setMessage] = useState('Not found')
     const [severity, setSeverity] = useState('success')

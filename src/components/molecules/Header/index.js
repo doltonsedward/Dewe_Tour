@@ -1,12 +1,10 @@
 import './Header.scss'
 import { dropDown, showLoginModal, showRegisterModal } from '../../../utils'
-import { ProfileDefault } from '../../../assets'
 import { IconUser, IconBill, IconLogout, IconTrip } from '../../../assets'
 import store from '../../../store'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 
-import { API } from '../../../config'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
@@ -14,28 +12,10 @@ const Header = ({logo}) => {
     const history = useHistory()
     const currentState = useSelector(state => state)
     
-    // const isLoginSession = useSelector(state => state.isLogin) || JSON.parse(localStorage.getItem('user
     const isLoginSession = useSelector(state => state.isLogin)
     const [isAdmin, setIsAdmin] = useState(false)
 
-    const getProfile = async () => {
-        try {
-            const response = await API.get('/user')
-            console.log(response, 'response')
-
-            store.dispatch({ 
-                type: 'LOGIN', 
-                payload: response.data.data
-            })   
-            
-            history.push('/')
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     useEffect(()=> {
-        getProfile()
         if (currentState.user.role === 'admin') {
             setIsAdmin(true)
         }
@@ -56,14 +36,10 @@ const Header = ({logo}) => {
         history.push('/')
     }
 
-    console.log(isAdmin)
-
-    
-
     if (isAdmin) {
         return (
             <header className="d-flex-between">
-                <img src={logo} alt="this is logo" onClick={()=> history.push('/')} />
+                <img src={logo} className="c-pointer" alt="this is logo" onClick={()=> history.push('/')} />
                 <div className="section-button__header">
                     <div className="profile" onClick={dropDown}>
                         <img className="profile-image" src={currentState.user.avatar} alt="profile" />
