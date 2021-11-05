@@ -1,6 +1,6 @@
 import './_Dashboard.scss'
 import { useHistory } from 'react-router'
-import { Box } from '../../../components'
+import { Box, Gap } from '../../../components'
 import { useEffect, useState } from 'react'
 
 // IMPORT API
@@ -19,7 +19,7 @@ const Dashboard = () => {
         labels: ['June', 'July', 'August', 'October', 'November'],
         datasets: [
             {
-            label: 'Rainfall',
+            label: 'Total Data',
             fill: false,
             lineTension: 0.5,
             backgroundColor: 'rgba(75,192,192,1)',
@@ -70,8 +70,8 @@ const Dashboard = () => {
             labels: ['June', 'July', 'August', 'October', 'November'],
             datasets: [
                 {
-                label: 'Rainfall',
-                fill: false,
+                label: 'Total Data',
+                fill: true,
                 lineTension: 0.5,
                 backgroundColor: 'rgba(75,192,192,1)',
                 borderColor: 'rgb(179, 120, 228)',
@@ -108,13 +108,14 @@ const Dashboard = () => {
                             <Box variant="box-dashboard" theme="gradient-green" heading="Trip" text={tripsLength}  />
                             <Box variant="box-dashboard" theme="gradient-yellow" heading="Transaction" text={transLength}  />
                         </div>
+                        <Gap height={40} />
                         <div>
                             <Line
                                 data={dataChart}
                                 options={{
                                     title:{
                                     display:true,
-                                    text:'Average Rainfall per month',
+                                    text:'Average Total Data per month',
                                     fontSize:20
                                     },
                                     legend:{
