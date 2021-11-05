@@ -229,7 +229,7 @@ const DetailTrip = () => {
                             <div className="d-flex">
                                 <Button variant="contained" sx={muiButton} onClick={() => count === 1 ? '' : setCount(count - 1)}>-</Button>
                                 <Text variant="bold" fontSize={24} className="total-count">{count}</Text>
-                                <Button variant="contained" sx={muiButton} onClick={()=> count === 10 ? '' : setCount(count + 1)}>+</Button>
+                                <Button variant="contained" sx={muiButton} onClick={()=> count === quota ? '' : setCount(count + 1)}>+</Button>
                             </div>
                         </div>
                         <div className="group-total d-flex-between">

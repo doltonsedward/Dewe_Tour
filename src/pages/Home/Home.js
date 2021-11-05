@@ -10,9 +10,6 @@ import { useEffect, useState } from 'react'
 import { API } from '../../config'
 
 const Home = () => {
-    const title = 'Trips'
-    document.title = `DeweTour | ${title}`
-    
     const [dataTrip, setDataTrip] = useState([])
 
     const getTrips = async () => {
@@ -27,8 +24,6 @@ const Home = () => {
     useEffect(()=> {
         getTrips()
     }, [])
-
-    console.log(dataTrip)
 
     const history = useHistory()
 

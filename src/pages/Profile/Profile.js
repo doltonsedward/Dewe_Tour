@@ -11,19 +11,19 @@ import { useState } from 'react'
 // import { useSelector } from 'react-redux'
 
 const Profile = () => {
-    // const payment = JSON.parse(localStorage.getItem('payment'))
-    // const { name, country, type, count, totalPayment } = payment
-    // const dataUser = useSelector(state => state)
+    // const payment = JSON.parse(localStorage.getItem('payment')) 
+    // const { name, country, type, count, totalPayment } = payment 
+    // const dataUser = useSelector(state => state) 
 
-    const [profile, setProfile] = useState({})
-    const [isEditable, setIsEditable] = useState(false)
-    const [form, setForm] = useState({
-        fullName: "-",
-        email: "-",
-        phone: "-",
-        address: "-",
-        role: "user",
-        avatar: "-"  
+    const [profile, setProfile] = useState({}) 
+    const [isEditable, setIsEditable] = useState(false) 
+    const [form, setForm] = useState({ 
+        fullName: "-", 
+        email: "-", 
+        phone: "-", 
+        address: "-", 
+        role: "user", 
+        avatar: "-"   
     })
 
     const getUser = async () => {

@@ -22,8 +22,7 @@ const ListTransaction = () => {
     const getTransactions = async () => {
         try {
             const response = await API.get('/transactions')
-            console.log(response)
-            setDataTransaction(response.data.data)
+            setDataTransaction(response?.data?.data)
         } catch (error) {
             console.log(error)
         }
@@ -31,9 +30,9 @@ const ListTransaction = () => {
 
     useEffect(()=> {
         getTransactions()
-    }, [dataTransaction])
+    }, [])
 
-    console.log(dataTransaction, 'sdssadfd')
+    console.log(dataTransaction, 'data transaction')
 
     const style = {
         position: 'absolute',
@@ -92,14 +91,14 @@ const ListTransaction = () => {
                             const { id, status, attachment, trip, user } = item
                             const color = 
                             status === 'Approve' ? 'success' :
-                            status === 'Pending' ? 'pending' : 
+                            status === 'Waiting payment' ? 'pending' : 
                             status === 'Cancel' ? 'warning' : ''
 
                             return (
                                 <tr key={id}>
                                     <td>{id}</td>
-                                    <td>{user?.name}</td>
-                                    <td>{trip}</td>
+                                    <td>{user?.fullName}</td>
+                                    <td>{trip?.title}</td>
                                     <td>{attachment}</td>
                                     <td className={"color-" + color}>{status}</td>
                                     <td onClick={handleOpen}><img src={IconSearch} alt="for help you to search something" /></td>

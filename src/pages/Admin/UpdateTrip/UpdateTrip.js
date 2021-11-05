@@ -84,7 +84,7 @@ const UpdateTrip = () => {
                 </Group>
                 <Gap height={40} />
                 <Group style={inputStyle}>
-                    <Input label='Country' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" value={form.country} onChange={handleChange} />
+                    <Input label='Country' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" value={form.country.name} onChange={handleChange} />
                 </Group>
                 <Gap height={40} />
                 <Group style={inputStyle}>

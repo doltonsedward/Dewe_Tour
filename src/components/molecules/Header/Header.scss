@@ -8,6 +8,7 @@ header {
     z-index: calc(var(--z-index) + 9);
 
     .section-button__header {
+        cursor: pointer;
         button {
             &.btn-login {
                 background-color: transparent;

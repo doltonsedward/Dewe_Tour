@@ -59,7 +59,7 @@ const Header = ({logo}) => {
     } else if (isLoginSession) {
         return (
             <header className="d-flex-between">
-                <img src={logo} alt="this is logo" onClick={()=> history.push('/')} />
+                <img src={logo} className="c-pointer" alt="this is logo" onClick={()=> history.push('/')} />
                 <div className="section-button__header">
                     <div className="profile" onClick={dropDown}>
                         <img className="profile-image" src={currentState.user.avatar} alt="profile" />
@@ -78,7 +78,7 @@ const Header = ({logo}) => {
     } else {
         return (
             <header className="d-flex-between">
-                <img src={logo} alt="this is logo" onClick={()=> history.push('/')} />
+                <img src={logo} className="c-pointer" alt="this is logo" onClick={()=> history.push('/')} />
                 <div className="section-button__header">
                     <button className="btn-login" id="btnLogin" onClick={showLoginModal}>Login</button>
                     <button className="btn-warning ml-m" id="btnRegister" onClick={showRegisterModal}>Register</button>
