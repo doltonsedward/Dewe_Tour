@@ -1,4 +1,9 @@
-const initialValue = JSON.parse(localStorage.getItem('user'))
+const initialValue = !localStorage.user ? {
+    isLogin: false,
+    user: {}
+}
+: 
+JSON.parse(localStorage.getItem('user'))
 
 const rootReducer = (state = initialValue, action) => {
     const {type, payload} = action
@@ -16,7 +21,8 @@ const rootReducer = (state = initialValue, action) => {
                 isLogin: true,
                 user: payload
             }
-            
+        
+        case 'AUTH_ERROR':
         case 'LOGOUT':
             localStorage.removeItem('token', payload.token)
             localStorage.setItem('user', JSON.stringify({
