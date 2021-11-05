@@ -8,15 +8,17 @@ import { Button } from '@mui/material'
 import { API } from '../../config'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useHistory } from 'react-router'
 // import { useSelector } from 'react-redux'
 
 const Profile = () => {
-    // const payment = JSON.parse(localStorage.getItem('payment')) 
-    // const { name, country, type, count, totalPayment } = payment 
-    // const dataUser = useSelector(state => state) 
+    const history = useHistory()
 
     const [profile, setProfile] = useState({}) 
     const [isEditable, setIsEditable] = useState(false) 
+    
+    // state for variant 
+    const [variant, setVariant] = useState('disabled')
     const [form, setForm] = useState({ 
         fullName: "-", 
         email: "-", 
@@ -25,6 +27,9 @@ const Profile = () => {
         role: "user", 
         avatar: "-"   
     })
+    
+    // preview state
+    const [preview, setPreview] = useState(profile?.avatar)
 
     const getUser = async () => {
         try {
@@ -52,6 +57,7 @@ const Profile = () => {
 
     function handleEdit() {
         isEditable ? setIsEditable(false) : setIsEditable(true)
+        variant === 'contained' ? setVariant('disabled') : setVariant('contained')
     }
 
     const handleChange = (e) => {
@@ -59,20 +65,51 @@ const Profile = () => {
             ...form,
             [e.target.name]: e.target.type === 'file' ? e.target.files : e.target.value
         })
+
+        if (e.target.type === 'file') {
+            let url = URL.createObjectURL(e.target.files[0])
+            setPreview(url)
+        }
     }
 
+    const handleSubmit = async () => {
+        try {
+            const formData = new FormData()
+            formData.set('fullName', form.fullName)
+            formData.set('email', form.email)
+            formData.set('phone', form.phone)
+            formData.set('address', form.address)
+            formData.set('role', form.role)
+            formData.set('avatar', form.avatar[0], form.avatar[0].filename)
 
-    function handlePreview(event) {
-        const previewElm = document.getElementById('preview-thumbnail')
-        const value = URL.createObjectURL(event.target.files[0])
-        previewElm.innerHTML = `<img className="profile-img" style={{display: 'none'}} src=${value} alt="this is profile of user face">`
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+
+            const body = formData
+
+            await API.patch('/user', body, config)
+
+            
+        } catch (error) {
+            console.log(error)
+        }
+
+        window.location.reload()
     }
+
+    console.log('hasdfl')
 
     return (
         <div className="payment">
             <div className="hero"></div>
             <Gap height={114} />
-            <div style={{width: 785, margin: '0 auto'}}><Button variant="contained" sx={muiButton} onClick={handleEdit}>Edit</Button></div>
+            <div style={{width: 785, margin: '0 auto', display: 'flex'}}>
+                <div className="mr-m"><Button variant="contained" sx={muiButton} onClick={handleEdit}>Edit</Button></div>
+                <Button variant={variant} sx={muiButton} onClick={handleSubmit}>Update</Button>
+            </div>
             <Gap height={20} />
             {
                 isEditable ? 
@@ -85,7 +122,7 @@ const Profile = () => {
                                 <img src={IconUserCircle} alt="the user info" />
                             </Group>
                             <Group>
-                                <Input variant="basic" value={form.fullName} onChange={handleChange} />
+                                <Input variant="basic" name="fullName" value={form.fullName} onChange={handleChange} />
                                 <Gap height={4} />
                                 <Text variant="p" fontSize={12} lineHeight="16px" className="color-gray-medium">Fullname</Text>
                             </Group>
@@ -96,7 +133,7 @@ const Profile = () => {
                                 <img src={IconEmail} alt="email user info" />
                             </Group>
                             <Group>
-                                <Input variant="basic" value={form.email} onChange={handleChange} />
+                                <Input variant="basic" name="email" value={form.email} onChange={handleChange} />
                                 <Gap height={4} />
                                 <Text variant="p" fontSize={12} lineHeight="16px" className="color-gray-medium">Email</Text>
                             </Group>
@@ -107,7 +144,7 @@ const Profile = () => {
                                 <img src={IconPhone} alt="phone user info" />
                             </Group>
                             <Group>
-                                <Input variant="basic" value={form.phone} onChange={handleChange} />
+                                <Input variant="basic" name="phone" value={form.phone ?? '-'} onChange={handleChange} />
                                 <Gap height={4} />
                                 <Text variant="p" fontSize={12} lineHeight="16px" className="color-gray-medium">Mobile Phone</Text>
                             </Group>
@@ -118,7 +155,7 @@ const Profile = () => {
                                 <img src={IconLocation} alt="location user info" />
                             </Group>
                             <Group>
-                                <Input variant="basic" value={form.address} onChange={handleChange} />
+                                <Input variant="basic" name="address" value={form.address ?? '-'} onChange={handleChange} />
                                 <Gap height={4} />
                                 <Text variant="p" fontSize={12} lineHeight="16px" className="color-gray-medium">Address</Text>
                             </Group>
@@ -126,13 +163,17 @@ const Profile = () => {
                     </Group>
                     <Group>
                         <div id="preview-thumbnail" className="preview-thumbnail__profile">
-                            <img className="profile-img" src={profile?.avatar} alt="this is profile of user face" />
+                            {
+                                preview ? 
+                                <img className="profile-img" src={preview} alt="this is profile of user face" />
+                                :
+                                <img className="profile-img" src={profile?.avatar} alt="this is profile of user face" />
+                            }
                         </div>
                         <Gap height={10} />
                         <div className="wrapper-input-file__profile">
-                            
                             <Button variant="contained" sx={profileCoverButton}>
-                                <Input className="input-file__profile" type="file" style={{width: '280px'}} id="inputFileProfile" onChange={handlePreview} />
+                                <Input className="input-file__profile" name="avatar" type="file" style={{width: '280px'}} id="inputFileProfile" onChange={handleChange} />
                                 Change Photo Profile
                             </Button>
                         </div>
@@ -189,13 +230,17 @@ const Profile = () => {
                     </Group>
                     <Group>
                         <div id="preview-thumbnail" className="preview-thumbnail__profile">
-                            <img className="profile-img" src={profile?.avatar} alt="this is profile of user face" />
+                            {
+                                preview ? 
+                                <img className="profile-img" src={preview} alt="this is profile of user face" />
+                                :
+                                <img className="profile-img" src={profile?.avatar} alt="this is profile of user face" />
+                            }
                         </div>
                         <Gap height={10} />
                         <div className="wrapper-input-file__profile">
-                            
                             <Button variant="contained" sx={profileCoverButton}>
-                                <Input className="input-file__profile" type="file" style={{width: '280px'}} id="inputFileProfile" onChange={handlePreview} />
+                                <Input className="input-file__profile" type="file" style={{width: '280px'}} id="inputFileProfile" onChange={handleChange} />
                                 Change Photo Profile
                             </Button>
                         </div>
