@@ -7,29 +7,41 @@ import { Home, DetailTrip, Payment, Profile, ListTransaction, Trip, AddTrip, Not
 import { API, PrivateRoute, setAuthToken } from '../config'
 import store from '../store'
 import { useEffect } from 'react'
-import { Dashboard, Maintenance } from './Admin'
+import { Dashboard, Maintenance, UpdateTrip } from './Admin'
+import { useSelector } from 'react-redux'
+
+if (localStorage.token) {
+    setAuthToken(localStorage.token)
+}
 
 const App = () => {
+    const currentState = useSelector(state => state)
+    console.log(currentState)
     useEffect(()=> {
         if (localStorage.token) {
             setAuthToken(localStorage.token)
         }
-    }, [store])
+    }, [currentState])
 
     const checkUser = async () => {
         try {
-            const response = await API.get('/user')
+            const response = await API.get('/check-auth')
 
+            if (response.status === 404) {
+                return store.dispatch({
+                    type: "AUTH_ERROR",
+                });
+            }
+            
             let payload = response.data.data.user
-
+            
+            console.log(payload, 'payload')
             payload.token = localStorage.token;
 
             store.dispatch({
                 type: "USER_SUCCESS",
                 payload,
               });
-
-            console.log(response)
         } catch (error) {
             console.log(error)
         }
@@ -37,7 +49,7 @@ const App = () => {
 
     useEffect(()=> {
         checkUser()
-    }, [store])
+    }, [])
     
     
     return (
@@ -78,6 +90,7 @@ const App = () => {
                     <PrivateRoute path="/list-transaction" component={ListTransaction} />
                     <PrivateRoute path="/trip" component={Trip} />
                     <PrivateRoute path="/add-trip" component={AddTrip} />
+                    <PrivateRoute path="/update-trip/:id" component={UpdateTrip} />
                     
                     {/* if route is not exist, send default route */}
                     <Route>

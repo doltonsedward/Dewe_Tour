@@ -1,7 +1,7 @@
 import './DetailTrip.scss'
 import { useHistory, useParams } from "react-router"
 import { Gap, Text } from '../../components'
-import { DataTour, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar } from '../../assets'
+import { IconHotel, IconPlane, IconMeal, IconTime, IconCalendar } from '../../assets'
 import { muiButton, setData, showLoginModal } from '../../utils'
 import { useEffect, useState } from 'react'
 
@@ -16,6 +16,7 @@ import { Alert } from '@mui/material'
 const DetailTrip = () => {
     document.title = `DeweTour | Detail Trip`
 
+    const history = useHistory()
     const { id } = useParams()
 
     const [detailTrip, setDetailTrip] = useState({})
@@ -46,15 +47,14 @@ const DetailTrip = () => {
 
     const { 
         accomodation, 
-        countryId, 
         dateTrip,  
         day,
         description,
         eat,
         image,
         night,
-        price,
         quota,
+        price,
         title,
         transportation,
         type,
@@ -63,7 +63,6 @@ const DetailTrip = () => {
     
     const allCoverImage = image?.slice(1)
 
-    const history = useHistory()
     if (!Number(id)) {
         history.push('/')
     }
@@ -81,6 +80,9 @@ const DetailTrip = () => {
     const users = JSON.parse(localStorage.user)
     const userId = users.user.id
 
+    // filter date
+    const filterDateTrip = dateTrip?.split(':')[0].split('T')[0].split('-').reverse().join('-')
+
     // for set data
     useEffect(()=> {
         setForm({
@@ -95,7 +97,6 @@ const DetailTrip = () => {
     }, [count])
 
     const handlerBooking = async () => { 
-
         try { 
             const config = {
                 headers: {
@@ -209,7 +210,7 @@ const DetailTrip = () => {
                                     <Text variant="p" className="color-second">Date Trip</Text>
                                     <div className="wrapper-iconic">
                                         <img src={IconCalendar} alt="26 August 2020" />
-                                        <Text variant="bold">{dateTrip}</Text>
+                                        <Text variant="bold">{filterDateTrip}</Text>
                                     </div>
                                 </li>
                             </ul>
@@ -228,7 +229,7 @@ const DetailTrip = () => {
                             <div className="d-flex">
                                 <Button variant="contained" sx={muiButton} onClick={() => count === 1 ? '' : setCount(count - 1)}>-</Button>
                                 <Text variant="bold" fontSize={24} className="total-count">{count}</Text>
-                                <Button variant="contained" sx={muiButton} onClick={() => setCount(count + 1)}>+</Button>
+                                <Button variant="contained" sx={muiButton} onClick={()=> count === 10 ? '' : setCount(count + 1)}>+</Button>
                             </div>
                         </div>
                         <div className="group-total d-flex-between">

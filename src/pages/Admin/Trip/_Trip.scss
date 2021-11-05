@@ -1,0 +1,14 @@
+.wrapper-list-trip {
+    padding: 0 87px;
+
+    .wrapper-box__trip {
+        width: 100%;
+        height: 100%;
+
+        &.active {
+            .action-layer {
+                display: flex;
+            }
+        }
+    }
+}
