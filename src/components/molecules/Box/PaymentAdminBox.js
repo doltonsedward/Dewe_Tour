@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { LogoSecond, ImgCamera } from '../../../assets'
 import { Gap, Group, Text } from '../../atoms'
 import { paymentButton, warningButton, pendingButton, successButton } from '../../../utils'
 
+// import API
 import { API } from '../../../config'
 
 // mui component
@@ -9,22 +11,20 @@ import { Button } from '@mui/material'
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
-import { useState } from 'react'
 
-const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
-    console.clear()
+const PaymentAdminBox = ({item}) => {
     let boxStatus, textBoxStatus
 
     const [loading, setLoading] = useState(true)
     const [preview, setPreview] = useState('')
     const [form, setForm] = useState([
         {
-            status: '',
+            status: item.status,
             attachment: item.attachment
         }
     ])
     
-    switch (status) {
+    switch (item.status) {
         case 'Waiting payment':
             boxStatus = warningButton
             textBoxStatus = 'Waiting Payment'
@@ -35,7 +35,7 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
             textBoxStatus = 'Waiting Approve'
             break;
 
-        case 'Approve':
+        case 'success':
             boxStatus = successButton
             textBoxStatus = 'Approve'
             break;
@@ -47,7 +47,6 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
     const handleChange = (e) => {
         setForm({
             ...form,
-            status: 'Waiting approval',
             [e.target.name]: e.target.type === 'file' ? e.target.files : e.target.value
         })
 
@@ -57,10 +56,12 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
         }
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (status) => {
         try {
             const formData = new FormData()
-            formData.set('status', form.status)
+            const paymentStatus = status === 'cancel' ? 'Cancel' : 'Approve'
+
+            formData.set('status', paymentStatus)
             formData.set('attachment', form.attachment[0], form.attachment[0].filename)
 
             const config = {
@@ -115,8 +116,8 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
                                 <Gap height={28} />
                                 <Group variant="space-between-only">
                                     <div>
-                                        <Text variant="bold" fontSize={24}>{name}</Text>
-                                        <Text variant="p" fontSize={14} className="color-second">{country}</Text>
+                                        <Text variant="bold" fontSize={24}>{item.name}</Text>
+                                        <Text variant="p" fontSize={14} className="color-second">Australia</Text>
                                         <Gap height={31} />
                                         <Button variant="text" sx={boxStatus}>{textBoxStatus}</Button>
                                     </div>
@@ -125,14 +126,14 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
                                         <Text variant="bold" fontSize={14} className="color-second">26 August 2021</Text>
                                         <Gap height={27} />
                                         <Text variant="bold" fontSize={18}>Accomodation</Text>
-                                        <Text variant="bold" fontSize={14} className="color-second">{item?.trip?.accomodation}</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">{item?.accomodation}</Text>
                                     </div>
                                     <div>
                                         <Text variant="bold" fontSize={18}>Duration</Text>
                                         <Text variant="bold" fontSize={14} className="color-second">6 Day 4 Night</Text>
                                         <Gap height={27} />
                                         <Text variant="bold" fontSize={18}>Transportation</Text>
-                                        <Text variant="bold" fontSize={14} className="color-second">{item?.trip?.transportation}</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">{item?.transportation}</Text>
                                     </div>
                                 </Group>
                             </div>
@@ -144,13 +145,12 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
                                 <Gap height={20} />
                                 <Group className="text-center">
                                     <div className="transfer-image__payment">
+                                        {/* <img src={ImgTransfer} alt="transfer proof" /> */}
                                         {
                                             preview ?
                                             <img src={preview} alt="transfer proof" />
-                                            : item?.attachment ? 
-                                            <img src={item?.attachment} alt="transfer proof" />
                                             :
-                                            <img src={ImgCamera} alt="transfer proof" />
+                                            <img src={item.attachment} alt="transfer proof" />
                                         }
                                         <input type="file" name="attachment" onChange={handleChange} />
                                     </div>
@@ -178,7 +178,7 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
                                         <td>{item?.user?.phone}</td>
                                         <td className="table-bold">Qty</td>
                                         <td className="table-bold">:</td>
-                                        <td className="table-bold">{count}</td>
+                                        <td className="table-bold">{item.count}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -187,29 +187,25 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
                                         <td></td>
                                         <td className="table-bold">Total</td>
                                         <td className="table-bold">:</td>
-                                        <td className="table-bold color-warning">{type}. {item?.total}</td>
+                                        <td className="table-bold color-warning">{item.type}.{item?.totalPayment}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 }
-                
-                <Gap height={28} />
+                <Gap height={10} />
                 <p className="text-right">
-                    {
-                        status === 'Waiting payment' ?
-                        <Button variant="contained" sx={paymentButton} {...rest} onClick={handleSubmit}>
-                            pay
-                        </Button>
-                        :
-                        ''
-                    }
+                    <Button variant="contained" sx={paymentButton} onClick={()=> handleSubmit('cancel')}>
+                        cancel
+                    </Button>
+                    <Button variant="contained" sx={paymentButton} onClick={()=> handleSubmit('approve')}>
+                        approve
+                    </Button>
                 </p>
             </div>
-            <Gap height={86} />
         </>
     )
 }
 
-export default PaymentBox
+export default PaymentAdminBox

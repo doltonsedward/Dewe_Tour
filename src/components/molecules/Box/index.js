@@ -5,6 +5,7 @@ import { Gap } from '../../atoms'
 import ContentBox from './ContentBox'
 import PaymentBox from './PaymentBox'
 import CardBox from './CardBox'
+import PaymentAdminBox from './PaymentAdminBox'
 
 const ProfileBox = () => {
     return (
@@ -33,6 +34,8 @@ const Box = ({variant, key, theme, logo, heading, text, img, item, status, ...re
             return <ContentBox item={item} {...rest} />
         case 'payment':
             return <PaymentBox status={status} item={item} {...rest} />
+        case 'payment-admin':
+            return <PaymentAdminBox item={item} />
         case 'profile':
             return <ProfileBox />
         case 'box-dashboard':

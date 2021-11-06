@@ -35,7 +35,6 @@ const App = () => {
             
             let payload = response.data.data.user
             
-            console.log(payload, 'payload')
             payload.token = localStorage.token;
 
             store.dispatch({

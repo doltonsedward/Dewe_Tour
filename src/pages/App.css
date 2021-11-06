@@ -1,3 +1,7 @@
+.header-default {
+    min-height: 91.5vh;
+}
+
 .header-default .hero {
     height: var(--hero-height-alternate);
 }

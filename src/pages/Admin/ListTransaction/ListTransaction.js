@@ -15,8 +15,23 @@ import { useEffect, useState } from 'react';
 const ListTransaction = () => {
     const [open, setOpen] = useState(false);
     const [dataTransaction, setDataTransaction] = useState([])
+    const [detailTrans, setDetailTrans] = useState({})
 
-    const handleOpen = () => setOpen(true);
+    const handleOpen = (e) => {
+        setOpen(true)
+        setDetailTrans({
+            id: e.id,
+            name: e.trip.title,
+            type: e.trip.type,
+            count: e.trip.price,
+            totalPayment: e.total,
+            accomodation: e.trip.accomodation,
+            transportation: e.trip.transportation,
+            status: e.status,
+            attachment: e.attachment
+        })
+    }
+
     const handleClose = () => setOpen(false);
 
     const getTransactions = async () => {
@@ -42,9 +57,8 @@ const ListTransaction = () => {
         p: 4,
       };
     
-    const { counterQty, status, total } = dataTransaction
     return (
-        <div className="header-default">
+        <div className="header-default main-content">
             <div className="hero"></div>
             <Modal
                 aria-labelledby="transition-modal-title"
@@ -60,13 +74,8 @@ const ListTransaction = () => {
                 <Fade in={open}>
                     <Box sx={style}>
                         <BoxPayment 
-                            variant='payment' 
-                            name={dataTransaction?.user?.fullName} 
-                            country='Australia'
-                            type={dataTransaction?.trip?.type} 
-                            count={counterQty} 
-                            totalPayment={total}
-                            status={status}
+                            variant='payment-admin' 
+                            item={detailTrans}
                             onClick={handleOpen} />
                     </Box>
                 </Fade>
@@ -91,19 +100,21 @@ const ListTransaction = () => {
                             const { id, status, attachment, trip, user } = item
                             const color = 
                             status === 'Approve' ? 'success' :
-                            status === 'Waiting payment' ? 'pending' : 
+                            status === 'Waiting approval' ? 'pending' : 
                             status === 'Cancel' ? 'warning' : ''
 
-                            return (
-                                <tr key={id}>
-                                    <td>{id}</td>
-                                    <td>{user?.fullName}</td>
-                                    <td>{trip?.title}</td>
-                                    <td>{attachment}</td>
-                                    <td className={"color-" + color}>{status}</td>
-                                    <td onClick={handleOpen}><img src={IconSearch} alt="for help you to search something" /></td>
-                                </tr>
-                            )
+                            if (status !== 'Waiting payment') {
+                                return (
+                                    <tr key={id}>
+                                        <td>{id}</td>
+                                        <td>{user?.fullName}</td>
+                                        <td>{trip?.title}</td>
+                                        <td><img width="150px" src={attachment} alt={trip?.title} /> </td>
+                                        <td className={"color-" + color}>{status}</td>
+                                        <td onClick={()=> handleOpen(item)}><img src={IconSearch} alt="for help you to search something" /></td>
+                                    </tr>
+                                )
+                            } 
                         })}
                     </tbody>
                 </table>

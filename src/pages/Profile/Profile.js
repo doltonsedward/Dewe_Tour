@@ -1,5 +1,5 @@
 import './Profile.scss'
-import { Gap, Group, Text, Input } from '../../components'
+import { Gap, Group, Text, Input, Box } from '../../components'
 import { IconUserCircle, IconEmail, IconPhone, IconLocation } from '../../assets'
 import { muiButton, profileCoverButton } from '../../utils'
 
@@ -12,9 +12,11 @@ import { useHistory } from 'react-router'
 // import { useSelector } from 'react-redux'
 
 const Profile = () => {
+    console.clear()
     const history = useHistory()
 
     const [profile, setProfile] = useState({}) 
+    const [transaction, setTransaction] = useState([])
     const [isEditable, setIsEditable] = useState(false) 
     
     // state for variant 
@@ -51,8 +53,19 @@ const Profile = () => {
         }
     }
 
+    const getTransaction = async () => {
+        try {
+            const response = await API.get('/transaction')
+            const data = response.data.data
+            setTransaction(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(()=> {
         getUser()
+        getTransaction()
     }, [])
 
     function handleEdit() {
@@ -99,8 +112,6 @@ const Profile = () => {
 
         window.location.reload()
     }
-
-    console.log('hasdfl')
 
     return (
         <div className="payment">
@@ -251,14 +262,23 @@ const Profile = () => {
             <Group style={{width: '1035px', margin: '0 auto'}}>
                 <Text variant="bold" fontSize={36}>History trip</Text>
                 <Gap height={42} />
-                {/* <Box 
-                    variant='payment' 
-                    name={name} 
-                    country={country} 
-                    type={type} 
-                    count={count} 
-                    totalPayment={totalPayment}
-                    status='success' /> */}
+                {transaction.map(item => {
+                    if (item.status === 'Waiting payment') {
+                        return ('')
+                    } else {
+                        return (
+                            <Box 
+                            variant='payment' 
+                            name={item?.trip?.title} 
+                            country='Australia'
+                            type={item?.trip?.type}  
+                            count={item?.counterQty} 
+                            status={item.status}
+                            item={item}
+                                />
+                        )
+                    }
+                })}
             </Group>
         </div>
     )
