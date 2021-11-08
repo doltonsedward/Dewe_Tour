@@ -34,6 +34,11 @@ const Trip = () => {
         isActButton === 'hidden' ? setIsActButton('active') : setIsActButton('hidden')
     }
 
+    const newMuiButton = {
+        ...muiButton,
+        marginLeft: '10px'
+    }
+
     return (
         <div className="header-default">
             <div className="hero"></div>
@@ -43,7 +48,7 @@ const Trip = () => {
                         <Text variant="h1" fontSize={36}>Income Trip</Text>
                         <div>
                             <Button variant="contained" sx={muiButton} onClick={()=> history.push('/add-trip')}>add trip</Button>
-                            <Button variant="contained" sx={muiButton} onClick={actionButton}>action</Button>
+                            <Button variant="contained" sx={newMuiButton} onClick={actionButton}>action</Button>
                         </div>
                     </Group>
                     <div className="row">

@@ -54,4 +54,18 @@ const successButton = {
     }
 }
 
-export { muiButton, floatRight, paymentButton, profileCoverButton, warningButton, pendingButton, successButton }
+const greenButton = {
+    backgroundColor: '#0ACF83',
+    '&:hover': {
+        backgroundColor: '#44d39c'
+    }
+}
+
+const redButton = {
+    backgroundColor: '#FF0742',
+    '&:hover': {
+        backgroundColor: '#e93962'
+    }
+}
+
+export { muiButton, floatRight, paymentButton, profileCoverButton, warningButton, pendingButton, successButton, redButton, greenButton }
