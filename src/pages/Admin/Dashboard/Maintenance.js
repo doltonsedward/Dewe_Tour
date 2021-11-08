@@ -1,6 +1,6 @@
 import './_Dashboard.scss'
 import { useHistory } from 'react-router'
-import { Gap, Text } from '../../../components'
+import { Gap, SidebarAdmin, Text } from '../../../components'
 import { muiButton } from '../../../utils'
 import { API } from '../../../config'
 import { useState } from 'react'
@@ -61,19 +61,22 @@ const Maintenance = () => {
             <div className="hero"></div>
             <div className="dashboard">
                 <div className="left-section__dashboard">
-                    <ul>
-                        <li onClick={()=> history.push('/admin/dashboard/')}>Dashboard</li>
-                        <li onClick={()=> history.push('/admin/dashboard/maintenance')}>Maintenance</li>
-                        <li></li>
-                    </ul>
+                    <SidebarAdmin activein="maintenance" />
                 </div>
                 <div className="right-section__dashboard">
                     <div className="main">
-                        <Text variant="h1" fontSize={20}>Clearing storage in backend</Text>
+                        <Text variant="p" fontSize={20}>Clearing storage in backend</Text>
                         <Gap height={20} />
                         <div className="d-flex">
                             <div className="mr-s"><Button variant="contained" sx={muiButton} onClick={cleaningTrip}>Trip</Button></div>
                             <div><Button variant="contained" sx={muiButton} onClick={cleaningPayment}>Payment</Button></div>
+                        </div>
+                        <Gap height={50} />
+                        <Text variant="p" fontSize={20}>Database</Text>
+                        <Gap height={20} />
+                        <div className="d-flex">
+                            <div className="mr-s"><Button variant="contained" sx={muiButton} onClick={()=> history.push('/add-country')}>add country</Button></div>
+                            <div><Button variant="contained" sx={muiButton} onClick={()=> history.push('/country')}>Add country</Button></div>
                         </div>
                     </div>
                 </div>
