@@ -6,12 +6,13 @@ $left-side: 160px;
 
     .left-section__dashboard {
         width: $left-side;
+        
         height: 100%;
         position: fixed;
         top: 0;
         padding-top: 100px;
-        color: rgb(225, 225, 225);
-        background-color: darkslategray;
+        color: #303030;
+        box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.19);
 
         li {
             padding: 10px 12px;
@@ -24,6 +25,35 @@ $left-side: 160px;
 
         .main {
             padding: 20px;
+        }
+    }
+}
+
+.external-app__dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, .19);
+        margin-right: 20px;
+        border-radius: var(--border-trendy);
+        cursor: pointer;
+        transition: .3s ease-in;
+
+        &:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+            transition: .3s ease-out;
+        }
+
+        > * {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     }
 }
