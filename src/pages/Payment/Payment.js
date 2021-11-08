@@ -1,8 +1,9 @@
 import './Payment.scss'
 
-import { Box as BoxDefault, Gap } from '../../components'
+import { Box as BoxDefault } from '../../components'
 import { setData } from '../../utils' 
 import { useEffect, useState } from 'react'
+import { ImageEmpty3D } from '../../assets'
 
 // import api
 import { API } from '../../config'
@@ -18,7 +19,7 @@ import Tab from '@mui/material/Tab';
 import { Alert } from '@mui/material'
 
 const Payment = () => {
-    console.clear()
+    // console.clear()
     // for handle mui alert effect
     const [open, setOpen] = useState(false);
     const [dataTrans, setDataTrans] = useState([])
@@ -41,23 +42,6 @@ const Payment = () => {
     useEffect(()=> {
         getTransaction()
     }, [])
-
-    // get data from api localstorage
-    const payment = JSON.parse(localStorage.getItem('payment'))
-    const [state, setstate] = useState(payment)
-
-    // const paymentHistory = JSON.parse(localStorage.getItem('paymentHistory'))
-
-    const { totalPayment } = payment
-    // console.log(payment.status)
-
-    // for changing status payment
-    function statusPayment() {
-        return {
-            ...payment,
-            status: 'pending'
-        }
-    }
 
     // action for button MUI
     const action = (
@@ -110,118 +94,115 @@ const Payment = () => {
 
     const waitingPayment = dataTrans.filter(item => item.status === 'Waiting payment')
     const waitingApproval = dataTrans.filter(item => item.status === 'Waiting approval')
-    const approve = dataTrans.filter(item => item.status === 'Approve')
+    const filterApproval = dataTrans.filter(item => item.status === 'Approve')
+    const filterCancel = dataTrans.filter(item => item.status === 'Cancel')
 
     return (
-        <div className="payment">
+        <div className="payment header-default">
             <div className="hero"></div>
-            <Gap height={66} />
             <Box sx={{ width: '100%' }}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider', display: 'flex', justifyContent: 'center' }}>
                     <Tabs value={value} onChange={handleMuiChange} aria-label="basic tabs example">
                     <Tab label="Waiting Payment" {...a11yProps(0)} />
                     <Tab label="Waiting Approval" {...a11yProps(1)} />
                     <Tab label="Approve" {...a11yProps(2)} />
+                    <Tab label="Cancel" {...a11yProps(3)} />
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
-                    Item One
-                    {waitingPayment.map(item => {
-                        return (
-                            <BoxDefault 
-                                variant='payment' 
-                                name={item?.trip?.title} 
-                                country='Australia'
-                                type={item?.trip?.type}  
-                                count={item?.counterQty} 
-                                totalPayment={totalPayment}
-                                status={item.status}
-                                item={item}
-                                onClick={()=> {
-                                    setstate({
-                                        ...payment,
-                                        status: 'pending'
-                                    })
-
-                                    setData('payment', statusPayment())
-                                    handleClick()
-                                }} />
-                        )
-                    })}
+                    {
+                        !waitingPayment.length ? 
+                        <p className="text-center"><img style={{width: '450px', maxWidth: '90%'}} src={ImageEmpty3D} alt="" /></p>
+                        :
+                        waitingPayment.map(item => {
+                            return (
+                                <BoxDefault 
+                                    variant='payment' 
+                                    name={item?.trip?.title} 
+                                    country='Australia'
+                                    type={item?.trip?.type}  
+                                    count={item?.counterQty} 
+                                    totalPayment={item.total}
+                                    status={item.status}
+                                    item={item}
+                                    onClick={()=> {
+                                        handleClick()
+                                    }} />
+                            )
+                        })
+                    }
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    Item Two
-                    {waitingApproval.map(item => {
-                        return (
-                            <BoxDefault 
-                                variant='payment' 
-                                name={item?.trip?.title} 
-                                country='Australia'
-                                type={item?.trip?.type}  
-                                count={item?.counterQty} 
-                                totalPayment={totalPayment}
-                                status={item.status}
-                                item={item}
-                                onClick={()=> {
-                                    setstate({
-                                        ...payment,
-                                        status: 'pending'
-                                    })
-
-                                    setData('payment', statusPayment())
-                                    handleClick()
-                                }} />
-                        )
-                    })}
+                    {
+                        !waitingApproval.length ?
+                        <p className="text-center"><img style={{width: '450px', maxWidth: '90%'}} src={ImageEmpty3D} alt="" /></p>
+                        :
+                        waitingApproval.map(item => {
+                            return (
+                                <BoxDefault 
+                                    variant='payment' 
+                                    name={item?.trip?.title} 
+                                    country='Australia'
+                                    type={item?.trip?.type}  
+                                    count={item?.counterQty} 
+                                    totalPayment={item.total}
+                                    status={item.status}
+                                    item={item}
+                                    onClick={()=> {
+                                        handleClick()
+                                    }} />
+                            )
+                        })
+                    }
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    Item Three
-                    {approve.map(item => {
-                        return (
-                            <BoxDefault 
-                                variant='payment' 
-                                name={item?.trip?.title} 
-                                country='Australia'
-                                type={item?.trip?.type}  
-                                count={item?.counterQty} 
-                                totalPayment={totalPayment}
-                                status={item.status}
-                                item={item}
-                                onClick={()=> {
-                                    setstate({
-                                        ...payment,
-                                        status: 'pending'
-                                    })
-
-                                    setData('payment', statusPayment())
-                                    handleClick()
-                                }} />
-                        )
-                    })}
+                    {
+                        !filterApproval.length ? 
+                        <p className="text-center"><img style={{width: '450px', maxWidth: '90%'}} src={ImageEmpty3D} alt="" /></p>
+                        :
+                        filterApproval.map(item => {
+                            if (!item) alert('emppty')
+                            return (
+                                <BoxDefault 
+                                    variant='payment' 
+                                    name={item?.trip?.title} 
+                                    country='Australia'
+                                    type={item?.trip?.type}  
+                                    count={item?.counterQty} 
+                                    totalPayment={item.total}
+                                    status={item.status}
+                                    item={item}
+                                    onClick={()=> {
+                                        handleClick()
+                                    }} />
+                            )
+                        })                        
+                    }
+                </TabPanel>
+                <TabPanel value={value} index={3}>
+                    {
+                        !filterCancel.length ? 
+                        <p className="text-center"><img style={{width: '450px', maxWidth: '90%'}} src={ImageEmpty3D} alt="" /></p>
+                        :
+                        filterCancel.map(item => {
+                            return (
+                                <BoxDefault 
+                                    variant='payment' 
+                                    name={item?.trip?.title} 
+                                    country='Australia'
+                                    type={item?.trip?.type}  
+                                    count={item?.counterQty} 
+                                    totalPayment={item.total}
+                                    status={item.status}
+                                    item={item}
+                                    onClick={()=> {
+                                        handleClick()
+                                    }} />
+                            )
+                        })
+                    }
                 </TabPanel>
             </Box>
-            {/* {dataTrans.map(item => {
-                return (
-                    <BoxDefault 
-                        variant='payment' 
-                        name={item?.trip?.title} 
-                        country='Australia'
-                        type={item?.trip?.type}  
-                        count={item?.counterQty} 
-                        totalPayment={totalPayment}
-                        status={item.status}
-                        item={item}
-                        onClick={()=> {
-                            setstate({
-                                ...payment,
-                                status: 'pending'
-                            })
-
-                            setData('payment', statusPayment())
-                            handleClick()
-                        }} />
-                )
-            })} */}
 
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} action={action}>
                 <Alert sx={{boxShadow: '0 0 50px rgba(0, 0, 0, .26)'}} onClose={handleClose} severity='success'>
