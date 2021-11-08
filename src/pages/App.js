@@ -7,16 +7,19 @@ import { Home, DetailTrip, Payment, Profile, ListTransaction, Trip, AddTrip, Not
 import { API, PrivateRoute, setAuthToken } from '../config'
 import store from '../store'
 import { useEffect } from 'react'
-import { Dashboard, Maintenance, UpdateTrip } from './Admin'
+import { Dashboard, Maintenance, UpdateTrip, Application } from './Admin'
 import { useSelector } from 'react-redux'
+import AddCountry from './Admin/AddCountry/AddCountry'
+import QrCodeGenerator from './Admin/Application/QrCodeGenerator'
 
 if (localStorage.token) {
     setAuthToken(localStorage.token)
 }
 
 const App = () => {
+    console.clear()
     const currentState = useSelector(state => state)
-    console.log(currentState)
+    
     useEffect(()=> {
         if (localStorage.token) {
             setAuthToken(localStorage.token)
@@ -83,11 +86,13 @@ const App = () => {
                         <Modal variant="modal-register" />
                     </Route>
 
-
+                    <PrivateRoute path="/admin/dashboard/application/qr-code-generator" component={QrCodeGenerator} />
                     <PrivateRoute path="/admin/dashboard/maintenance" component={Maintenance} />
+                    <PrivateRoute path="/admin/dashboard/application" component={Application} />
                     <PrivateRoute path="/admin/dashboard" component={Dashboard} />
                     <PrivateRoute path="/list-transaction" component={ListTransaction} />
                     <PrivateRoute path="/trip" component={Trip} />
+                    <PrivateRoute path="/add-country" component={AddCountry} />
                     <PrivateRoute path="/add-trip" component={AddTrip} />
                     <PrivateRoute path="/update-trip/:id" component={UpdateTrip} />
                     
