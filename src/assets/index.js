@@ -43,6 +43,8 @@ import ImgCamera from './img/camera.jpg'
 
 import IconSearch from './icon/search.svg'
 import IconFile from './icon/file.svg'
+import ImageEmpty from './img/empty-image.svg'
+import ImageEmpty3D from './img/empty-image.png'
 
 // image for httprequest error
 import ImgPageNotFound from './img/not-found.svg'
@@ -52,4 +54,4 @@ export { IconPalm2, IconHibicus2, IconLeaf, IconUser, IconBill, IconLogout, Icon
 export { ProfileDefault }
 export { ImgTransfer, ImgQrCode, ImgPageNotFound, ImgCamera }
 export { DataTour }
-export { IconUserCircle, IconEmail, IconPhone, IconLocation, IconSearch, IconFile }
+export { IconUserCircle, IconEmail, IconPhone, IconLocation, IconSearch, IconFile, ImageEmpty, ImageEmpty3D }
