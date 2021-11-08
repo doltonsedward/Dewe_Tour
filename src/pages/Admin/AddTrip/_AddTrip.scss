@@ -1,4 +1,11 @@
 .select-country {
     width: 100%;
-    padding: 0 49px;
+    height: 50px;
+    padding: 0 20px;
+    border-radius: var(--border-trendy);
+    background-color: #C4C4C480;
+    border: 2px solid #B1B1B1;
+    font-size: var(--font-button);
+    font-weight: bold;
+    font-family: 'Product Sans Bold' 
 }

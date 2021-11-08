@@ -27,6 +27,9 @@ const ListTransaction = () => {
             totalPayment: e.total,
             accomodation: e.trip.accomodation,
             transportation: e.trip.transportation,
+            dateTrip: e.trip.dateTrip,
+            duration: `${e.trip.day} Day ${e.trip.night} Night`,
+            user: e.user,
             status: e.status,
             attachment: e.attachment
         })
@@ -55,8 +58,9 @@ const ListTransaction = () => {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         p: 4,
-      };
-    
+    };
+
+    let numberid = 1
     return (
         <div className="header-default main-content">
             <div className="hero"></div>
@@ -106,7 +110,7 @@ const ListTransaction = () => {
                             if (status !== 'Waiting payment') {
                                 return (
                                     <tr key={id}>
-                                        <td>{id}</td>
+                                        <td>{numberid++}</td>
                                         <td>{user?.fullName}</td>
                                         <td>{trip?.title}</td>
                                         <td><img width="150px" src={attachment} alt={trip?.title} /> </td>
@@ -119,6 +123,7 @@ const ListTransaction = () => {
                     </tbody>
                 </table>
             </div>
+            <a href=""></a>
             <Gap height={91} />
         </div>
     )

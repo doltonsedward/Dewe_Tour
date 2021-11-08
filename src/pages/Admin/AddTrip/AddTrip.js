@@ -1,16 +1,15 @@
 import './_AddTrip.scss'
 
 import { Button } from "@mui/material"
-import { Gap, Group, Text, Input } from "../../../components"
+import { Gap, Group, Text, Input, Option } from "../../../components"
 import { muiButton } from "../../../utils"
 
 import { API } from "../../../config"
 import { useEffect, useState } from "react"
-import Option from "../../../components/atoms/Option"
 
 const AddTrip = () => {
     const [countries, setCountries] = useState([])
-    const [preview, setPreview] = useState('')
+    const [preview, setPreview] = useState([])
     const [form, setForm] = useState({
         title: '',
         countryId: '',
@@ -44,18 +43,51 @@ const AddTrip = () => {
     const handleChange = (e) => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value 
+            [e.target.name]: e.target.type === 'file' ? e.target.files : e.target.value 
         })
 
-        console.log(e.target.files)
-        
+        const allUrlImage = []
         if (e.target.type === 'file') {
-            let url = URL.createObjectURL(e.target.files)
-            setPreview(url)
+            for (let i = 0; i < e.target.files.length; i++) {
+                allUrlImage.push(URL.createObjectURL(e.target.files[i]))
+            }
+
+            setPreview(allUrlImage)
         }
     }
 
-    console.log(preview, 'pre')
+    const handleSubmit = async () => {
+        try {
+            const formData = new FormData() 
+            formData.append('title', form.title) 
+            formData.append('countryId', form.countryId)
+            formData.append('accomodation', form.accomodation)
+            formData.append('transportation', form.transportation)
+            formData.append('eat', form.eat) 
+            formData.append('day', form.day + ' Day') 
+            formData.append('night', form.night + ' Night') 
+            formData.append('dateTrip', form.dateTrip) 
+            formData.append('price', form.price) 
+            formData.append('quota', form.quota) 
+            formData.append('type', form.type) 
+            formData.append('description', form.description)
+            for (let i = 0; i < form.image.length; i++) {
+                formData.append('image', form.image[i])
+            }
+
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            const body = formData
+
+            await API.post('/trip', body, config)
+        } catch (error) {
+            console.log(error) 
+        }
+    }
 
     useEffect(()=> {
         getCountry()
@@ -69,10 +101,12 @@ const AddTrip = () => {
                 <Text variant="h1" fontSize={36}>Add trip</Text>
                 <Gap height={62} />
                 <Group style={inputStyle}>
-                    <Input label='Input name' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" name="title" value={form.title} onChange={handleChange} />
+                    <Input label='Title' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" name="title" value={form.title} onChange={handleChange} />
                 </Group>
                 <Gap height={40} />
                 <Group style={inputStyle}>
+                    <Text variant="p" fontWeight="bold">Country</Text>
+                    <Gap height={10} />
                     <select className="select-country" name="countryId" onChange={handleChange}>
                         {countries.map(item => {
                             return <Option item={item} />
@@ -93,32 +127,54 @@ const AddTrip = () => {
                 </Group>
                 <Gap height={40} />
                 <Group style={inputStyle}>
-                    <Input label='Duration' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" />
+                    <Text variant="p" fontSize={18}  fontWeight="bold">Duration</Text>
+                    <Group className="d-flex">
+                        <Group className="d-flex-center-x">
+                            <Input inputbgcolor="#C4C4C480" inputwidth={100} inputheight="49px" inputborder="2px solid #B1B1B1" type="number" min="1" name="day" value={form.day} onChange={handleChange}  />
+                            <Gap width={15} />
+                            <Text variant="p" fontWeight="bold">Day</Text>
+                        </Group>
+                        <Gap width={50} />
+                        <Group className="d-flex-center-x">
+                            <Input inputbgcolor="#C4C4C480" inputwidth={100} inputheight="49px" inputborder="2px solid #B1B1B1" type="number" min="1" name="night" value={form.night} onChange={handleChange} />
+                            <Gap width={15} />
+                            <Text variant="p" fontWeight="bold">Night</Text>
+                        </Group>
+                    </Group>
                 </Group>
                 <Gap height={40} />
                 <Group style={inputStyle}>
-                    <Input label='Date Trip' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" />
+                    <Input label='Date Trip' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" name="dateTrip" value={form.dateTrip} type="date" onChange={handleChange} />
                 </Group>
                 <Gap height={40} />
                 <Group style={inputStyle}>
-                    <Input label='Price' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" />
+                    <Input label='Price' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" name="price" value={form.price} onChange={handleChange} />
                 </Group>
                 <Gap height={40} />
                 <Group style={inputStyle}>
-                    <Input label='Quota' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" />
+                    <Input label='Type' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" name="type" value={form.type} onChange={handleChange} />
                 </Group>
                 <Gap height={40} />
                 <Group style={inputStyle}>
-                    <Input label='Description' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" />
+                    <Input label='Quota' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" name="quota" value={form.quota} onChange={handleChange} />
                 </Group>
                 <Gap height={40} />
                 <Group style={inputStyle}>
-                    <Input variant="file" label='Image' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" onChange={handleChange} multiple />
+                    <Input label='Description' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" name="description" value={form.description} onChange={handleChange} />
                 </Group>
-                <img src={preview} alt="" />
+                <Gap height={40} />
+                <Group style={inputStyle}>
+                    <Input variant="file" label='Image' inputbgcolor="#C4C4C480" inputheight="49px" inputborder="2px solid #B1B1B1" name="image" onChange={handleChange} multiple />
+                </Group>
+                <Gap height={40} />
+                <Group style={inputStyle}>
+                    {preview.map(item => {
+                        return <img width="150px" src={item} className="mr-s" alt="for preview" />
+                    })}
+                </Group>
             </Group>
             <Gap height={115} />
-                <p className="text-center"><Button variant="contained" sx={muiButton}>add trip</Button></p>
+                <p className="text-center"><Button variant="contained" sx={muiButton} onClick={handleSubmit}>add trip</Button></p>
             <Gap height={100} />
         </div>
     )
