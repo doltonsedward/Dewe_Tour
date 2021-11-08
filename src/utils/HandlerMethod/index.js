@@ -1,1 +1,5 @@
-// make function, not component
+const redirectTo = (path) => {
+    window.location.href = path
+}
+
+export { redirectTo }

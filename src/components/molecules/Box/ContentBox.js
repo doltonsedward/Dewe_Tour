@@ -7,6 +7,8 @@ import Stack from '@mui/material/Stack';
 
 import { useState } from 'react'
 import { useHistory } from 'react-router';
+import { API } from '../../../config';
+import { greenButton, redButton } from '../../../utils';
 
 const ContentBox = ({img, heading, type, price, capacity, subtext, item, ...rest}) => {
     const history = useHistory()
@@ -18,6 +20,15 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, item, ...rest
     }, 1000)
 
     const priceInString = item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    const handleDeleteTrip = async () => {
+        try {
+            const response = await API.delete('/trip/' + item.id)
+            alert(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
     return (
         <div {...rest}>
@@ -43,9 +54,9 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, item, ...rest
                     </>
                 }
                 <div className="action-layer" onClick={(e)=> e.stopPropagation()}>
-                    <Button variant="contained" onClick={()=> history.push('/update-trip/' + item.id)}>update</Button>
+                    <Button variant="contained" sx={greenButton} onClick={()=> history.push('/update-trip/' + item.id)}>update</Button>
                     <Gap height={10} />
-                    <Button variant="contained">delete</Button>
+                    <Button variant="contained" sx={redButton} onClick={handleDeleteTrip}>delete</Button>
                 </div>
             </div>
         </div>

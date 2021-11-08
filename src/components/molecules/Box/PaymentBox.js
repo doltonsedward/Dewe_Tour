@@ -1,4 +1,4 @@
-import { LogoSecond, ImgCamera } from '../../../assets'
+import { LogoSecond, ImgCamera, ImageEmpty } from '../../../assets'
 import { Gap, Group, Text } from '../../atoms'
 import { paymentButton, warningButton, pendingButton, successButton } from '../../../utils'
 
@@ -40,6 +40,11 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
             textBoxStatus = 'Approve'
             break;
 
+        case 'Cancel':
+            boxStatus = warningButton
+            textBoxStatus = 'Canceled'
+            break;
+
         default:
             break;
     }
@@ -79,7 +84,7 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
 
     setTimeout(()=> {
         setLoading(false)
-    }, 3000)
+    }, 500)
 
     return (
         <>
@@ -187,7 +192,7 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
                                         <td></td>
                                         <td className="table-bold">Total</td>
                                         <td className="table-bold">:</td>
-                                        <td className="table-bold color-warning">{type}. {item?.total}</td>
+                                        <td className="table-bold color-warning">{type}. {item?.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -203,7 +208,7 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
                             pay
                         </Button>
                         :
-                        ''
+                        null
                     }
                 </p>
             </div>

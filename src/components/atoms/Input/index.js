@@ -56,6 +56,7 @@ const Input = ({label, variant, onClick, ...rest}) => {
 
     const inputStyle = {
         backgroundColor: rest.inputbgcolor, 
+        width: rest.inputwidth || '100%',
         height: rest.inputheight,
         border: rest.inputborder
     }

@@ -1,22 +1,23 @@
 import { useState } from 'react'
-import { LogoSecond, ImgCamera } from '../../../assets'
+import { LogoSecond } from '../../../assets'
 import { Gap, Group, Text } from '../../atoms'
-import { paymentButton, warningButton, pendingButton, successButton } from '../../../utils'
+import { warningButton, pendingButton, successButton, greenButton, redButton } from '../../../utils'
 
 // import API
-import { API } from '../../../config'
+import { API } from '../../../config' 
 
-// mui component
-import { Button } from '@mui/material'
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
+// mui component 
+import { Button } from '@mui/material' 
+import Skeleton from '@mui/material/Skeleton'; 
+import Stack from '@mui/material/Stack'; 
 
 
-const PaymentAdminBox = ({item}) => {
-    let boxStatus, textBoxStatus
+const PaymentAdminBox = ({item}) => { 
+    let boxStatus, textBoxStatus 
 
-    const [loading, setLoading] = useState(true)
-    const [preview, setPreview] = useState('')
+    const [loading, setLoading] = useState(true) 
+    const [preview, setPreview] = useState('') 
+    const [isChangging, setIsChangging] = useState(false) 
     const [form, setForm] = useState([
         {
             status: item.status,
@@ -35,9 +36,14 @@ const PaymentAdminBox = ({item}) => {
             textBoxStatus = 'Waiting Approve'
             break;
 
-        case 'success':
+        case 'Approve':
             boxStatus = successButton
             textBoxStatus = 'Approve'
+            break;
+
+        case 'Cancel':
+            boxStatus = warningButton
+            textBoxStatus = 'Canceled'
             break;
 
         default:
@@ -73,6 +79,7 @@ const PaymentAdminBox = ({item}) => {
             const body = formData
 
             await API.patch('/transaction/' + item.id, body, config)
+            setIsChangging(isChangging ? false : true)
         } catch (error) {
             console.log(error)
         }
@@ -81,6 +88,22 @@ const PaymentAdminBox = ({item}) => {
     setTimeout(()=> {
         setLoading(false)
     }, 3000)
+
+    const filterDateTrip = item?.dateTrip.split(':')[0].split('T')[0].split('-').reverse()
+    switch (filterDateTrip[1]) {
+        case '01': filterDateTrip[1] = 'January'; break
+        case '02': filterDateTrip[1] = 'February'; break
+        case '03': filterDateTrip[1] = 'Maret'; break
+        case '04': filterDateTrip[1] = 'April'; break
+        case '05': filterDateTrip[1] = 'Mei'; break
+        case '06': filterDateTrip[1] = 'June'; break
+        case '07': filterDateTrip[1] = 'July'; break
+        case '08': filterDateTrip[1] = 'Augusts'; break
+        case '09': filterDateTrip[1] = 'September'; break
+        case '10': filterDateTrip[1] = 'October'; break
+        case '11': filterDateTrip[1] = 'November'; break
+        case '12': filterDateTrip[1] = 'December'; break
+    }
 
     return (
         <>
@@ -109,7 +132,7 @@ const PaymentAdminBox = ({item}) => {
                         </div>
                     </Stack>
                     : 
-                    <div className="content__payment" key={Date.now()}>
+                    <div className="content__payment">
                         <Group variant="space-between-only" className="detail-heading__payment">
                             <div className="left-side__heading_payment">
                                 <img src={LogoSecond} alt="" />
@@ -123,14 +146,14 @@ const PaymentAdminBox = ({item}) => {
                                     </div>
                                     <div>
                                         <Text variant="bold" fontSize={18}>Date Trip</Text>
-                                        <Text variant="bold" fontSize={14} className="color-second">26 August 2021</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">{filterDateTrip.join(' ')}</Text>
                                         <Gap height={27} />
                                         <Text variant="bold" fontSize={18}>Accomodation</Text>
                                         <Text variant="bold" fontSize={14} className="color-second">{item?.accomodation}</Text>
                                     </div>
                                     <div>
                                         <Text variant="bold" fontSize={18}>Duration</Text>
-                                        <Text variant="bold" fontSize={14} className="color-second">6 Day 4 Night</Text>
+                                        <Text variant="bold" fontSize={14} className="color-second">{item?.duration}</Text>
                                         <Gap height={27} />
                                         <Text variant="bold" fontSize={18}>Transportation</Text>
                                         <Text variant="bold" fontSize={14} className="color-second">{item?.transportation}</Text>
@@ -145,7 +168,6 @@ const PaymentAdminBox = ({item}) => {
                                 <Gap height={20} />
                                 <Group className="text-center">
                                     <div className="transfer-image__payment">
-                                        {/* <img src={ImgTransfer} alt="transfer proof" /> */}
                                         {
                                             preview ?
                                             <img src={preview} alt="transfer proof" />
@@ -178,7 +200,7 @@ const PaymentAdminBox = ({item}) => {
                                         <td>{item?.user?.phone}</td>
                                         <td className="table-bold">Qty</td>
                                         <td className="table-bold">:</td>
-                                        <td className="table-bold">{item.count}</td>
+                                        <td className="table-bold">{item.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -187,22 +209,23 @@ const PaymentAdminBox = ({item}) => {
                                         <td></td>
                                         <td className="table-bold">Total</td>
                                         <td className="table-bold">:</td>
-                                        <td className="table-bold color-warning">{item.type}.{item?.totalPayment}</td>
+                                        <td className="table-bold color-warning">{item.type}.{item?.totalPayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <p style={{padding: '25px 36px', display: 'flex', justifyContent: 'right'}}>
+                           <Button variant="contained" sx={redButton} onClick={()=> handleSubmit('cancel')}>
+                                cancel
+                            </Button>
+                            
+                            <Button variant="contained" sx={greenButton} onClick={()=> handleSubmit('approve')}>
+                                approve
+                            </Button>
+                        </p>
                     </div>
                 }
-                <Gap height={10} />
-                <p className="text-right">
-                    <Button variant="contained" sx={paymentButton} onClick={()=> handleSubmit('cancel')}>
-                        cancel
-                    </Button>
-                    <Button variant="contained" sx={paymentButton} onClick={()=> handleSubmit('approve')}>
-                        approve
-                    </Button>
-                </p>
+                
             </div>
         </>
     )

@@ -22,6 +22,9 @@ const Group = ({variant, ...rest}) => {
         
         case 'flex':
             return <div style={{display: 'flex', alignItems: 'center'}} {...rest} />
+
+        case 'flex-responsive':
+            return <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}} {...rest} />
         
         default:
             return <div {...rest} />

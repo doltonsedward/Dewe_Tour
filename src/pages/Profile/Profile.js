@@ -13,7 +13,6 @@ import { useHistory } from 'react-router'
 
 const Profile = () => {
     console.clear()
-    const history = useHistory()
 
     const [profile, setProfile] = useState({}) 
     const [transaction, setTransaction] = useState([])
