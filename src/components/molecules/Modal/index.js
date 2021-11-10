@@ -57,9 +57,9 @@ const ModalLogin = () => {
 
             const config = {
                 headers: {
-                  "Content-type": "application/json",
+                    "Content-type": "application/json",
                 }
-              }
+            }
 
             const body = JSON.stringify(form)
 
@@ -74,10 +74,6 @@ const ModalLogin = () => {
                 setMessage('Login Success')
                 setSeverity('success')
             }
-
-            // if (response?.data.data.role === 'admin') {
-            //     history.push('/admin')
-            // }
             
         } catch (error) {
             console.log(error)

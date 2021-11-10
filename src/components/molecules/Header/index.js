@@ -1,6 +1,7 @@
 import './Header.scss'
-import { dropDown, showLoginModal, showRegisterModal } from '../../../utils'
+import { dropDown, redButton, showLoginModal, showRegisterModal } from '../../../utils'
 import { IconUser, IconBill, IconTrip } from '../../../assets'
+import { Gap } from '../../atoms'
 import store from '../../../store'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -27,6 +28,7 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import SaveIcon from '@mui/icons-material/Save';
 import TextField from '@mui/material/TextField';
 import Badge from '@mui/material/Badge';
+import Input from '@mui/material/Input';
 
 // MUI icon
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -36,10 +38,10 @@ import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import AppsIcon from '@mui/icons-material/Apps';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import PrintIcon from '@mui/icons-material/Print';
-import ShareIcon from '@mui/icons-material/Share';
+import CreateIcon from '@mui/icons-material/Create';
 import BuildIcon from '@mui/icons-material/Build';
 import QrCodeScannerTwoToneIcon from '@mui/icons-material/QrCodeScannerTwoTone';
+import SendIcon from '@mui/icons-material/Send';
 
 
 const Header = ({logo}) => {
@@ -52,9 +54,12 @@ const Header = ({logo}) => {
     const [isAdmin, setIsAdmin] = useState(false)
     const [tools, setTools] = useState(false)
     const [colorBadge, setColorBadge] = useState('secondary')
-    const [contentTools, setContentTools] = useState(false)
     const [text, setText] = useState('Hello world')
     const [speedDialExist, setSpeedDialExist] = useState(false)
+
+    // state for content
+    const [contentTools, setContentTools] = useState(false)
+    const [contentNotes, setContentNotes] = useState(false)
 
     useEffect(()=> {
         if (currentState.user.role === 'admin') {
@@ -120,10 +125,7 @@ const Header = ({logo}) => {
     }
 
     const actions = [
-        { icon: <QrCodeScannerTwoToneIcon onClick={handleQrCode} />, name: 'QrCode' },
-        { icon: <SaveIcon />, name: 'Save' },
-        { icon: <PrintIcon />, name: 'Print' },
-        { icon: <ShareIcon />, name: 'Share' },
+        { icon: <QrCodeScannerTwoToneIcon onClick={handleQrCode} />, name: 'QrCode' }
     ];
 
     if (isAdmin) {

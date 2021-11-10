@@ -1,8 +1,9 @@
+import { useSelector } from "react-redux"
 import { Redirect, Route } from "react-router"
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-    const user = JSON.parse(localStorage.getItem('user'))
-    const getAccess = user.user.role === 'admin' ? true : false
+    const user = useSelector(state => state.user)
+    const getAccess = user.role === 'admin' ? true : false
     return (
         <>
             {/* need watched */}
