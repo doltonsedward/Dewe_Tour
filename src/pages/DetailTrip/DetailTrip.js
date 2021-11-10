@@ -12,8 +12,10 @@ import Button from '@mui/material/Button'
 import Snackbar from '@mui/material/Snackbar'
 import IconButton from '@mui/material/IconButton'
 import { Alert } from '@mui/material'
+import { useSelector } from 'react-redux'
 
 const DetailTrip = () => {
+    
     document.title = `DeweTour | Detail Trip`
 
     const history = useHistory()
@@ -77,7 +79,7 @@ const DetailTrip = () => {
     const priceInString = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
     // for handling booking button 
-    const users = JSON.parse(localStorage.user)
+    const users = useSelector(state => state)
     const userId = users.user.id
 
     // filter date

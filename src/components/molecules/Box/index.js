@@ -26,16 +26,16 @@ const DashboardBox = ({heading, text, theme}) => {
 }
 
 
-const Box = ({variant, key, theme, logo, heading, text, img, item, status, ...rest}) => {
+const Box = ({variant, key, theme, logo, heading, text, img, item, setstate, status,  ...rest}) => {
     switch (variant) {
         case 'card':
             return <CardBox logo={logo} heading={heading} text={text} />
         case 'content':
             return <ContentBox item={item} {...rest} />
         case 'payment':
-            return <PaymentBox status={status} item={item} {...rest} />
+            return <PaymentBox status={status} item={item} setstate={setstate} {...rest} />
         case 'payment-admin':
-            return <PaymentAdminBox item={item} />
+            return <PaymentAdminBox item={item} setstate={setstate} />
         case 'profile':
             return <ProfileBox />
         case 'box-dashboard':

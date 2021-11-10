@@ -1,21 +1,31 @@
 import './Profile.scss'
-import { Gap, Group, Text, Input, Box } from '../../components'
+import { Gap, Group, Text, Input } from '../../components'
 import { IconUserCircle, IconEmail, IconPhone, IconLocation } from '../../assets'
 import { muiButton, profileCoverButton } from '../../utils'
 
+// import api
+import { API } from '../../config'
+
 // mui compnent
 import { Button } from '@mui/material'
-import { API } from '../../config'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { useHistory } from 'react-router'
-// import { useSelector } from 'react-redux'
+import { Box as BoxDefault } from '../../components'
+import { useEffect, useState } from 'react'
+import { ImageEmpty3D } from '../../assets'
+
+
+// mui component
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import { useSelector } from 'react-redux'
 
 const Profile = () => {
     console.clear()
+    const [dataTrans, setDataTrans] = useState([])
+    const [value, setValue] = useState(0)
 
     const [profile, setProfile] = useState({}) 
-    const [transaction, setTransaction] = useState([])
     const [isEditable, setIsEditable] = useState(false) 
     
     // state for variant 
@@ -56,7 +66,7 @@ const Profile = () => {
         try {
             const response = await API.get('/transaction')
             const data = response.data.data
-            setTransaction(data)
+            setDataTrans(data)
         } catch (error) {
             console.log(error)
         }
@@ -103,14 +113,49 @@ const Profile = () => {
             const body = formData
 
             await API.patch('/user', body, config)
-
-            
         } catch (error) {
             console.log(error)
         }
 
         window.location.reload()
     }
+
+    // mui function
+    function TabPanel(props) {
+        const { children, value, index, ...other } = props;
+        
+        return (
+            <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+            >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    {children}
+                </Box>
+            )}
+            </div>
+        );
+    }
+
+    function a11yProps(index) {
+        return {
+            id: `simple-tab-${index}`,
+            'aria-controls': `simple-tabpanel-${index}`,
+        };
+    }
+
+    // mui function
+    const handleMuiChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    const waitingApproval = dataTrans.filter(item => item.status === 'Waiting approval')
+    const filterApproval = dataTrans.filter(item => item.status === 'Approve')
+    const filterCancel = dataTrans.filter(item => item.status === 'Cancel')
 
     return (
         <div className="payment">
@@ -261,23 +306,77 @@ const Profile = () => {
             <Group style={{width: '1035px', margin: '0 auto'}}>
                 <Text variant="bold" fontSize={36}>History trip</Text>
                 <Gap height={42} />
-                {transaction.map(item => {
-                    if (item.status === 'Waiting payment') {
-                        return ('')
-                    } else {
-                        return (
-                            <Box 
-                            variant='payment' 
-                            name={item?.trip?.title} 
-                            country='Australia'
-                            type={item?.trip?.type}  
-                            count={item?.counterQty} 
-                            status={item.status}
-                            item={item}
-                                />
-                        )
-                    }
-                })}
+                <Box sx={{ width: '100%' }}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider', display: 'flex', justifyContent: 'center' }}>
+                        <Tabs value={value} onChange={handleMuiChange} aria-label="basic tabs example">
+                        <Tab label="Waiting Approval" {...a11yProps(0)} />
+                        <Tab label="Approve" {...a11yProps(1)} />
+                        <Tab label="Cancel" {...a11yProps(2)} />
+                        </Tabs>
+                    </Box>
+                    <TabPanel value={value} index={0}>
+                        {
+                            !waitingApproval.length ?
+                            <p className="text-center"><img style={{width: '450px', maxWidth: '90%'}} src={ImageEmpty3D} alt="" /></p>
+                            :
+                            waitingApproval.map(item => {
+                                return (
+                                    <BoxDefault 
+                                        variant='payment' 
+                                        name={item?.trip?.title} 
+                                        country='Australia'
+                                        type={item?.trip?.type}  
+                                        count={item?.counterQty} 
+                                        totalPayment={item.total}
+                                        status={item.status}
+                                        item={item} />
+                                )
+                            })
+                        }
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        {
+                            !filterApproval.length ? 
+                            <p className="text-center"><img style={{width: '450px', maxWidth: '90%'}} src={ImageEmpty3D} alt="" /></p>
+                            :
+                            filterApproval.map(item => {
+                                if (!item) alert('emppty')
+                                return (
+                                    <BoxDefault 
+                                        variant='payment' 
+                                        name={item?.trip?.title} 
+                                        country='Australia'
+                                        type={item?.trip?.type}  
+                                        count={item?.counterQty} 
+                                        totalPayment={item.total}
+                                        status={item.status}
+                                        item={item} />
+                                )
+                            })                        
+                        }
+                    </TabPanel>
+                    <TabPanel value={value} index={2}>
+                        {
+                            !filterCancel.length ? 
+                            <p className="text-center"><img style={{width: '450px', maxWidth: '90%'}} src={ImageEmpty3D} alt="" /></p>
+                            :
+                            filterCancel.map(item => {
+                                return (
+                                    <BoxDefault 
+                                        variant='payment' 
+                                        name={item?.trip?.title} 
+                                        country='Australia'
+                                        type={item?.trip?.type}  
+                                        count={item?.counterQty} 
+                                        totalPayment={item.total}
+                                        status={item.status}
+                                        item={item}
+                                        preview={preview} />
+                                )
+                            })
+                        }
+                    </TabPanel>
+                </Box>
             </Group>
         </div>
     )

@@ -12,7 +12,7 @@ import { greenButton, redButton } from '../../../utils';
 
 const ContentBox = ({img, heading, type, price, capacity, subtext, item, ...rest}) => {
     const history = useHistory()
-    
+
     const [loading, setLoading] = useState(true)
 
     setTimeout(()=> {
@@ -42,7 +42,7 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, item, ...rest
                     </Stack>
                     : 
                     <>
-                        <span className="capacity__tour">{item.quota} / 15</span>
+                        <span className="capacity__tour">{item.filled} / {item.quota}</span>
                         <img src={item.image[0]} className="content-cover-image" alt={item.title} />
                         <Gap height={11} />
                         <p className="heading__content-box text-elipsis">{item.title}</p>

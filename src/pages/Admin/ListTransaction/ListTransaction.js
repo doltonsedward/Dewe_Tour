@@ -16,6 +16,7 @@ const ListTransaction = () => {
     const [open, setOpen] = useState(false);
     const [dataTransaction, setDataTransaction] = useState([])
     const [detailTrans, setDetailTrans] = useState({})
+    const [isChangging, setIsChangging] = useState(false)
 
     const handleOpen = (e) => {
         setOpen(true)
@@ -35,6 +36,9 @@ const ListTransaction = () => {
         })
     }
 
+    console.log(detailTrans)
+    console.log(isChangging)
+
     const handleClose = () => setOpen(false);
 
     const getTransactions = async () => {
@@ -48,9 +52,7 @@ const ListTransaction = () => {
 
     useEffect(()=> {
         getTransactions()
-    }, [])
-
-    console.log(dataTransaction, 'data transaction')
+    }, [isChangging])
 
     const style = {
         position: 'absolute',
@@ -80,7 +82,8 @@ const ListTransaction = () => {
                         <BoxPayment 
                             variant='payment-admin' 
                             item={detailTrans}
-                            onClick={handleOpen} />
+                            setstate={{setIsChangging, isChangging}}
+                            />
                     </Box>
                 </Fade>
             </Modal>

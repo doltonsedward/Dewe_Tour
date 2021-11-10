@@ -96,7 +96,6 @@ const Home = () => {
                         <Box key={item.id} className="col-4 col-s-6"
                             variant="content" 
                             item={item}
-                            subtext="Australia"
                             onClick={()=> history.push('/detail-trip/' + item.id)}
                         />
                     ))}

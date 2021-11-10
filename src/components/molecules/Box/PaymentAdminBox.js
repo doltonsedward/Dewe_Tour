@@ -12,7 +12,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack'; 
 
 
-const PaymentAdminBox = ({item}) => { 
+const PaymentAdminBox = ({item, setstate}) => { 
     let boxStatus, textBoxStatus 
 
     const [loading, setLoading] = useState(true) 
@@ -63,6 +63,8 @@ const PaymentAdminBox = ({item}) => {
     }
 
     const handleSubmit = async (status) => {
+        setstate.setIsChangging(setstate.isChangging ? false : true)
+
         try {
             const formData = new FormData()
             const paymentStatus = status === 'cancel' ? 'Cancel' : 'Approve'
@@ -79,6 +81,7 @@ const PaymentAdminBox = ({item}) => {
             const body = formData
 
             await API.patch('/transaction/' + item.id, body, config)
+            
             setIsChangging(isChangging ? false : true)
         } catch (error) {
             console.log(error)

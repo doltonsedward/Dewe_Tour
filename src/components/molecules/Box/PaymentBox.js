@@ -8,15 +8,23 @@ import { API } from '../../../config'
 import { Button } from '@mui/material'
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar'
+import IconButton from '@mui/material/IconButton'
+import { Alert } from '@mui/material'
 
 import { useState } from 'react'
+import store from '../../../store'
 
-const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
-    console.clear()
+const PaymentBox = ({name, country, type, count, status, item, setstate, value, ...rest}) => {
+    // console.clear()
     let boxStatus, textBoxStatus
 
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState('Error')
     const [loading, setLoading] = useState(true)
     const [preview, setPreview] = useState('')
+    
+
     const [form, setForm] = useState([
         {
             status: '',
@@ -60,10 +68,13 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
             let url = URL.createObjectURL(e.target.files[0])
             setPreview(url)
         }
+
     }
+    
 
     const handleSubmit = async () => {
         try {
+            setstate.setAlert('data is changging')
             const formData = new FormData()
             formData.set('status', form.status)
             formData.set('attachment', form.attachment[0], form.attachment[0].filename)
@@ -76,11 +87,41 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
 
             const body = formData
 
+            setOpen(true) 
+            setMessage('Payment success')
+            store.dispatch({
+                type: 'IS_CHANGGING',
+                payload: open
+            })
+
             await API.patch('/transaction/' + item.id, body, config)
         } catch (error) {
             console.log(error)
         }
     }
+
+    // action for button MUI
+    const handleClick = () => { 
+        setOpen(true) 
+        setMessage('Payment success')
+    }
+
+    const handleClose = () => { setOpen(false) }
+
+    const action = (
+        <>
+            <Button color="secondary" size="small" onClick={handleClose}>
+                CLOSE
+            </Button>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+            </IconButton>
+        </>
+    )
 
     setTimeout(()=> {
         setLoading(false)
@@ -211,6 +252,21 @@ const PaymentBox = ({name, country, type, count, status, item, ...rest}) => {
                         null
                     }
                 </p>
+                <Snackbar sx={{
+                    position: 'fixed',
+                    bottom: 0,
+                    zIndex: 99999999999999,
+                    transform: 'translate(50px, -25px) scale(1.2)'
+                }}
+                    open={open}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                    action={action}
+                >
+                    <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
+                        {message}
+                    </Alert>
+                </Snackbar>
             </div>
             <Gap height={86} />
         </>

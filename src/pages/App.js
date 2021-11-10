@@ -17,8 +17,8 @@ if (localStorage.token) {
 }
 
 const App = () => {
-    console.clear()
     const currentState = useSelector(state => state)
+    console.log(currentState)
     
     useEffect(()=> {
         if (localStorage.token) {
@@ -52,7 +52,6 @@ const App = () => {
     useEffect(()=> {
         checkUser()
     }, [])
-    
     
     return (
         <>
