@@ -25,6 +25,7 @@ const Payment = () => {
 
     console.log(alert, 'alert')
     const waitingPayment = dataTrans.filter(item => item.status === 'Waiting payment')
+    
     useEffect(()=> {
         getTransaction()
     }, [alert])

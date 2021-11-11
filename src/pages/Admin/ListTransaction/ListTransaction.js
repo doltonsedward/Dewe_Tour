@@ -22,9 +22,12 @@ const ListTransaction = () => {
         setOpen(true)
         setDetailTrans({
             id: e.id,
+            idTrip: e.trip.id,
             name: e.trip.title,
+            qty: e.counterQty,
             type: e.trip.type,
             count: e.trip.price,
+            filled: e.trip.filled,
             totalPayment: e.total,
             accomodation: e.trip.accomodation,
             transportation: e.trip.transportation,
@@ -35,9 +38,6 @@ const ListTransaction = () => {
             attachment: e.attachment
         })
     }
-
-    console.log(detailTrans)
-    console.log(isChangging)
 
     const handleClose = () => setOpen(false);
 
@@ -50,9 +50,12 @@ const ListTransaction = () => {
         }
     }
 
+    console.log(detailTrans, 'detail trans')
+    console.log(dataTransaction, 'data transaction')
+
     useEffect(()=> {
         getTransactions()
-    }, [isChangging])
+    }, [])
 
     const style = {
         position: 'absolute',
@@ -123,13 +126,13 @@ const ListTransaction = () => {
                                 )
                             } 
                         })}
-                    </tbody>
-                </table>
-            </div>
-            <a href=""></a>
-            <Gap height={91} />
-        </div>
+                    </tbody> 
+                </table> 
+            </div> 
+            <a href=""></a> 
+            <Gap height={91} /> 
+        </div> 
     )
 }
 
-export default ListTransaction
+export default ListTransaction 

@@ -50,6 +50,8 @@ const PaymentAdminBox = ({item, setstate}) => {
             break;
     }
 
+    console.log(item)
+
     const handleChange = (e) => {
         setForm({
             ...form,
@@ -61,6 +63,8 @@ const PaymentAdminBox = ({item, setstate}) => {
             setPreview(url)
         }
     }
+
+    console.log(item.idTrip, 'id trip')
 
     const handleSubmit = async (status) => {
         setstate.setIsChangging(setstate.isChangging ? false : true)
@@ -86,6 +90,24 @@ const PaymentAdminBox = ({item, setstate}) => {
         } catch (error) {
             console.log(error)
         }
+
+        try {
+            const totalFilled = status === 'cancel' ? item.filled + item.qty : item.filled
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+
+            const body = JSON.stringify({
+                filled: totalFilled
+            })
+
+            await API.patch('/trip/' + item.idTrip, body, config)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     setTimeout(()=> {
@@ -106,6 +128,11 @@ const PaymentAdminBox = ({item, setstate}) => {
         case '10': filterDateTrip[1] = 'October'; break
         case '11': filterDateTrip[1] = 'November'; break
         case '12': filterDateTrip[1] = 'December'; break
+    }
+
+    const newGreenButton = {
+        ...greenButton,
+        marginLeft: '15px'
     }
 
     return (
@@ -203,7 +230,7 @@ const PaymentAdminBox = ({item, setstate}) => {
                                         <td>{item?.user?.phone}</td>
                                         <td className="table-bold">Qty</td>
                                         <td className="table-bold">:</td>
-                                        <td className="table-bold">{item.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                                        <td className="table-bold">{item.qty}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -222,7 +249,7 @@ const PaymentAdminBox = ({item, setstate}) => {
                                 cancel
                             </Button>
                             
-                            <Button variant="contained" sx={greenButton} onClick={()=> handleSubmit('approve')}>
+                            <Button variant="contained" sx={newGreenButton} onClick={()=> handleSubmit('approve')}>
                                 approve
                             </Button>
                         </p>

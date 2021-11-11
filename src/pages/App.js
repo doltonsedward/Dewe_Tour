@@ -11,6 +11,7 @@ import { Dashboard, Maintenance, UpdateTrip, Application } from './Admin'
 import { useSelector } from 'react-redux'
 import AddCountry from './Admin/AddCountry/AddCountry'
 import QrCodeGenerator from './Admin/Application/QrCodeGenerator'
+import Chat from './Chat'
 
 if (localStorage.token) {
     setAuthToken(localStorage.token)
@@ -60,29 +61,22 @@ const App = () => {
                 <Switch>
                     <Route exact path="/">
                         <Home />
-                        <Modal variant="modal-login" />
-                        <Modal variant="modal-register" />
                     </Route>
                     <Redirect path="/detail-trip/" to="/not-found" exact />
                     <Route path="/detail-trip/:id">
                         <DetailTrip />
-                        <Modal variant="modal-login" />
-                        <Modal variant="modal-register" />
                     </Route>
                     <Route path="/profile">
                         <Profile />
-                        <Modal variant="modal-login" />
-                        <Modal variant="modal-register" />
                     </Route>
                     <Route path="/payment">
                         <Payment />
-                        <Modal variant="modal-login" />
-                        <Modal variant="modal-register" />
                     </Route>
                     <Route path="/search">
                         <Search />
-                        <Modal variant="modal-login" />
-                        <Modal variant="modal-register" />
+                    </Route>
+                    <Route path="/message">
+                        <Chat />
                     </Route>
 
                     <PrivateRoute path="/admin/dashboard/application/qr-code-generator" component={QrCodeGenerator} />

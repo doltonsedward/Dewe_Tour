@@ -26,7 +26,7 @@ const DashboardBox = ({heading, text, theme}) => {
 }
 
 
-const Box = ({variant, key, theme, logo, heading, text, img, item, setstate, status,  ...rest}) => {
+const Box = ({variant, theme, logo, heading, text, img, item, setstate, status,  ...rest}) => {
     switch (variant) {
         case 'card':
             return <CardBox logo={logo} heading={heading} text={text} />

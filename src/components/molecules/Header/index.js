@@ -1,7 +1,8 @@
 import './Header.scss'
-import { dropDown, redButton, showLoginModal, showRegisterModal } from '../../../utils'
+import { dropDown, showRegisterModal } from '../../../utils'
 import { IconUser, IconBill, IconTrip } from '../../../assets'
 import { Gap } from '../../atoms'
+import { Modal as ModalDefault } from '..'
 import store from '../../../store'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -25,10 +26,11 @@ import Divider from '@mui/material/Divider';
 import Backdrop from '@mui/material/Backdrop';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import SaveIcon from '@mui/icons-material/Save';
 import TextField from '@mui/material/TextField';
 import Badge from '@mui/material/Badge';
-import Input from '@mui/material/Input';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
 
 // MUI icon
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -38,10 +40,10 @@ import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import AppsIcon from '@mui/icons-material/Apps';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import CreateIcon from '@mui/icons-material/Create';
 import BuildIcon from '@mui/icons-material/Build';
 import QrCodeScannerTwoToneIcon from '@mui/icons-material/QrCodeScannerTwoTone';
-import SendIcon from '@mui/icons-material/Send';
+import IconButton from '@mui/material/IconButton';
+import MailIcon from '@mui/icons-material/Mail';
 
 
 const Header = ({logo}) => {
@@ -51,15 +53,16 @@ const Header = ({logo}) => {
     const isLoginSession = useSelector(state => state.isLogin)
 
     const [open, setOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
     const [tools, setTools] = useState(false)
     const [colorBadge, setColorBadge] = useState('secondary')
     const [text, setText] = useState('Hello world')
     const [speedDialExist, setSpeedDialExist] = useState(false)
+    const [statusModal, setStatusModal] = useState('')
 
     // state for content
     const [contentTools, setContentTools] = useState(false)
-    const [contentNotes, setContentNotes] = useState(false)
 
     useEffect(()=> {
         if (currentState.user.role === 'admin') {
@@ -79,12 +82,11 @@ const Header = ({logo}) => {
             }
         })
 
+        setModalOpen(false)
         history.push('/')
     }
 
     const handleClick = () => setOpen(open ? false : true)
-
-    // const handleOpenMui = () => setTools(true)
     
     const handleCloseMui = () => setTools(false)
     const handleToggleMui = () => setTools(tools ? false : true)
@@ -127,6 +129,18 @@ const Header = ({logo}) => {
     const actions = [
         { icon: <QrCodeScannerTwoToneIcon onClick={handleQrCode} />, name: 'QrCode' }
     ];
+
+    const [modalSession, setModalSession] = useState('login') // for dynamic modal for regis or login
+    const handleOpenModal = (session) => {
+        setModalOpen(true)
+        setStatusModal('active')
+        session === 'login' ? setModalSession('login') : setModalSession('register')
+    }
+
+    const handleCloseModal = () => {
+        setModalOpen(false)
+        setStatusModal('')
+    }
 
     if (isAdmin) {
         return (
@@ -239,7 +253,12 @@ const Header = ({logo}) => {
                 <img src={logo} className="c-pointer" alt="this is logo" onClick={()=> history.push('/')} />
                 <div className="section-button__header">
                     <div className="profile" onClick={dropDown}>
-                        <img className="profile-image" src={currentState.user.avatar} alt="profile" />
+                        <IconButton onClick={()=> history.push('/message')}>
+                            <Badge badgeContent={10} color="secondary">
+                                <MailIcon />
+                            </Badge>
+                        </IconButton>
+                        <img style={{marginLeft: '10px'}} className="profile-image" src={currentState.user.avatar} alt="profile" />
                         <div className="dropdown">
                             <List
                                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', borderRadius: '5px' }}
@@ -276,9 +295,32 @@ const Header = ({logo}) => {
             <header className="d-flex-between">
                 <img src={logo} className="c-pointer" alt="this is logo" onClick={()=> history.push('/')} />
                 <div className="section-button__header">
-                    <button className="btn-login" id="btnLogin" onClick={showLoginModal}>Login</button>
-                    <button className="btn-warning ml-m" id="btnRegister" onClick={showRegisterModal}>Register</button>
+                    <button className="btn-login" id="btnLogin" onClick={()=> handleOpenModal('login')}>Login</button>
+                    <button className="btn-warning ml-m" id="btnRegister" onClick={()=> handleOpenModal('register')}>Register</button>
                 </div>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    open={modalOpen}
+                    onClose={handleCloseModal}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 500,
+                    }}
+                >
+                    <Fade in={modalOpen}>
+                        <Box>
+                            {
+                                modalSession === 'login' ? 
+                                <ModalDefault variant="modal-login" status={statusModal} />
+                                :
+                                <ModalDefault variant="modal-register" status={statusModal} />
+                            }
+                            
+                        </Box>
+                    </Fade>
+                </Modal>
             </header>
         )
     }

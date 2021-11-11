@@ -36,7 +36,6 @@
     font-family: 'Avenir';
     padding: 11px 11px 16px 11px;
     width: 350px;
-    height: 350px;
     margin: calc(68px / 2) auto;
     background-color: var(--white);
     border-radius: var(--border-trendy);
@@ -77,15 +76,6 @@
     .action-layer {
         display: none;
         content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba($color: #000000, $alpha: .3);
         border-radius: var(--border-trendy);
         z-index: 999;
     }

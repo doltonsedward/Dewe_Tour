@@ -6,6 +6,7 @@ import './assets/scss/_shortcut.scss';
 import App from "./pages/App";
 import store from './store'
 import { Provider } from "react-redux";
+require('dotenv').config()
 
 ReactDOM.render(
   <React.StrictMode>
