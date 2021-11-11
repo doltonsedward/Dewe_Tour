@@ -39,6 +39,8 @@ const Home = () => {
         localStorage.setItem('searchData', JSON.stringify(data))
         if (inputSearch) history.push('/search')
     }
+
+    const dataTripOnly = dataTrip.filter(item => item.filled !== 0)
     
     return (
         <div className="home-page">
@@ -92,7 +94,7 @@ const Home = () => {
                     <h2 className="text-center">Group Tour</h2>
                     <Gap height={77} />
                     <div className="row">
-                    {dataTrip.map((item) => (
+                    {dataTripOnly.map((item) => (
                         <Box key={item.id} className="col-4 col-s-6"
                             variant="content" 
                             item={item}

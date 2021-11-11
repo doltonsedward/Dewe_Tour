@@ -69,6 +69,7 @@ const AddTrip = () => {
             formData.append('dateTrip', form.dateTrip) 
             formData.append('price', form.price) 
             formData.append('quota', form.quota) 
+            formData.append('filled', form.quota) 
             formData.append('type', form.type) 
             formData.append('description', form.description)
             for (let i = 0; i < form.image.length; i++) {

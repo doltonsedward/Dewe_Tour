@@ -11,6 +11,7 @@ import { Dashboard, Maintenance, UpdateTrip, Application } from './Admin'
 import { useSelector } from 'react-redux'
 import AddCountry from './Admin/AddCountry/AddCountry'
 import QrCodeGenerator from './Admin/Application/QrCodeGenerator'
+import Chat from './Chat'
 
 if (localStorage.token) {
     setAuthToken(localStorage.token)
@@ -73,6 +74,9 @@ const App = () => {
                     </Route>
                     <Route path="/search">
                         <Search />
+                    </Route>
+                    <Route path="/message">
+                        <Chat />
                     </Route>
 
                     <PrivateRoute path="/admin/dashboard/application/qr-code-generator" component={QrCodeGenerator} />

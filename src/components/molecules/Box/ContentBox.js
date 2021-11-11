@@ -11,8 +11,6 @@ import { API } from '../../../config';
 import { greenButton, redButton } from '../../../utils';
 
 const ContentBox = ({img, heading, type, price, capacity, subtext, item, ...rest}) => {
-    const history = useHistory()
-
     const [loading, setLoading] = useState(true)
 
     setTimeout(()=> {
@@ -28,6 +26,11 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, item, ...rest
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const newRedButton = {
+        ...redButton,
+        width: '100%'
     }
     
     return (
@@ -51,13 +54,13 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, item, ...rest
                             <p className="subheading__content-box color-theme">{item.type}. {priceInString}</p>
                             <p className="country__content-box">{item.country.name}</p>
                         </div>
+                        <div className="action-layer">
+                            <Gap height={25} />
+                            <Button variant="contained" sx={newRedButton} onClick={handleDeleteTrip}>delete</Button>
+                        </div>
                     </>
                 }
-                <div className="action-layer" onClick={(e)=> e.stopPropagation()}>
-                    <Button variant="contained" sx={greenButton} onClick={()=> history.push('/update-trip/' + item.id)}>update</Button>
-                    <Gap height={10} />
-                    <Button variant="contained" sx={redButton} onClick={handleDeleteTrip}>delete</Button>
-                </div>
+                
             </div>
         </div>
     )

@@ -16,14 +16,13 @@ import { useState } from 'react'
 import store from '../../../store'
 
 const PaymentBox = ({name, country, type, count, status, item, setstate, value, ...rest}) => {
-    // console.clear()
+    console.clear()
     let boxStatus, textBoxStatus
 
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('Error')
     const [loading, setLoading] = useState(true)
     const [preview, setPreview] = useState('')
-    
 
     const [form, setForm] = useState([
         {
@@ -98,12 +97,23 @@ const PaymentBox = ({name, country, type, count, status, item, setstate, value, 
         } catch (error) {
             console.log(error)
         }
-    }
 
-    // action for button MUI
-    const handleClick = () => { 
-        setOpen(true) 
-        setMessage('Payment success')
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+
+            const filled = item.trip.filled - item.counterQty
+
+            const body = JSON.stringify({ filled })
+
+            const response =  await API.patch('/trip/' + item.tripId, body, config)
+            console.log(response, 'response')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const handleClose = () => { setOpen(false) }

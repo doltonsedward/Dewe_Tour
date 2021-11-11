@@ -2,7 +2,7 @@ import './DetailTrip.scss'
 import { useHistory, useParams } from "react-router"
 import { Gap, Text } from '../../components'
 import { IconHotel, IconPlane, IconMeal, IconTime, IconCalendar } from '../../assets'
-import { muiButton, setData, showLoginModal } from '../../utils'
+import { muiButton, setData } from '../../utils'
 import { useEffect, useState } from 'react'
 
 import { API } from '../../config'
@@ -14,25 +14,24 @@ import IconButton from '@mui/material/IconButton'
 import { Alert } from '@mui/material'
 import { useSelector } from 'react-redux'
 
-const DetailTrip = () => {
-    
-    document.title = `DeweTour | Detail Trip`
+const DetailTrip = () => { 
+    document.title = `DeweTour | Detail Trip` 
 
-    const history = useHistory()
-    const { id } = useParams()
+    const history = useHistory() 
+    const { id } = useParams() 
 
-    const [detailTrip, setDetailTrip] = useState({})
-    const [count, setCount] = useState(1)
-    const [open, setOpen] = useState(false)
-    const [loading, setLoading] = useState(true)
-    const [form, setForm] = useState({
-        counterQty: '',
-        total: '',
-        status: 'Waiting payment',
-        attachment: '',
-        tripId: '',
+    const [detailTrip, setDetailTrip] = useState({}) 
+    const [count, setCount] = useState(1) 
+    const [open, setOpen] = useState(false) 
+    const [loading, setLoading] = useState(true) 
+    const [form, setForm] = useState({ 
+        counterQty: '', 
+        total: '', 
+        status: 'Waiting payment', 
+        attachment: '', 
+        tripId: '', 
         userId: ''
-    })
+    }) 
 
     const getDetailTrip = async (id) => {
         try {
@@ -47,15 +46,17 @@ const DetailTrip = () => {
         getDetailTrip(id)
     }, [])
 
+    
     const { 
         accomodation, 
         dateTrip,  
         day,
-        description,
-        eat,
-        image,
+        description, 
+        eat, 
+        image, 
         night,
         quota,
+        filled,
         price,
         title,
         transportation,
@@ -63,6 +64,7 @@ const DetailTrip = () => {
         country
     } = detailTrip
     
+    console.log(detailTrip)
     const allCoverImage = image?.slice(1)
 
     if (!Number(id)) {
@@ -121,7 +123,6 @@ const DetailTrip = () => {
                 handleClick()
             } else {
                 history.push('/')
-                showLoginModal()
             }
         } catch (error) {
             console.log(error)   
@@ -231,7 +232,7 @@ const DetailTrip = () => {
                             <div className="d-flex">
                                 <Button variant="contained" sx={muiButton} onClick={() => count === 1 ? '' : setCount(count - 1)}>-</Button>
                                 <Text variant="bold" fontSize={24} className="total-count">{count}</Text>
-                                <Button variant="contained" sx={muiButton} onClick={()=> count === quota ? '' : setCount(count + 1)}>+</Button>
+                                <Button variant="contained" sx={muiButton} onClick={()=> count === (quota - filled) ? '' : setCount(count + 1)}>+</Button>
                             </div>
                         </div>
                         <div className="group-total d-flex-between">

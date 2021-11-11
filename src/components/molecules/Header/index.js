@@ -82,6 +82,7 @@ const Header = ({logo}) => {
             }
         })
 
+        setModalOpen(false)
         history.push('/')
     }
 
@@ -252,12 +253,12 @@ const Header = ({logo}) => {
                 <img src={logo} className="c-pointer" alt="this is logo" onClick={()=> history.push('/')} />
                 <div className="section-button__header">
                     <div className="profile" onClick={dropDown}>
-                        <IconButton>
+                        <IconButton onClick={()=> history.push('/message')}>
                             <Badge badgeContent={10} color="secondary">
                                 <MailIcon />
                             </Badge>
                         </IconButton>
-                        <img style={{marginLeft: '30px'}} className="profile-image" src={currentState.user.avatar} alt="profile" />
+                        <img style={{marginLeft: '10px'}} className="profile-image" src={currentState.user.avatar} alt="profile" />
                         <div className="dropdown">
                             <List
                                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', borderRadius: '5px' }}
@@ -305,7 +306,7 @@ const Header = ({logo}) => {
                     closeAfterTransition
                     BackdropComponent={Backdrop}
                     BackdropProps={{
-                    timeout: 500,
+                        timeout: 500,
                     }}
                 >
                     <Fade in={modalOpen}>
