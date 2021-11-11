@@ -14,7 +14,7 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import { Alert } from '@mui/material';
 
-const ModalLogin = () => {
+const ModalLogin = ({ status }) => {
     const [open, setOpen] = useState(false)
     const [message, setMessage] = useState('Not found')
     const [severity, setSeverity] = useState('success')
@@ -84,7 +84,7 @@ const ModalLogin = () => {
 
     return (
         <>
-            <div className="modal" id="modal-login">  
+            <div className={`modal ${status}`} id="modal-login">  
                 <div className="heading-modal">
                     <img className="icon-palm__login" src={IconPalm2} alt="" />
                     <img className="icon-hibicus__login" src={IconHibicus2} alt="" />
@@ -122,7 +122,7 @@ const ModalLogin = () => {
     )
 }
 
-const ModalRegister = () => {
+const ModalRegister = ({ status }) => {
     const [message, setMessage] = useState('Not found')
     const [severity, setSeverity] = useState('success')
     const [open, setOpen] = useState(false);
@@ -195,7 +195,7 @@ const ModalRegister = () => {
 
     return (
         <>
-            <div className="modal" id="modal-register">   
+            <div className={`modal ${status}`} id="modal-register">   
                 <div className="heading-modal">
                     <img className="icon-palm__login" src={IconPalm2} alt="" />
                     <img className="icon-hibicus__login" src={IconHibicus2} alt="" />
@@ -234,21 +234,15 @@ const ModalRegister = () => {
     )
 }
 
-const Modal = ({variant}) => {
+const Modal = ({variant, status}) => {
     switch (variant) {
         case 'modal-login':
             return (
-                <>
-                    <ModalLogin />
-                    <div className="modal-dark-effect" id="modalLoginEffect" onClick={closeLoginModal}></div>
-                </>
+                <ModalLogin status={status} />
             )
         case 'modal-register':
             return (
-                <>
-                    <ModalRegister />
-                    <div className="modal-dark-effect" id="modalRegisterEffect" onClick={closeRegisterModal}></div>
-                </>
+                <ModalRegister status={status} />
             )
     
         default:
