@@ -1,16 +1,15 @@
-import './_Chat.scss'
-
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux'
-import { Contact, Message } from '../../components'
+import { Contact, Message } from "../../../components"
 
 // import socket.io-client
 import { io } from 'socket.io-client'
 
 let socket
-const Chat = () => {
-    const title = "Complain";
+const ChatAdmin = () => {
+    const title = "Admin Message";
     document.title = "DeweTour | " + title;
+
     const currentState = useSelector(state => state)
 
     const [contact, setContact] = useState(null);
@@ -18,7 +17,6 @@ const Chat = () => {
 
     // set message
     const [messages, setMessages] = useState([])
-
     useEffect(()=> {
         socket = io("http://localhost:8080", {
             auth: {
@@ -44,10 +42,10 @@ const Chat = () => {
 
     const loadContact = () => {
         // emit event to load admin contact
-        socket.emit("load admin contact")
+        socket.emit("load customer contacts")
 
         // listen event on get admin contact
-        socket.on("admin contact", (data) => {
+        socket.on("customer contact", (data) => {
             const dataContact = {
                 ...data,
                 message: "Click here to start message"
@@ -79,4 +77,4 @@ const Chat = () => {
     )
 }
 
-export default Chat
+export default ChatAdmin

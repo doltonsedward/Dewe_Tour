@@ -1,7 +1,6 @@
 import './Header.scss'
-import { dropDown, showRegisterModal } from '../../../utils'
+import { dropDown } from '../../../utils'
 import { IconUser, IconBill, IconTrip } from '../../../assets'
-import { Gap } from '../../atoms'
 import { Modal as ModalDefault } from '..'
 import store from '../../../store'
 import { useSelector } from 'react-redux'
@@ -37,7 +36,6 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
-import AppsIcon from '@mui/icons-material/Apps';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import BuildIcon from '@mui/icons-material/Build';
@@ -180,12 +178,6 @@ const Header = ({logo}) => {
                                             </ListItemIcon>
                                             <ListItemText primary="Maintence" />
                                         </ListItemButton>
-                                        <ListItemButton sx={{ pl: 4 }}>
-                                            <ListItemIcon>
-                                                <AppsIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="App" onClick={()=> history.push('/admin/dashboard/application')} />
-                                        </ListItemButton>
                                     </List>
                                 </Collapse>
                                 <ListItemButton onClick={()=> history.push('/trip')}>
@@ -200,6 +192,12 @@ const Header = ({logo}) => {
                                     </ListItemIcon>
                                     <ListItemText primary="Transaction" />
                                 </ListItemButton>
+                                <ListItemButton onClick={()=> history.push('/admin/message')}>
+                                    <ListItemIcon>
+                                        <MailIcon sx={{color: '#A9333A'}} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Message" />
+                                </ListItemButton>
                                 <Divider />
                                 <ListItemButton onClick={logoutSession}>
                                     <ListItemIcon>
@@ -212,11 +210,11 @@ const Header = ({logo}) => {
                     </div>
                 </div>
             </header>
-            <Backdrop open={tools} onClick={handleCloseMui} />
+            <Backdrop open={tools} onClick={handleCloseMui} sx={{zIndex: 4}} />
             <div className="tools">
                 {
                     contentTools ? 
-                    <div className="qrcode__tools">
+                    <div className="qrcode__tools" style={{zIndex: 4}}>
                         <div className="content-qrcode__tools">
                             <TextField label="Text qr-code" variant="outlined" onChange={handleChange} />
                             <QRCode id="QRCode" value={text} />
@@ -254,9 +252,7 @@ const Header = ({logo}) => {
                 <div className="section-button__header">
                     <div className="profile" onClick={dropDown}>
                         <IconButton onClick={()=> history.push('/message')}>
-                            <Badge badgeContent={10} color="secondary">
-                                <MailIcon />
-                            </Badge>
+                            <MailIcon />
                         </IconButton>
                         <img style={{marginLeft: '10px'}} className="profile-image" src={currentState.user.avatar} alt="profile" />
                         <div className="dropdown">

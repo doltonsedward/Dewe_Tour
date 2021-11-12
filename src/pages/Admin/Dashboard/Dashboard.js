@@ -25,9 +25,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 
 const Dashboard = () => {
+    const dataLoyalUser = []
     const [dataUser, setDataUser] = useState([])
+    const [trans, setTrans] = useState([])
     const [usersLength, setUsersLength] = useState(0)
-    const [adminsLength, setAdminsLength] = useState(0)
     const [tripsLength, setTripsLength] = useState(0)
     const [transLength, setTransLength] = useState(0)
     const [isChangging, setIsChangging] = useState(false)
@@ -52,7 +53,7 @@ const Dashboard = () => {
             backgroundColor: 'rgba(75,192,192,1)',
             borderColor: 'rgb(179, 120, 228)',
             borderWidth: 2,
-            data: [usersLength, adminsLength, tripsLength, transLength]
+            data: [usersLength, tripsLength, transLength]
             }
         ]
     })
@@ -65,7 +66,6 @@ const Dashboard = () => {
             setDataUser(data)
 
             const admins = data?.filter((item) => item.role === 'admin')
-            setAdminsLength(admins?.length)
         } catch (error) {
             console.log(error)
         }
@@ -88,22 +88,31 @@ const Dashboard = () => {
             const { data } = response.data
 
             setTransLength(data.length)
+            setTrans(data)
         } catch (error) {
             console.log(error)
         }
     }
 
+    console.log(dataUser, 'data user')
+    console.log(dataLoyalUser, 'data Loyal User')
+
+    const dataUserAfterTrans = []
+    for (let i = 0; i < trans.length; i++) {
+        const data = dataUser.filter(item => item.id === trans[i].userId)
+        dataUserAfterTrans.push(...data)
+    }
     
     const setChart = () => {
-        const data = [usersLength, adminsLength, tripsLength, transLength]
+        const data = [usersLength, tripsLength, transLength]
         setDataChart({
-            labels: ['User', 'Admin', 'Trip', 'Transaction'],
+            labels: ['User', 'Trip', 'Transaction'],
             datasets: [
                 {
                 label: 'Total Data',
                 fill: true,
                 lineTension: 0.5,
-                backgroundColor: ['rgba(75,192,192,1)', 'rgb(220, 41, 41)', 'rgb(41, 220, 116)', 'rgb(220, 148, 41)'],
+                backgroundColor: ['rgba(75,192,192,1)', 'rgb(41, 220, 116)', 'rgb(220, 148, 41)'],
                 borderColor: 'rgb(179, 120, 228)',
                 borderWidth: 2,
                 data
@@ -120,7 +129,7 @@ const Dashboard = () => {
 
     useEffect(()=> {
         setChart()
-    }, [usersLength, adminsLength, tripsLength, transLength])
+    }, [usersLength, tripsLength, transLength])
 
     // mui function
     const [isOpen, setIsOpen] = useState(false)
@@ -181,7 +190,7 @@ const Dashboard = () => {
                     <div className="main">
                         <div className="d-flex-between">
                             <BoxDefault variant="box-dashboard" theme="gradient-blue" heading="User" text={usersLength}  />
-                            <BoxDefault variant="box-dashboard" theme="gradient-red" heading="Admin" text={adminsLength}  />
+                            {/* <BoxDefault variant="box-dashboard" theme="gradient-red" heading="Admin" text={adminsLength}  /> */}
                             <BoxDefault variant="box-dashboard" theme="gradient-green" heading="Trip" text={tripsLength}  />
                             <BoxDefault variant="box-dashboard" theme="gradient-yellow" heading="Transaction" text={transLength}  />
                         </div>
@@ -206,27 +215,35 @@ const Dashboard = () => {
                         <TableContainer component={Paper}>
                             <Table sx={{ width: '100%' }} aria-label="simple table">
                                 <TableHead>
-                                    <p style={{padding: '15px', fontWeight: '500', fontSize: '20px'}}>Detail User</p>
+                                    <p style={{padding: '15px', fontWeight: '500', fontSize: '20px'}}>Data user</p>
                                     <TableRow>
                                         <TableCell align="center">Name</TableCell>
                                         <TableCell align="center">Phone</TableCell>
                                         <TableCell align="center">Address</TableCell>
-                                        <TableCell align="center">Admin</TableCell>
-                                        <TableCell align="center">Action</TableCell>
+                                        <TableCell align="center">Number Transaction</TableCell>
+                                        <TableCell align="center">Status</TableCell>
+                                        {/* <TableCell align="center">Action</TableCell> */}
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {dataUser.map(item => {
+                                        const totalTransByUser = trans.filter(users => users.user.id === item.id)
+                                        if (totalTransByUser.length > 2) {
+                                            dataLoyalUser.push(true)
+                                        }
+
+                                        console.log(totalTransByUser, 'trans by user')
                                         return (
                                             <TableRow>
                                                 <TableCell align="center">{item.fullName}</TableCell>
                                                 <TableCell align="center">{item.phone}</TableCell>
                                                 <TableCell align="center">{item.address}</TableCell>
-                                                <TableCell align="center">{item.role === 'admin' ? 'yes' : 'no'}</TableCell>
-                                                <TableCell align="center">
+                                                <TableCell align="center">{totalTransByUser ? totalTransByUser.length : 0}</TableCell>
+                                                <TableCell align="center">{totalTransByUser.length > 2 ? 'Loyal' : "Regular"}</TableCell>
+                                                {/* <TableCell align="center">
                                                     <Button variant="contained" sx={btnSwitchToAdmin} onClick={()=> handleClick(item, 'admin')}>Admin</Button>
                                                     <Button variant="contained" sx={btnSwitchToUser} onClick={()=> handleClick(item, 'user')}>User</Button>
-                                                </TableCell>
+                                                </TableCell> */}
                                             </TableRow>
                                         )
                                     })}

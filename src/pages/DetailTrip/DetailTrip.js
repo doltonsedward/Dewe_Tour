@@ -223,16 +223,16 @@ const DetailTrip = () => {
                         <Text variant="p" fontSize={14} className="color-second">
                             {description}
                         </Text>
-                        <Gap height={26} />
-                        <div className="group d-flex-between">
-                            <div className="d-flex">
-                                <Text variant="bold" fontSize={24} className="color-theme">{`${type} ${priceInString}`}</Text>
-                                <Text variant="bold" fontSize={24} className="ml-s">/ Person</Text>
-                            </div>
-                            <div className="d-flex">
-                                <Button variant="contained" sx={muiButton} onClick={() => count === 1 ? '' : setCount(count - 1)}>-</Button>
-                                <Text variant="bold" fontSize={24} className="total-count">{count}</Text>
-                                <Button variant="contained" sx={muiButton} onClick={()=> count === (quota - filled) ? '' : setCount(count + 1)}>+</Button>
+                        <Gap height={26} /> 
+                        <div className="group d-flex-between"> 
+                            <div className="d-flex"> 
+                                <Text variant="bold" fontSize={24} className="color-theme">{`${type} ${priceInString}`}</Text> 
+                                <Text variant="bold" fontSize={24} className="ml-s">/ Person</Text> 
+                            </div> 
+                            <div className="d-flex"> 
+                                <Button variant="contained" sx={muiButton} onClick={() => count === 1 ? '' : setCount(count - 1)}>-</Button> 
+                                <Text variant="bold" fontSize={24} className="total-count">{count}</Text> 
+                                <Button variant="contained" sx={muiButton} onClick={()=> count === filled ? '' : setCount(count + 1)}>+</Button> 
                             </div>
                         </div>
                         <div className="group-total d-flex-between">

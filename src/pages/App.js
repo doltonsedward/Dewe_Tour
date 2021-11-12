@@ -2,12 +2,12 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { Logo } from '../assets'
-import { Header, Footer, Modal } from '../components'
+import { Header, Footer } from '../components'
 import { Home, DetailTrip, Payment, Profile, ListTransaction, Trip, AddTrip, NotFound, Search } from './'
 import { API, PrivateRoute, setAuthToken } from '../config'
 import store from '../store'
 import { useEffect } from 'react'
-import { Dashboard, Maintenance, UpdateTrip, Application } from './Admin'
+import { ChatAdmin, Dashboard, Maintenance, UpdateTrip } from './Admin'
 import { useSelector } from 'react-redux'
 import AddCountry from './Admin/AddCountry/AddCountry'
 import QrCodeGenerator from './Admin/Application/QrCodeGenerator'
@@ -81,8 +81,8 @@ const App = () => {
 
                     <PrivateRoute path="/admin/dashboard/application/qr-code-generator" component={QrCodeGenerator} />
                     <PrivateRoute path="/admin/dashboard/maintenance" component={Maintenance} />
-                    <PrivateRoute path="/admin/dashboard/application" component={Application} />
                     <PrivateRoute path="/admin/dashboard" component={Dashboard} />
+                    <PrivateRoute path="/admin/message" component={ChatAdmin} />
                     <PrivateRoute path="/list-transaction" component={ListTransaction} />
                     <PrivateRoute path="/trip" component={Trip} />
                     <PrivateRoute path="/add-country" component={AddCountry} />

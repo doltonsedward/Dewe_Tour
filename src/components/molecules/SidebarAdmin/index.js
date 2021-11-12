@@ -22,11 +22,6 @@ const SidebarAdmin = ({activein}) => {
                 <Gap width={5} />
                 <p>Maintence</p>
             </li>
-            <li className={activein === 'app' ? style + ' active' : style} onClick={()=> history.push('/admin/dashboard/application')}>
-                <div className="wrappeer-icon__sidebar"><AppsIcon /></div>
-                <Gap width={5} />
-                <p>App</p>
-            </li>
         </ul>
     )
 }
