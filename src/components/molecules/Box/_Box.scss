@@ -40,7 +40,7 @@
     background-color: var(--white);
     border-radius: var(--border-trendy);
     box-shadow: var(--box-shadow-theme);
-    z-index: 10;
+    z-index: var(--z-index);
 
     .capacity__tour {
         font-weight: 800;
@@ -77,7 +77,7 @@
         display: none;
         content: '';
         border-radius: var(--border-trendy);
-        z-index: 999;
+        z-index: var(--z-index);
     }
 }
 

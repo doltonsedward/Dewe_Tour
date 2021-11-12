@@ -51,6 +51,7 @@
 .full {
   width: 100%;
 }
+
 // close responsive width
 
 // position
@@ -91,8 +92,8 @@
 }
 
 // margin
-.ml-s { margin-left: 8px; } 
-.ml-m { margin-left: 15px; } 
+.ml-s { margin-left: 8px } 
+.ml-m { margin-left: 15px } 
 
 .mr-s { margin-right: 8px }
 .mr-m { margin-right: 16px }
@@ -118,6 +119,8 @@
   font-family: var(--font-subheading) 
 }
 
+.w-100 { width: 100% }
+.h-100 { height: 100% }
 
 // color
 .color-theme { color: var(--color-theme) }

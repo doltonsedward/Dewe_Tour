@@ -1,0 +1,22 @@
+$sizeLeftSidebar: 300px;
+
+.wrapper-chat {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .sidebar {
+        position: fixed;
+        padding: 10px;
+        width: $sizeLeftSidebar;
+        height: 100%;
+        overflow-y: auto;
+        background-color: white;
+        border-radius: 24px 24px 0 0;
+        box-shadow: 0 0 40px rgba($color: #000000, $alpha: .1);
+    }
+
+    .content-message {
+        margin-left: $sizeLeftSidebar;
+    }
+}
