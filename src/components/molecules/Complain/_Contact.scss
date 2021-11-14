@@ -1,6 +1,28 @@
 .wrapper-contact {
-    display: flex;
-    align-items: center;
+    .contact {
+        padding: 15px 12px;
+        background-color: var(--color-primary);
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        border-radius: var(--border-smooth);
+        box-shadow: 0 5px 10px #d2d4d8;
+        transition: .3s ease-in;
+        
+        &.clicked {
+            background-color: var(--color-theme);
+            transition: .3s ease-out;
 
-    .contact-name { font-weight: bold }
+            .contact-name { color: var(--color-primary) }
+            .text-contact-chat { color: var(--color-primary); opacity: .6; }
+        }
+    }
+
+    .contact-name { 
+        color: rgb(77, 77, 77);
+        font-weight: bold;
+        line-height: 28px;
+    }
+    
+    .text-contact-chat { color: rgb(148, 148, 148) }
 }

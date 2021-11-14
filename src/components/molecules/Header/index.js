@@ -147,6 +147,9 @@ const Header = ({logo}) => {
                 <img src={logo} className="c-pointer" alt="this is logo" onClick={()=> history.push('/')} />
                 <div className="section-button__header">
                     <div className="profile" onClick={dropDown}>
+                        <IconButton onClick={()=> history.push('/admin/message')}>
+                            <MailIcon />
+                        </IconButton>
                         <Badge variant="dot" color={colorBadge} onClick={handleSpeedDial}>
                             <BuildIcon sx={{color: 'white'}} />
                         </Badge>
@@ -191,12 +194,6 @@ const Header = ({logo}) => {
                                         <AccountBalanceWalletIcon sx={{color: '#FDA856'}} />
                                     </ListItemIcon>
                                     <ListItemText primary="Transaction" />
-                                </ListItemButton>
-                                <ListItemButton onClick={()=> history.push('/admin/message')}>
-                                    <ListItemIcon>
-                                        <MailIcon sx={{color: '#A9333A'}} />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Message" />
                                 </ListItemButton>
                                 <Divider />
                                 <ListItemButton onClick={logoutSession}>

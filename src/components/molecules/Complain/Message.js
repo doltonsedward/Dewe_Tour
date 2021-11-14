@@ -1,33 +1,40 @@
+import './_Message.scss'
+import Avatar from '@mui/material/Avatar'
+import { Gap } from '../..'
+
 const Message = ({ contact, user, messages, sendmessage }) => {
     return (
         <>
         {contact ? (
             <>
-                <div id="chat-messages" style={{ height: "80vh" }} className="overflow-auto px-3 py-2">
+                <div id="chat-messages" >
                 {messages.map((item, index) => (
                     <div key={index}>
-                    <div className={`d-flex py-1 ${item.idSender === user.id ? "justify-content-end": "justify-content-start"}`}>
-                        {item.idSender !== user.id && (
-                        <img src={contact?.avatar} className="rounded-circle me-2 img-chat" alt="bubble avatar" />
-                        )}
-                        <div
-                        className={ item.idSender === user.id ? "chat-me" : "chat-other"}
-                        >
-                        {item.message}
+                        <div className={`d-flex align-items-end ${item.idSender === user.id ? "justify-content-end" : "justify-content-start"}`}>
+                            {item.idSender !== user.id && (
+                                <>
+                                    <Avatar alt={contact?.fullName} src={contact?.avatar} />
+                                    <Gap width={10} />
+                                </>
+                            )}
+                            <div
+                            className={item.idSender === user.id ? "chat-from-me block-chat" : "chat-from-other block-chat"}
+                            >
+                            {item.message}
+                            </div>
                         </div>
-                    </div>
                     </div>
                 ))}
                 </div>
-                <div style={{ height: '6vh' }}className="px-3">
-                <input 
-                    placeholder="Send Message" 
-                    className="input-message px-4" 
-                    onKeyPress={sendmessage} />
+                <div className="wrapper-input-message">
+                    <input 
+                        placeholder="Send Message" 
+                        className="input-message px-4" 
+                        onKeyPress={sendmessage} />
                 </div>
             </>
         ) : (
-            <div style={{ height: "70vh", width: "100vh" }} className="d-flex-center-x">
+            <div style={{ width: "100%" }} className="d-flex-center-x">
               No Message
             </div>
         )}
