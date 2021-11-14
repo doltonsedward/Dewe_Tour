@@ -7,10 +7,9 @@ import { Home, DetailTrip, Payment, Profile, ListTransaction, Trip, AddTrip, Not
 import { API, PrivateRoute, setAuthToken } from '../config'
 import store from '../store'
 import { useEffect } from 'react'
-import { ChatAdmin, Dashboard, Maintenance, UpdateTrip } from './Admin'
+import { ChatAdmin, Dashboard, UpdateTrip } from './Admin'
 import { useSelector } from 'react-redux'
 import AddCountry from './Admin/AddCountry/AddCountry'
-import QrCodeGenerator from './Admin/Application/QrCodeGenerator'
 import Chat from './Chat'
 
 if (localStorage.token) {
@@ -79,8 +78,6 @@ const App = () => {
                         <Chat />
                     </Route>
 
-                    <PrivateRoute path="/admin/dashboard/application/qr-code-generator" component={QrCodeGenerator} />
-                    <PrivateRoute path="/admin/dashboard/maintenance" component={Maintenance} />
                     <PrivateRoute path="/admin/dashboard" component={Dashboard} />
                     <PrivateRoute path="/admin/message" component={ChatAdmin} />
                     <PrivateRoute path="/list-transaction" component={ListTransaction} />

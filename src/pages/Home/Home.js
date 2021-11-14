@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react'
 import { API } from '../../config'
 
 const Home = () => {
+    document.title = "DeweTour" 
+
     const [dataTrip, setDataTrip] = useState([])
 
     const getTrips = async () => {

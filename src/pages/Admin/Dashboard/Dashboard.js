@@ -183,9 +183,6 @@ const Dashboard = () => {
         <div className="header-default">
             <div className="hero"></div>
             <div className="dashboard">
-                <div className="left-section__dashboard">
-                    <SidebarAdmin activein="dashboard" />
-                </div>
                 <div className="right-section__dashboard">
                     <div className="main">
                         <div className="d-flex-between">

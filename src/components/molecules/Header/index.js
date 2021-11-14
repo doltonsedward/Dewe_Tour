@@ -154,35 +154,18 @@ const Header = ({logo}) => {
                             <BuildIcon sx={{color: 'white'}} />
                         </Badge>
                         <img style={{marginLeft: '30px'}} className="profile-image" src={currentState.user.avatar} alt="profile" />
-                        <div className="dropdown">
+                        <div className="dropdown admin">
                             <List
                                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', borderRadius: '5px' }}
                                 component="nav"
                                 aria-labelledby="nested-list-subheader"
                                 >
-                                <ListItemButton onClick={handleClick}> 
+                                <ListItemButton onClick={()=> history.push('/admin/dashboard')}>
                                     <ListItemIcon>
-                                        <ViewListIcon sx={{color: '#89B5AF'}} />
+                                        <DashboardIcon sx={{color: '#89B5AF'}} />
                                     </ListItemIcon>
-                                    <ListItemText primary="Panel" />
-                                    {open ? <ExpandLess /> : <ExpandMore />}
+                                    <ListItemText primary="Dashboard" />
                                 </ListItemButton>
-                                <Collapse in={open} timeout="auto" unmountOnExit>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }} onClick={()=> history.push('/admin/dashboard')}>
-                                            <ListItemIcon>
-                                                <DashboardIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Dashboard" />
-                                        </ListItemButton>
-                                        <ListItemButton sx={{ pl: 4 }} onClick={()=> history.push('/admin/dashboard/maintenance')}>
-                                            <ListItemIcon>
-                                                <BuildCircleIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Maintence" />
-                                        </ListItemButton>
-                                    </List>
-                                </Collapse>
                                 <ListItemButton onClick={()=> history.push('/trip')}>
                                     <ListItemIcon>
                                         <img src={IconTrip} alt="profile" />
