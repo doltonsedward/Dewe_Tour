@@ -4,7 +4,7 @@ import './_Contact.scss'
 import Avatar from '@mui/material/Avatar'
 import { StyledBadge } from '../../../utils'
 
-const Contact = ({ datacontact, clickcontact, contact, useronline, clicked }) => {
+const Contact = ({ datacontact, clickcontact, contact, useronline }) => {
     console.log(datacontact)
     console.log(useronline)
 

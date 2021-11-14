@@ -1,5 +1,8 @@
 .wrapper-contact {
     .contact {
+        width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
         padding: 15px 12px;
         background-color: var(--color-primary);
         display: flex;
@@ -8,6 +11,7 @@
         border-radius: var(--border-smooth);
         box-shadow: 0 5px 10px #d2d4d8;
         transition: .3s ease-in;
+        cursor: pointer;
         
         &.clicked {
             background-color: var(--color-theme);
