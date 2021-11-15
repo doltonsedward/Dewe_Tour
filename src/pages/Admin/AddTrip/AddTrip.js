@@ -1,13 +1,43 @@
 import './_AddTrip.scss'
 
-import { Button } from "@mui/material"
 import { Gap, Group, Text, Input, Option } from "../../../components"
 import { muiButton } from "../../../utils"
 
 import { API } from "../../../config"
 import { useEffect, useState } from "react"
 
+// MUI component
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import { Alert } from '@mui/material';
+
 const AddTrip = () => {
+    console.clear()
+    // MUI logic
+    const handleClick = () => setOpen(true)
+    const handleClose = () => setOpen(false)
+
+    const action = (
+        <>
+            <Button color="secondary" size="small" onClick={handleClose}>
+                CLOSE
+            </Button>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+            </IconButton>
+        </>
+    )
+
+    const [open, setOpen] = useState(false)
+    const [message, setMessage] = useState('Not found')
+    const [severity, setSeverity] = useState('success')
+    // close MUI session
+    
     const [countries, setCountries] = useState([])
     const [preview, setPreview] = useState([])
     const [form, setForm] = useState({
@@ -85,8 +115,16 @@ const AddTrip = () => {
             const body = formData
 
             await API.post('/trip', body, config)
+            
+            handleClick()
+            setMessage('Add country success')
+            setSeverity('success')
         } catch (error) {
             console.log(error) 
+
+            handleClick()
+            setMessage('Add country failed')
+            setSeverity('error')
         }
     }
 
@@ -177,6 +215,22 @@ const AddTrip = () => {
             <Gap height={115} />
                 <p className="text-center"><Button variant="contained" sx={muiButton} onClick={handleSubmit}>add trip</Button></p>
             <Gap height={100} />
+            <Snackbar sx={{
+                position: 'fixed',
+                bottom: 0,
+                zIndex: 99999999999,
+                transform: 'translate(50px, -25px) scale(1.2)',
+                boxShadow: '0 0 30px rgba(0,0,0,.25)'
+            }}
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                action={action}
+            >
+                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                    {message}
+                </Alert>
+            </Snackbar>
         </div>
     )
 }
