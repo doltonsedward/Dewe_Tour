@@ -49,9 +49,12 @@ import ImageEmpty3D from './img/empty-image.png'
 // image for httprequest error
 import ImgPageNotFound from './img/not-found.svg'
 
+// image for empty message
+import ImgInboxCleanUp from './img/inbox-cleanup.svg'
+
 export { Logo, LogoSecond, LogoGuarante, LogoHeart, LogoAgent, LogoSupport, IconPalm, IconHibicus, IconTrip }
 export { IconPalm2, IconHibicus2, IconLeaf, IconUser, IconBill, IconLogout, IconHotel, IconPlane, IconMeal, IconTime, IconCalendar }
 export { ProfileDefault }
-export { ImgTransfer, ImgQrCode, ImgPageNotFound, ImgCamera }
+export { ImgTransfer, ImgQrCode, ImgPageNotFound, ImgCamera, ImgInboxCleanUp }
 export { DataTour }
 export { IconUserCircle, IconEmail, IconPhone, IconLocation, IconSearch, IconFile, ImageEmpty, ImageEmpty3D }

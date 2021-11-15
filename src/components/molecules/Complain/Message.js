@@ -1,6 +1,7 @@
 import './_Message.scss'
 import Avatar from '@mui/material/Avatar'
 import { Gap } from '../..'
+import { ImgInboxCleanUp } from '../../../assets'
 
 const Message = ({ contact, user, messages, sendmessage }) => {
     return (
@@ -34,8 +35,14 @@ const Message = ({ contact, user, messages, sendmessage }) => {
                 </div>
             </>
         ) : (
-            <div style={{ width: "100%" }} className="d-flex-center-x">
-              No Message
+            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+                <div>
+                    No Message
+                </div>
+                <Gap height={30} />
+                <div style={{ textAlign: 'center' }}>
+                    <img width="280px" src={ImgInboxCleanUp} alt="empty message" />
+                </div>
             </div>
         )}
         </>
