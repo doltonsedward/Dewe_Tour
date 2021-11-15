@@ -83,8 +83,6 @@ const Header = ({logo}) => {
         setModalOpen(false)
         history.push('/')
     }
-
-    const handleClick = () => setOpen(open ? false : true)
     
     const handleCloseMui = () => setTools(false)
     const handleToggleMui = () => setTools(tools ? false : true)

@@ -3,7 +3,7 @@ import './_Chat.scss'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Contact, Gap, Message } from '../../components'
-import { playNotif } from '../../utils'
+import { muiButton, playNotif } from '../../utils'
 
 // MUI 
 import * as React from 'react'
@@ -71,17 +71,19 @@ const Chat = () => {
 
         // notification
         socket.on("generate notification", notifInString => {
+            console.log(notifInString, 'notification')
+
             if (!("Notification" in window)) {
                 alert("Your website doesnt support notification")
             } else if (Notification.permission === "granted") {
                 // if user accept notification
-                return new Notification(notifInString)
+                const notification = new Notification(notifInString)
             // We need to ask the user for permission
             } else if (Notification.permission !== "denied") {
                 Notification.requestPermission()    
                     .then(function (permission) {
                         if (permission === "granted") {
-                            return new Notification(notifInString)
+                            const notification = new Notification(notifInString)
                         }
                     })
                 // if user accept, lets create a notification
@@ -90,8 +92,8 @@ const Chat = () => {
 
         // listen error sent from server
         socket.on("connect_error", (error) => {
-            console.error(error.message); // not authorized
-        });
+            console.error(error.message) // not authorized
+        })
 
         loadMessage()
 
@@ -101,8 +103,8 @@ const Chat = () => {
         })
 
         return () => {
-            socket.disconnect();
-        };
+            socket.disconnect()
+        }
     }, [messages])
 
     console.log(messages, 'messages')
@@ -169,7 +171,7 @@ const Chat = () => {
             <div className="wrapper-chat-mobile">
                 <Gap height={20} />
                 <div style={{width: '90%', margin: '0 auto'}}>
-                    <Button variant="contained" onClick={()=> setDrawerOpen(true)}>
+                    <Button variant="contained" sx={muiButton} onClick={()=> setDrawerOpen(true)}>
                         <RecentActorsIcon sx={{marginRight: '10px'}} /> open contact
                     </Button>
                 </div>
@@ -186,7 +188,7 @@ const Chat = () => {
                         </div>
                    </Box>
                 </Drawer>
-                <div className="content-message">
+                <div className="content-message" id="contentMessage">
                     <Message contact={contact} user={currentState.user} messages={messages} sendmessage={onSendMessage}  />
                 </div>
             </div>

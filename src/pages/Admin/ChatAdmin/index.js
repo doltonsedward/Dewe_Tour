@@ -11,7 +11,6 @@ import RecentActorsIcon from '@mui/icons-material/RecentActors'
 
 // import socket.io-client
 import { io } from 'socket.io-client'
-import { playNotif } from "../../../utils";
 
 let socket
 const ChatAdmin = () => {
@@ -165,6 +164,7 @@ const ChatAdmin = () => {
     return (
         <div className="header-default" style={{backgroundColor: 'var(--bg-chat-theme)', overflow: 'hidden'}}>
             <div className="hero"></div>
+            {/* normal screen */}
             <div className="wrapper-chat">
                 <div className="sidebar">
                     <p className="title__sidebar">Contact</p>
@@ -174,6 +174,8 @@ const ChatAdmin = () => {
                     <Message contact={contact} user={currentState.user} messages={messages} sendmessage={onSendMessage}  />
                 </div>
             </div>
+
+            {/* mobile screen */}
             <div className="wrapper-chat-mobile">
                 <Gap height={20} />
                 <div style={{width: '90%', margin: '0 auto'}}>
@@ -194,7 +196,7 @@ const ChatAdmin = () => {
                         </div>
                    </Box>
                 </Drawer>
-                <div className="content-message">
+                <div className="content-message" id="contentMessage">
                     <Message contact={contact} user={currentState.user} messages={messages} sendmessage={onSendMessage}  />
                 </div>
             </div>

@@ -5,6 +5,8 @@ $left-side: 160px;
     min-height: 79vh;
     
     .right-section__dashboard {
+        max-width: 100%;
+        margin: 0 auto;
         .main {
             padding: 20px;
         }
