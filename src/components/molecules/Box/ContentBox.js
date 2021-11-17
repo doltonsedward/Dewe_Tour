@@ -21,8 +21,7 @@ const ContentBox = ({img, heading, type, price, capacity, subtext, item, ...rest
 
     const handleDeleteTrip = async () => {
         try {
-            const response = await API.delete('/trip/' + item.id)
-            alert(response)
+            await API.delete('/trip/' + item.id)
         } catch (error) {
             console.log(error)
         }

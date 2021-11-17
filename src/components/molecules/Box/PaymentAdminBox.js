@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { LogoSecond } from '../../../assets'
 import { Gap, Group, Text } from '../../atoms'
 import { warningButton, pendingButton, successButton, greenButton, redButton } from '../../../utils'
+import { useHistory } from 'react-router'
 
 // import API
 import { API } from '../../../config' 
@@ -13,6 +14,7 @@ import Stack from '@mui/material/Stack';
 
 
 const PaymentAdminBox = ({item, setstate}) => { 
+    const history = useHistory()
     let boxStatus, textBoxStatus 
 
     const [loading, setLoading] = useState(true) 
@@ -68,7 +70,7 @@ const PaymentAdminBox = ({item, setstate}) => {
 
     const handleSubmit = async (status) => {
         setstate.setIsChangging(setstate.isChangging ? false : true)
-
+        history.push('/profile')
         try {
             const formData = new FormData()
             const paymentStatus = status === 'cancel' ? 'Cancel' : 'Approve'
@@ -85,7 +87,7 @@ const PaymentAdminBox = ({item, setstate}) => {
             const body = formData
 
             await API.patch('/transaction/' + item.id, body, config)
-            
+
             setIsChangging(isChangging ? false : true)
         } catch (error) {
             console.log(error)

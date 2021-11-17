@@ -8,10 +8,34 @@ import { muiButton } from '../../../utils'
 // import api
 import { API } from '../../../config'
 
-// mui component
-import { Button } from '@mui/material'
+// MUI component
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 
 const Trip = () => {
+    console.clear()
+    // MUI logic
+    const handleClick = () => setOpen(prev => !prev)
+    const handleClose = () => setOpen(false)
+
+    const action = (
+        <>
+            <Button color="secondary" size="small" onClick={handleClose}>
+                CLOSE
+            </Button>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+            </IconButton>
+        </>
+    )
+
+    const [open, setOpen] = useState(false)
+    // close MUI session
+    
     const history = useHistory()
 
     const [dataTrip, setDataTrip] = useState([])
@@ -28,10 +52,11 @@ const Trip = () => {
 
     useEffect(()=> {
         getTrips()
-    }, [])
+    }, [open])
 
     const actionButton = () => {
         isActButton === 'hidden' ? setIsActButton('active') : setIsActButton('hidden')
+        handleClick()
     }
 
     const newMuiButton = {
@@ -61,14 +86,13 @@ const Trip = () => {
                                         variant="content" 
                                         item={item}
                                         subtext="Australia"
-                                        onClick={()=> history.push('/detail-trip/' + item.id)}
                                     />
                                 </div>
                             )}
                         )}
                     </div>
                 </div>
-            <Gap height={121} />
+                <Gap height={121} />
         </div>
     )
 }

@@ -117,13 +117,13 @@ const AddTrip = () => {
             await API.post('/trip', body, config)
             
             handleClick()
-            setMessage('Add country success')
+            setMessage('Add trip success')
             setSeverity('success')
         } catch (error) {
             console.log(error) 
 
             handleClick()
-            setMessage('Add country failed')
+            setMessage('Add trip failed')
             setSeverity('error')
         }
     }
