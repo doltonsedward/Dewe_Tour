@@ -8,8 +8,7 @@ import {
     Tooltip
 } from '@mui/material'
 
-const PersonalInfoProfile
- = ({ getter, handler: { handleChange } }) => {
+const PersonalInfoProfile = ({ getter, handler: { handleChange } }) => {
     const { form, profile, isEditable, preview } = getter
     const muiBlockButton = {
         ...profileCoverButton,

@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { Logo } from '../../assets'
 import { Header, Footer } from '../../components'
@@ -20,7 +21,16 @@ import {
 } from '../../pages'
 
 const Routes = () => {
+    const currentState = useSelector(state => state)
     return (
+        currentState.isLoading ? 
+        <div className="loading-section">
+            <div className="loading">
+                <p>loading</p>
+                <span></span>
+            </div>
+        </div>
+        :
         <Router>
             <Header logo={Logo} />
                 <Switch>

@@ -58,9 +58,6 @@ const Login = ({ isOpen, setIsOpen }) => {
                     payload: response.data.data
                 })    
             }
-
-            checkUser()
-            
         } catch (error) {
             setMessage('Email or password are incorrect')
             setSeverity('error')

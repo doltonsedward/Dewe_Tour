@@ -5,8 +5,7 @@ import store from '../../../store'
 
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
 // MUI component
@@ -26,22 +25,17 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import MailIcon from '@mui/icons-material/Mail';
 import { Login, Register } from '../..'
+import { checkUser, setAuthToken } from '../../../config'
 
 
 const Header = ({logo}) => {
     const history = useHistory()
     const currentState = useSelector(state => state)
+    const isAdmin = currentState.user.role === 'admin'
     
     const isLoginSession = useSelector(state => state.isLogin)
-    const [isAdmin, setIsAdmin] = useState(false)
     const [isLoginActive, setIsLoginActive] = useState(false)
     const [isRegisterActive, setIsRegisterActive] = useState(false)
-
-    useEffect(()=> {
-        if (currentState.user.role === 'admin') {
-            setIsAdmin(true)
-        }
-    }, [])
     
     const logoutSession = () => {
         setIsLoginActive(false)
@@ -53,6 +47,15 @@ const Header = ({logo}) => {
         toast.success('Logout success, welcome back anytime')
     }
 
+    useEffect(()=> {
+        if (localStorage.token) {
+            setAuthToken(localStorage.token)
+        }
+    }, [])
+
+    useEffect(() => {
+        checkUser()
+    }, [])
 
     if (isAdmin) {
         return (
@@ -110,7 +113,7 @@ const Header = ({logo}) => {
                         <IconButton onClick={()=> history.push('/message')}>
                             <MailIcon />
                         </IconButton>
-                        <img style={{marginLeft: '10px'}} className="profile-image" src={currentState.user.avatar} alt="profile" />
+                        <img style={{marginLeft: '5px'}} className="profile-image" src={currentState.user.avatar} alt="profile" />
                         <div className="dropdown">
                             <List
                                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', borderRadius: '5px' }}

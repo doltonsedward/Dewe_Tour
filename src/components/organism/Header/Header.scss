@@ -43,7 +43,7 @@ header {
                 position: absolute;
                 top: 140%;
                 left: 50%;
-                transform: translateX(-58%);
+                transform: translateX(-60%);
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 20px rgba(0, 0, 0, 0.25);
       
                 &::before {
@@ -81,68 +81,5 @@ header {
             }
         }
 
-    }
-}
-
-.qrcode__tools {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    padding: 10px 18px;
-
-    .content-qrcode__tools {
-        height: 450px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background-color: white;
-        padding: 20px;
-    }
-}
-
-.sticky-notes__tools {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    padding: 10px 18px;
-    z-index: 2;
-
-    .text-notes__tools {
-        color: white;
-        width: 500px;
-        max-width: 90%;
-
-        input { color: rgba(0, 0, 0, 0.25) }
-
-        
-        .box {
-            color: black;
-            padding: 10px 20px;
-            background-color: white;
-            border-radius: var(--border-trendy);
-        }
-
-        .data-text-notes__tools {
-            height: 200px;
-            overflow-y: auto;
-
-            .box {
-                animation: boxAnima 1s linear 1;
-            }
-        }
-    }
-}
-
-@keyframes boxAnima {
-    50% {
-        background-color: aquamarine;
     }
 }
