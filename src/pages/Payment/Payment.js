@@ -1,6 +1,6 @@
 import './Payment.scss'
 
-import { Box as BoxDefault, Gap } from '../../components'
+import { PaymentBox, Gap } from '../../components'
 import { useEffect, useState } from 'react'
 import { ImageEmpty3D } from '../../assets'
 
@@ -41,8 +41,7 @@ const Payment = () => {
                 :
                 waitingPayment.map(item => {
                     return (
-                        <BoxDefault 
-                            variant='payment' 
+                        <PaymentBox 
                             name={item?.trip?.title} 
                             country={item?.trip.country?.name}
                             type={item?.trip?.type}  

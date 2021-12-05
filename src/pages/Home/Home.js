@@ -1,9 +1,8 @@
 import './Home.scss'
 import { LogoGuarante, LogoHeart, LogoAgent, LogoSupport } from '../../assets/'
 import { IconPalm, IconHibicus } from '../../assets/'
-import { Gap, Input } from '../../components'
+import { Gap, Input, CardBox, ContentBox } from '../../components'
 
-import { Box } from '../../components'
 import { useHistory } from 'react-router'
 import { useEffect, useState } from 'react'
 
@@ -11,7 +10,6 @@ import { API } from '../../config'
 
 const Home = () => {
     document.title = "DeweTour" 
-
     const [dataTrip, setDataTrip] = useState([])
 
     const getTrips = async () => {
@@ -47,7 +45,6 @@ const Home = () => {
     return (
         <div className="home-page">
             <div className="hero text-white">
-
                 <div className="section-heading__hero">
                     <h1 className="text-heading">Explore</h1>
                     <h2 className="text-subheading">your amazing city together</h2>
@@ -61,29 +58,26 @@ const Home = () => {
             </div>
             <div className="main">
                 <div className="wrapper-card d-flex-center-x">
-                    <Box 
-                        variant="card" 
+                    <CardBox 
                         logo={LogoGuarante}
                         heading="Best Price Guarantee" 
                         text="A small river named Duren flows by their place and supplies" 
                     />
                     <Gap width={70} />
-                    <Box 
-                        variant="card" 
+                    <CardBox 
                         logo={LogoHeart}
                         heading="Best Price Guarantee" 
                         text="A small river named Duren flows by their place and supplies" 
                     />
                     <Gap width={70} />
-                    <Box 
+                    <CardBox 
                         variant="card"
                         logo={LogoAgent} 
                         heading="Best Price Guarantee" 
                         text="A small river named Duren flows by their place and supplies" 
                     />
                     <Gap width={70} />
-                    <Box 
-                        variant="card" 
+                    <CardBox 
                         logo={LogoSupport}
                         heading="Best Price Guarantee" 
                         text="A small river named Duren flows by their place and supplies" 
@@ -97,7 +91,7 @@ const Home = () => {
                     <Gap height={77} />
                     <div className="row">
                     {dataTripOnly.map((item) => (
-                        <Box key={item.id} className="col-4 col-s-6"
+                        <ContentBox key={item.id} className="col-4 col-s-6"
                             variant="content" 
                             item={item}
                             onClick={()=> history.push('/detail-trip/' + item.id)}
