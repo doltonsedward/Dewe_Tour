@@ -1,7 +1,7 @@
 import './_Trip.scss'
 
 import { useEffect, useState } from 'react'
-import { Gap, Text, Group, Box } from '../../../components'
+import { Gap, Text, Group, ContentBox } from '../../../components'
 import { useHistory } from 'react-router'
 import { muiButton } from '../../../utils'
 
@@ -9,29 +9,12 @@ import { muiButton } from '../../../utils'
 import { API } from '../../../config'
 
 // MUI component
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button'
 
 const Trip = () => {
     console.clear()
     // MUI logic
     const handleClick = () => setOpen(prev => !prev)
-    const handleClose = () => setOpen(false)
-
-    const action = (
-        <>
-            <Button color="secondary" size="small" onClick={handleClose}>
-                CLOSE
-            </Button>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleClose}
-            >
-            </IconButton>
-        </>
-    )
 
     const [open, setOpen] = useState(false)
     // close MUI session
@@ -82,8 +65,7 @@ const Trip = () => {
                             const wrapperBox = `wrapper-box__trip ${isActButton}`
                             return (
                                 <div className={wrapperBox}>
-                                    <Box key={item.id} className="col-4 col-s-6"
-                                        variant="content" 
+                                    <ContentBox key={item.id} className="col-4 col-s-6"
                                         item={item}
                                         subtext="Australia"
                                     />
