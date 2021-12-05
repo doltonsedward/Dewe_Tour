@@ -3,26 +3,10 @@ $left-side: 160px;
 .dashboard {
     display: flex;
     min-height: 79vh;
-
-    .left-section__dashboard {
-        width: $left-side;
-        
-        height: 100%;
-        position: fixed;
-        top: 0;
-        padding-top: 100px;
-        color: #303030;
-        box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.19);
-
-        li {
-            padding: 10px 12px;
-            cursor: pointer;
-        }
-    }
     
     .right-section__dashboard {
-        margin-left: $left-side;
-
+        max-width: 100%;
+        margin: 0 auto;
         .main {
             padding: 20px;
         }

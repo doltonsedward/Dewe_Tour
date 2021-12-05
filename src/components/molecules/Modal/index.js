@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import { Gap, Input } from '../../atoms'
 import { IconPalm2, IconHibicus2 } from '../../../assets'
-import { closeLoginModal, closeRegisterModal } from '../../../utils'
 import store from '../../../store'
 
 import { API } from '../../../config'
@@ -177,15 +176,7 @@ const ModalRegister = ({ status }) => {
             if (response?.status === 200) {
                 setMessage('Register success')
             }
-            
-            // const person = {
-            //     isLogin: false,
-            //     user: {
-            //         fullName: event.target.fullname.value,
-            //         email: event.target.email.value,
-            //         password: event.target.password.value
-            //     }
-            // }
+
         } catch (error) {
             console.log(error)
             setMessage('Data already exist')

@@ -4,31 +4,37 @@ import './_Contact.scss'
 import Avatar from '@mui/material/Avatar'
 import { StyledBadge } from '../../../utils'
 
-const Contact = ({ datacontact, clickcontact, contact }) => {
+const Contact = ({ datacontact, clickcontact, contact, useronline }) => {
+    console.log(datacontact)
+    console.log(useronline)
+
     return (
         <div className="wrapper-contact">
-            {datacontact.map((item, index) => (
-                <>
-                    <div 
-                        key={index} 
-                        className={`contact ${contact?.id === item?.id && 'contact active'}`}
+            {datacontact.map((item) => {
+                const status = useronline.hasOwnProperty(item.id) ? 'dot' : ''
+
+                return (
+                    <div
+                        key={item.id} 
+                        className={`contact ${contact?.id === item?.id && 'contact active' && 'clicked'}`}
                         onClick={()=> clickcontact(item)}
-                    ></div>
-                    <StyledBadge
-                        overlap="circular"
-                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                        variant="dot"
                     >
-                        <Avatar alt={item?.fullName} src={item?.avatar} />
-                    </StyledBadge>
-                    <div className="ml-m">
-                        <p className="contact-name">{item.fullName}</p>
-                        <p className="text-contact-chat mt-1 mb-0">
-                        {item.message}
-                        </p>
+                        <StyledBadge
+                            overlap="circular"
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                            variant={status}
+                        >
+                            <Avatar alt={item?.fullName} src={item?.avatar} />
+                        </StyledBadge>
+                        <div className="ml-m">
+                            <p className="contact-name">{item.fullName}</p>
+                            <p className="text-contact-chat">
+                            {item.message}
+                            </p>
+                        </div>
                     </div>
-                </>
-            ))}
+                    
+            )})}
         </div>
     )
 }

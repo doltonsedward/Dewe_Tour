@@ -83,8 +83,6 @@ const Header = ({logo}) => {
         setModalOpen(false)
         history.push('/')
     }
-
-    const handleClick = () => setOpen(open ? false : true)
     
     const handleCloseMui = () => setTools(false)
     const handleToggleMui = () => setTools(tools ? false : true)
@@ -147,39 +145,25 @@ const Header = ({logo}) => {
                 <img src={logo} className="c-pointer" alt="this is logo" onClick={()=> history.push('/')} />
                 <div className="section-button__header">
                     <div className="profile" onClick={dropDown}>
+                        <IconButton onClick={()=> history.push('/admin/message')}>
+                            <MailIcon />
+                        </IconButton>
                         <Badge variant="dot" color={colorBadge} onClick={handleSpeedDial}>
                             <BuildIcon sx={{color: 'white'}} />
                         </Badge>
                         <img style={{marginLeft: '30px'}} className="profile-image" src={currentState.user.avatar} alt="profile" />
-                        <div className="dropdown">
+                        <div className="dropdown admin">
                             <List
                                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', borderRadius: '5px' }}
                                 component="nav"
                                 aria-labelledby="nested-list-subheader"
                                 >
-                                <ListItemButton onClick={handleClick}> 
+                                <ListItemButton onClick={()=> history.push('/admin/dashboard')}>
                                     <ListItemIcon>
-                                        <ViewListIcon sx={{color: '#89B5AF'}} />
+                                        <DashboardIcon sx={{color: '#89B5AF'}} />
                                     </ListItemIcon>
-                                    <ListItemText primary="Panel" />
-                                    {open ? <ExpandLess /> : <ExpandMore />}
+                                    <ListItemText primary="Dashboard" />
                                 </ListItemButton>
-                                <Collapse in={open} timeout="auto" unmountOnExit>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{ pl: 4 }} onClick={()=> history.push('/admin/dashboard')}>
-                                            <ListItemIcon>
-                                                <DashboardIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Dashboard" />
-                                        </ListItemButton>
-                                        <ListItemButton sx={{ pl: 4 }} onClick={()=> history.push('/admin/dashboard/maintenance')}>
-                                            <ListItemIcon>
-                                                <BuildCircleIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Maintence" />
-                                        </ListItemButton>
-                                    </List>
-                                </Collapse>
                                 <ListItemButton onClick={()=> history.push('/trip')}>
                                     <ListItemIcon>
                                         <img src={IconTrip} alt="profile" />
@@ -191,12 +175,6 @@ const Header = ({logo}) => {
                                         <AccountBalanceWalletIcon sx={{color: '#FDA856'}} />
                                     </ListItemIcon>
                                     <ListItemText primary="Transaction" />
-                                </ListItemButton>
-                                <ListItemButton onClick={()=> history.push('/admin/message')}>
-                                    <ListItemIcon>
-                                        <MailIcon sx={{color: '#A9333A'}} />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Message" />
                                 </ListItemButton>
                                 <Divider />
                                 <ListItemButton onClick={logoutSession}>

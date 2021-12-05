@@ -3,6 +3,7 @@
     --white-second: rgba(255, 255, 255, 1);
     --white-low: #E5E5E5;
     --orange: #FFAF00;
+    --orange-low: #f0d69e;
     --gray: #C4C4C4;
     --gray-low: #D2D2D240;
     --gray-second: #878787;
@@ -26,6 +27,7 @@
     /* section for theme  */
     --color-primary: var(--white);
     --color-theme: var(--orange);
+    --color-theme-two: var(--orange-low);
     --bg-default: var(--white-low);
     --bg-theme: var(--orange);
     --bg-footer: var(--orange);
@@ -40,6 +42,8 @@
     --bg-btn-danger-outer: var(--red-low);
     --bg-btn-success: var(--green);
     --bg-btn-success-outer: var(--green-low);
+    
+    --bg-chat-theme: #EAEFFA;
 
     /* section for text  */
     --text-warning: var(--orange);
@@ -72,6 +76,7 @@
     /* section for shadow */
     --box-shadow-theme: 0 0 50px rgba(0, 0, 0, .3);
     --box-shadow-primary: 0 0 50px rgba(0, 0, 0, .6);
+    --box-shadow-chat-theme: 0 0 40px #c3c5c9;
 
 
     /* section for logic */

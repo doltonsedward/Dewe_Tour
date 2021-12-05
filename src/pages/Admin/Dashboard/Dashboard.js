@@ -1,13 +1,14 @@
 import './_Dashboard.scss'
-import { Box as BoxDefault, Gap, SidebarAdmin } from '../../../components'
+import { Box as BoxDefault, Gap } from '../../../components'
 import { warningButton, successButton } from '../../../utils'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 // IMPORT API
 import { API } from '../../../config'
 
 // chart
-import { Bar } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 
 // mui component
 import * as React from 'react';
@@ -24,52 +25,46 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 
+// import socket.io-client
+import { io } from 'socket.io-client'
+
+let socket
 const Dashboard = () => {
+    const currentState = useSelector(state => state)
+    
     const dataLoyalUser = []
     const [dataUser, setDataUser] = useState([])
     const [trans, setTrans] = useState([])
     const [usersLength, setUsersLength] = useState(0)
     const [tripsLength, setTripsLength] = useState(0)
     const [transLength, setTransLength] = useState(0)
-    const [isChangging, setIsChangging] = useState(false)
-    const [currentUser, setCurrentUser] = useState({
-        id: '',
-        fullName: '',
-        email: '',
-        password: '',
-        phone: '',
-        address: '',
-        role: '',
-        avatar: ''
-    })
 
     const [dataChart, setDataChart] = useState({
-        labels: ['June', 'July', 'August', 'October', 'November'],
+        labels: ['January', 'February', 'March', 'April', 'May'],
         datasets: [
             {
-            label: 'Total Data',
-            fill: false,
-            lineTension: 0.5,
-            backgroundColor: 'rgba(75,192,192,1)',
-            borderColor: 'rgb(179, 120, 228)',
-            borderWidth: 2,
-            data: [usersLength, tripsLength, transLength]
+                label: 'Transaction',
+                fill: false,
+                lineTension: 0.5,
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: [65, 59, 80, 81, 56] 
             }
-        ]
-    })
+        ] 
+    }) 
 
     const getUsers = async () => {
         try {
             const response = await API.get('/users')
             const { data } = response?.data
+
             setUsersLength(data?.length)
             setDataUser(data)
-
-            const admins = data?.filter((item) => item.role === 'admin')
         } catch (error) {
             console.log(error)
-        }
-    }
+        } 
+    } 
 
     const getTrips = async () => {
         try {
@@ -79,8 +74,8 @@ const Dashboard = () => {
             setTripsLength(data?.length)
         } catch (error) {
             console.log(error)
-        }
-    }
+        } 
+    } 
 
     const getTransactions = async () => {
         try {
@@ -92,7 +87,7 @@ const Dashboard = () => {
         } catch (error) {
             console.log(error)
         }
-    }
+    } 
 
     console.log(dataUser, 'data user')
     console.log(dataLoyalUser, 'data Loyal User')
@@ -100,92 +95,65 @@ const Dashboard = () => {
     const dataUserAfterTrans = []
     for (let i = 0; i < trans.length; i++) {
         const data = dataUser.filter(item => item.id === trans[i].userId)
-        dataUserAfterTrans.push(...data)
-    }
-    
-    const setChart = () => {
-        const data = [usersLength, tripsLength, transLength]
-        setDataChart({
-            labels: ['User', 'Trip', 'Transaction'],
-            datasets: [
-                {
-                label: 'Total Data',
-                fill: true,
-                lineTension: 0.5,
-                backgroundColor: ['rgba(75,192,192,1)', 'rgb(41, 220, 116)', 'rgb(220, 148, 41)'],
-                borderColor: 'rgb(179, 120, 228)',
-                borderWidth: 2,
-                data
-                }
-            ]
-        })
+        dataUserAfterTrans.push(...data) 
     }
 
     useEffect(()=> {
+        socket = io('http://localhost:8080', {
+            auth: {
+                token: localStorage.getItem('token')
+            },
+            query: {
+                id: currentState.user.id
+            }
+        })
+
+        socket.emit("load data trans")
+        
+        socket.on("data trans", data => {
+            const dataLabels = []
+            const newData = []
+
+            data.map(item => {
+                dataLabels.unshift(item.createdAt.split(':')[0].split('T')[0].split('-').reverse().join('-'))
+                newData.unshift(item.counterQty)
+            }) 
+
+            setDataChart(prev => ({
+                ...prev,
+                labels: dataLabels,
+                datasets: [
+                    {
+                        label: 'Transaction',
+                        fill: false,
+                        lineTension: 0,
+                        backgroundColor: 'rgba(75,192,192,1)',
+                        borderColor: '#FFAF00',
+                        borderWidth: 2,
+                        data: newData
+                    }
+                ]
+            })) 
+        })
+        
         getUsers()
         getTrips()
         getTransactions()
-    }, [isChangging])
-
-    useEffect(()=> {
-        setChart()
-    }, [usersLength, tripsLength, transLength])
+        return () => {
+            socket.disconnect()
+        }
+    }, [])
 
     // mui function
     const [isOpen, setIsOpen] = useState(false)
 
-    const btnSwitchToAdmin = {
-        backgroundColor: '#34BE82',
-        marginRight: '5px',
-        '&:hover': {
-            backgroundColor: '#2FDD92'
-        }
-    }
-
-    const btnSwitchToUser = {
-        backgroundColor: '#FF8243',
-        marginLeft: '5px',
-        '&:hover': {
-            backgroundColor: '#FDA65D'
-        }
-    }
-
     const handleClose = () => setIsOpen(false)
-    const handleClick = (item, target) => {
-        setCurrentUser({
-            ...item,
-            role: target
-        })
-
-        setIsOpen(true)
-    }
     // close
-
-    const handleChangeRole = async () => {
-        try {
-            const body = JSON.stringify(currentUser)
-
-            const config = {
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }
-            
-            await API.patch('/user/' + currentUser.id, body, config)
-            
-            setIsChangging(isChangging ? false : true)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     return (
         <div className="header-default">
             <div className="hero"></div>
             <div className="dashboard">
-                <div className="left-section__dashboard">
-                    <SidebarAdmin activein="dashboard" />
-                </div>
                 <div className="right-section__dashboard">
                     <div className="main">
                         <div className="d-flex-between">
@@ -196,19 +164,20 @@ const Dashboard = () => {
                         </div>
                         <Gap height={40} />
                         <div>
-                            <Bar
+                            <Line
                                 data={dataChart}
                                 options={{
                                     title:{
-                                    display:true,
-                                    text:'Average Total Data per month',
-                                    fontSize:20
+                                      display:true,
+                                      text:'Average Rainfall per month',
+                                      fontSize:20
                                     },
+                                    responsive: true,
                                     legend:{
-                                    display:true,
-                                    position:'right'
+                                      display:true,
+                                      position:'right'
                                     }
-                                }}
+                                  }}
                             />
                         </div>
                         <Gap height={40} />
@@ -228,7 +197,7 @@ const Dashboard = () => {
                                 <TableBody>
                                     {dataUser.map(item => {
                                         const totalTransByUser = trans.filter(users => users.user.id === item.id)
-                                        if (totalTransByUser.length > 2) {
+                                        if (totalTransByUser.length > 5) {
                                             dataLoyalUser.push(true)
                                         }
 
@@ -240,10 +209,6 @@ const Dashboard = () => {
                                                 <TableCell align="center">{item.address}</TableCell>
                                                 <TableCell align="center">{totalTransByUser ? totalTransByUser.length : 0}</TableCell>
                                                 <TableCell align="center">{totalTransByUser.length > 2 ? 'Loyal' : "Regular"}</TableCell>
-                                                {/* <TableCell align="center">
-                                                    <Button variant="contained" sx={btnSwitchToAdmin} onClick={()=> handleClick(item, 'admin')}>Admin</Button>
-                                                    <Button variant="contained" sx={btnSwitchToUser} onClick={()=> handleClick(item, 'user')}>User</Button>
-                                                </TableCell> */}
                                             </TableRow>
                                         )
                                     })}
@@ -265,7 +230,6 @@ const Dashboard = () => {
                     </CardContent>
                     <CardActions>
                         <div style={{width: '100%', display: 'flex', justifyContent: 'right'}}>
-                            <div><Button variant="contained" sx={successButton} onClick={()=> handleChangeRole('admin')}>change</Button></div>
                             <div style={{marginLeft: '10px'}}><Button variant="contained" sx={warningButton}>cancel</Button></div>
                         </div>
                     </CardActions>
