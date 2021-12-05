@@ -1,6 +1,6 @@
 import './_Dashboard.scss'
-import { Box as BoxDefault, Gap } from '../../../components'
-import { warningButton, successButton } from '../../../utils'
+import { DashboardBox, Gap } from '../../../components'
+import { warningButton } from '../../../utils'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -157,10 +157,9 @@ const Dashboard = () => {
                 <div className="right-section__dashboard">
                     <div className="main">
                         <div className="d-flex-between">
-                            <BoxDefault variant="box-dashboard" theme="gradient-blue" heading="User" text={usersLength}  />
-                            {/* <BoxDefault variant="box-dashboard" theme="gradient-red" heading="Admin" text={adminsLength}  /> */}
-                            <BoxDefault variant="box-dashboard" theme="gradient-green" heading="Trip" text={tripsLength}  />
-                            <BoxDefault variant="box-dashboard" theme="gradient-yellow" heading="Transaction" text={transLength}  />
+                            <DashboardBox variant="box-dashboard" theme="gradient-blue" heading="User" text={usersLength}  />
+                            <DashboardBox variant="box-dashboard" theme="gradient-green" heading="Trip" text={tripsLength}  />
+                            <DashboardBox variant="box-dashboard" theme="gradient-yellow" heading="Transaction" text={transLength}  />
                         </div>
                         <Gap height={40} />
                         <div>

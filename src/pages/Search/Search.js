@@ -1,6 +1,6 @@
 import './_Search.scss'
 
-import { Box, Gap, Text } from '../../components'
+import { ContentBox, Gap, Text } from '../../components'
 import { muiButton } from '../../utils'
 import { useHistory } from 'react-router'
 
@@ -30,8 +30,7 @@ const Search = () => {
                 <Text variant="h1" fontSize={25} className="text-center">Search result</Text>
                 <div className="row">
                         {dataTour.map((item) => (
-                            <Box key={item.id} className="col-4 col-s-6"
-                                variant="content" 
+                            <ContentBox key={item.id} className="col-4 col-s-6"
                                 item={item}
                                 subtext="Australia"
                                 onClick={()=> history.push('/detail-trip/' + item.id)}

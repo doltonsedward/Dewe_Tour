@@ -1,5 +1,5 @@
 import './ListTransaction.scss'
-import { Gap, Text, Box as BoxPayment } from '../../../components'
+import { Gap, Text, PaymentAdminBox } from '../../../components'
 import { IconSearch } from '../../../assets'
 
 // import api
@@ -82,8 +82,7 @@ const ListTransaction = () => {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <BoxPayment 
-                            variant='payment-admin' 
+                        <PaymentAdminBox 
                             item={detailTrans}
                             setstate={{setIsChangging, isChangging}}
                             />

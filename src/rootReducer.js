@@ -22,13 +22,7 @@ const rootReducer = (state = initialValue, action) => {
             
             return {
                 isLogin: false,
-                user: payload
-            }
-
-        case 'REGISTER':
-            return {
-                isLogin: false,
-                user: payload
+                user: {}
             }
 
         case 'IS_CHANGGING':
