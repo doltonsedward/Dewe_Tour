@@ -41,6 +41,13 @@
     border-radius: var(--border-trendy);
     box-shadow: var(--box-shadow-theme);
     z-index: var(--z-index);
+    transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover {
+        transform: scale(1.03);
+        transition: .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        box-shadow: var(--box-shadow-theme-effect);
+    }
 
     .capacity__tour {
         font-weight: 800;
