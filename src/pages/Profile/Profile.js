@@ -1,15 +1,15 @@
 import './Profile.scss'
 import { useEffect, useState } from 'react'
 import { LayoutProfile } from '../../components/layouts'
+import { toast } from 'react-toastify'
 
 // import api
-import { API } from '../../config'
+import { API, checkUser } from '../../config'
 
 const Profile = () => {
-    console.clear()
     const [dataTrans, setDataTrans] = useState([])
     const [value, setValue] = useState(0)
-
+    
     const [profile, setProfile] = useState({}) 
     const [isEditable, setIsEditable] = useState(false) 
     
@@ -43,7 +43,8 @@ const Profile = () => {
                 avatar: data.avatar  
             })
         } catch (error) {
-            console.log(error)
+            const message = error?.response?.data?.message || error?.message
+            toast.error(message || 'Unknow error')
         }
     }
 
@@ -53,7 +54,8 @@ const Profile = () => {
             const data = response.data.data
             setDataTrans(data)
         } catch (error) {
-            console.log(error)
+            const message = error?.response?.data?.message || error?.message
+            toast.success(message || 'Unknow error')
         }
     }
 
@@ -64,7 +66,7 @@ const Profile = () => {
 
     function handleEdit() {
         isEditable ? setIsEditable(false) : setIsEditable(true)
-        variant === 'contained' ? setVariant('disabled') : setVariant('contained')
+        variant === 'contained' ? setVariant('disabled') : setVariant('contained') 
     }
 
     const handleChange = (e) => {
@@ -87,19 +89,33 @@ const Profile = () => {
             formData.set('phone', form.phone)
             formData.set('address', form.address)
             formData.set('role', form.role)
-            formData.set('avatar', form.avatar[0], form.avatar[0].filename)
-
-            const config = {
-                headers: {
-                    "Content-Type": "multipart/form-data"
+            if (typeof form.avatar === 'object') {
+                formData.set('avatar', form.avatar[0], form.avatar[0].filename)
+                const config = {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
                 }
+    
+                const body = formData
+                const response = await API.patch('/user', body, config)
+                toast.success(response.data.message)
+            } else {
+                const config = {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+    
+                const body = form
+                const response = await API.patch('/user/specific', body, config)
+                toast.success(response.data.message)
             }
-
-            const body = formData
-
-            await API.patch('/user', body, config)
+            
+            checkUser()
         } catch (error) {
-            console.log(error)
+            const message = error?.response?.data?.message || error?.message
+            toast.error(message || 'Unknow error')
         }
     }
 
