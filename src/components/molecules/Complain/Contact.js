@@ -1,13 +1,10 @@
-import './_Contact.scss'
+import './Contact.scss'
 
 // MUI component
 import Avatar from '@mui/material/Avatar'
 import { StyledBadge } from '../../../utils'
 
 const Contact = ({ datacontact, clickcontact, contact, useronline }) => {
-    console.log(datacontact)
-    console.log(useronline)
-
     return (
         <div className="wrapper-contact">
             {datacontact.map((item) => {

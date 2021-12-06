@@ -1,26 +1,22 @@
-import { LogoSecond, ImgCamera, ImageEmpty } from '../../../assets'
+import { LogoSecond, ImgCamera } from '../../../assets'
 import { Gap, Group, Text } from '../../atoms'
 import { paymentButton, warningButton, pendingButton, successButton } from '../../../utils'
+import { toast } from 'react-toastify'
 
+// import API
 import { API } from '../../../config'
 
 // mui component
 import { Button } from '@mui/material'
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
-import Snackbar from '@mui/material/Snackbar'
-import IconButton from '@mui/material/IconButton'
-import { Alert } from '@mui/material'
+import Skeleton from '@mui/material/Skeleton'
+import Stack from '@mui/material/Stack'
 
 import { useState } from 'react'
-import store from '../../../store'
 
-const PaymentBox = ({name, country, type, count, status, item, setstate, value, ...rest}) => {
+const PaymentBox = ({name, country, type, count, status, item, value, fetching, ...rest}) => {
     console.clear()
     let boxStatus, textBoxStatus
 
-    const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState('Error')
     const [loading, setLoading] = useState(true)
     const [preview, setPreview] = useState('')
 
@@ -73,7 +69,6 @@ const PaymentBox = ({name, country, type, count, status, item, setstate, value, 
 
     const handleSubmit = async () => {
         try {
-            setstate.setAlert('data is changging')
             const formData = new FormData()
             formData.set('status', form.status)
             formData.set('attachment', form.attachment[0], form.attachment[0].filename)
@@ -86,16 +81,12 @@ const PaymentBox = ({name, country, type, count, status, item, setstate, value, 
 
             const body = formData
 
-            setOpen(true) 
-            setMessage('Payment success')
-            store.dispatch({
-                type: 'IS_CHANGGING',
-                payload: open
-            })
-
-            await API.patch('/transaction/' + item.id, body, config)
+            const response = await API.patch('/transaction/' + item.id, body, config)
+            fetching()
+            toast.success(response?.data.message)
         } catch (error) {
-            console.log(error)
+            const message = error?.response?.data?.message || error.message
+            toast.error(message || 'Unknow error')
         }
 
         try {
@@ -110,28 +101,12 @@ const PaymentBox = ({name, country, type, count, status, item, setstate, value, 
             const body = JSON.stringify({ filled })
 
             const response =  await API.patch('/trip/' + item.tripId, body, config)
-            console.log(response, 'response')
+            toast.success(response?.data.message)
         } catch (error) {
-            console.log(error)
+            const message = error?.response?.data?.message || error.message
+            toast.error(message || 'Unknow error')
         }
     }
-
-    const handleClose = () => { setOpen(false) }
-
-    const action = (
-        <>
-            <Button color="secondary" size="small" onClick={handleClose}>
-                CLOSE
-            </Button>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleClose}
-            >
-            </IconButton>
-        </>
-    )
 
     setTimeout(()=> {
         setLoading(false)
@@ -262,21 +237,6 @@ const PaymentBox = ({name, country, type, count, status, item, setstate, value, 
                         null
                     }
                 </p>
-                <Snackbar sx={{
-                    position: 'fixed',
-                    bottom: 0,
-                    zIndex: 99999999999999,
-                    transform: 'translate(50px, -25px) scale(1.2)'
-                }}
-                    open={open}
-                    autoHideDuration={6000}
-                    onClose={handleClose}
-                    action={action}
-                >
-                    <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
-                        {message}
-                    </Alert>
-                </Snackbar>
             </div>
             <Gap height={86} />
         </>

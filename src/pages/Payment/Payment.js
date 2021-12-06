@@ -12,7 +12,6 @@ import * as React from 'react';
 
 const Payment = () => {
     const [dataTrans, setDataTrans] = useState([])
-    const [alert, setAlert] = useState('')
 
     const getTransaction = async () => {
         try {
@@ -23,12 +22,11 @@ const Payment = () => {
         }
     }
 
-    console.log(alert, 'alert')
     const waitingPayment = dataTrans.filter(item => item.status === 'Waiting payment')
     
     useEffect(()=> {
         getTransaction()
-    }, [alert])
+    }, [])
     
 
     return (
@@ -47,8 +45,9 @@ const Payment = () => {
                             type={item?.trip?.type}  
                             count={item?.counterQty} 
                             status={item.status}
-                            item={item}
-                            setstate={{setAlert}} />
+                            item={item} 
+                            fetching={getTransaction}
+                        />
                     )
                 })
             }
