@@ -1,3 +1,5 @@
+import '../../assets/scss/loading.scss'
+
 import { useSelector } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { Logo } from '../../assets'
