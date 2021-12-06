@@ -4,17 +4,16 @@ import { Gap, Text } from '../../components'
 import { IconHotel, IconPlane, IconMeal, IconTime, IconCalendar } from '../../assets'
 import { muiButton, setData } from '../../utils'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { API } from '../../config'
 
 // mui component
 import Button from '@mui/material/Button'
-import Snackbar from '@mui/material/Snackbar'
-import IconButton from '@mui/material/IconButton'
-import { Alert } from '@mui/material'
 import { useSelector } from 'react-redux'
 
 const DetailTrip = () => { 
+    console.clear()
     document.title = `DeweTour | Detail Trip` 
 
     const history = useHistory() 
@@ -22,7 +21,6 @@ const DetailTrip = () => {
 
     const [detailTrip, setDetailTrip] = useState({}) 
     const [count, setCount] = useState(1) 
-    const [open, setOpen] = useState(false) 
     const [loading, setLoading] = useState(true) 
     const [form, setForm] = useState({ 
         counterQty: '', 
@@ -38,7 +36,8 @@ const DetailTrip = () => {
             const response = await API.get('/trip/' + id)
             setDetailTrip(response.data.data)
         } catch (error) {
-            console.log(error)
+            const message = error?.response?.data?.message || error.message
+            toast.error(message || 'Unknow error')
         }
     }
 
@@ -55,7 +54,6 @@ const DetailTrip = () => {
         eat, 
         image, 
         night,
-        quota,
         filled,
         price,
         title,
@@ -64,15 +62,11 @@ const DetailTrip = () => {
         country
     } = detailTrip
     
-    console.log(detailTrip)
     const allCoverImage = image?.slice(1)
 
     if (!Number(id)) {
         history.push('/')
     }
-    
-    const handleClick = () => { setOpen(true) }
-    const handleClose = () => { setOpen(false) }
 
     const totalPrice = price * count
     
@@ -117,33 +111,14 @@ const DetailTrip = () => {
             formData.set('userId', form.userId)
             
             await API.post('/transaction', formData, config) 
+            setData('payment', form)
 
-            if (users.isLogin) {
-                setData('payment', form); 
-                handleClick()
-            } else {
-                history.push('/')
-            }
+            toast.success('Booking success')
         } catch (error) {
-            console.log(error)   
+            const message = error?.response?.data?.message || error.message
+            toast.error(message || 'Unknow error')
         }
     }
-
-    // mui action
-    const action = (
-        <>
-            <Button color="secondary" size="small" onClick={handleClose}>
-                CLOSE
-            </Button>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleClose}
-            >
-            </IconButton>
-        </>
-    )
 
     setTimeout(() => {
         setLoading(false)
@@ -167,10 +142,10 @@ const DetailTrip = () => {
                         }
                         <ul className="wrapper-child__listTour">
                             {
-                                allCoverImage?.map((img) => {
+                                allCoverImage?.map((img, i) => {
                                     return (
                                         // need watched
-                                        <li className="child-cover-image__listTour"><img src={img} alt={img} /></li>
+                                        <li key={i} className="child-cover-image__listTour"><img src={img} alt={img} /></li>
                                     )
                                 })
                             }
@@ -240,23 +215,14 @@ const DetailTrip = () => {
                             <Text variant="bold" fontSize={24} className="total-count color-theme">{`${type} ${totalPriceInString}`}</Text>
                         </div>
                         <p className="text-right">
-                            <Button variant="contained" sx={muiButton} onClick={() => handlerBooking()}>Book now</Button>
+                            {
+                                users.isLogin ?
+                                <Button variant="contained" sx={muiButton} onClick={handlerBooking}>Book now</Button>
+                                : null
+                            }
                         </p>
                         <Gap height={44} />
                     </div>
-                    <Snackbar sx={{
-                        position: 'fixed',
-                        bottom: 0,
-                        zIndex: 999999999,
-                        transform: 'translate(50px, -25px) scale(1.2)',
-                        boxShadow: '0 0 50px rgba(0, 0, 0, .26)'
-                    }} open={open} autoHideDuration={6000} onClose={handleClose} action={action}>
-
-                        <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
-                            Booking Success
-                        </Alert>
-
-                    </Snackbar>
                 </div>
             </div>
         </div>

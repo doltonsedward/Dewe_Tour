@@ -2,30 +2,19 @@ import { useState } from 'react'
 import { LogoSecond } from '../../../assets'
 import { Gap, Group, Text } from '../../atoms'
 import { warningButton, pendingButton, successButton, greenButton, redButton } from '../../../utils'
-import { useHistory } from 'react-router'
-
-// import API
-import { API } from '../../../config' 
 
 // mui component 
 import { Button } from '@mui/material' 
 import Skeleton from '@mui/material/Skeleton'; 
 import Stack from '@mui/material/Stack'; 
 
-
-const PaymentAdminBox = ({item, setstate}) => { 
-    const history = useHistory()
+const PaymentAdminBox = ({ item, setter, fetching, func }) => { 
     let boxStatus, textBoxStatus 
+    const { setOpen } = setter
+    const { getTransactions } = fetching
+    const { toast, API } = func
 
     const [loading, setLoading] = useState(true) 
-    const [preview, setPreview] = useState('') 
-    const [isChangging, setIsChangging] = useState(false) 
-    const [form, setForm] = useState([
-        {
-            status: item.status,
-            attachment: item.attachment
-        }
-    ])
     
     switch (item.status) {
         case 'Waiting payment':
@@ -52,49 +41,9 @@ const PaymentAdminBox = ({item, setstate}) => {
             break;
     }
 
-    console.log(item)
-
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.type === 'file' ? e.target.files : e.target.value
-        })
-
-        if (e.target.type === 'file') {
-            let url = URL.createObjectURL(e.target.files[0])
-            setPreview(url)
-        }
-    }
-
-    console.log(item.idTrip, 'id trip')
-
     const handleSubmit = async (status) => {
-        setstate.setIsChangging(setstate.isChangging ? false : true)
-        history.push('/profile')
         try {
-            const formData = new FormData()
             const paymentStatus = status === 'cancel' ? 'Cancel' : 'Approve'
-
-            formData.set('status', paymentStatus)
-            formData.set('attachment', form.attachment[0], form.attachment[0].filename)
-
-            const config = {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            }
-
-            const body = formData
-
-            await API.patch('/transaction/' + item.id, body, config)
-
-            setIsChangging(isChangging ? false : true)
-        } catch (error) {
-            console.log(error)
-        }
-
-        try {
-            const totalFilled = status === 'cancel' ? item.filled + item.qty : item.filled
 
             const config = {
                 headers: {
@@ -102,13 +51,36 @@ const PaymentAdminBox = ({item, setstate}) => {
                 }
             }
 
-            const body = JSON.stringify({
-                filled: totalFilled
-            })
+            const body = JSON.stringify({ status: paymentStatus })
 
-            await API.patch('/trip/' + item.idTrip, body, config)
+            await API.patch('/transaction/' + item.id + '/admin', body, config)
+
+            getTransactions()
+            setOpen(false)
         } catch (error) {
-            console.log(error)
+            const message = error?.response?.data?.message || error?.message
+            toast.error(message || 'Unknow error')
+        }
+
+        if (status === 'cancel') {
+            try {
+                const totalFilled = status === 'cancel' ? item.filled + item.qty : item.filled
+    
+                const config = {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+    
+                const body = JSON.stringify({
+                    filled: totalFilled
+                })
+    
+                await API.patch('/trip/' + item.idTrip, body, config)
+            } catch (error) {
+                const message = error?.response?.data?.message || error?.message
+                toast.error(message || 'Unknow error')
+            }
         }
     }
 
@@ -200,13 +172,8 @@ const PaymentAdminBox = ({item, setstate}) => {
                                 <Gap height={20} />
                                 <Group className="text-center">
                                     <div className="transfer-image__payment">
-                                        {
-                                            preview ?
-                                            <img src={preview} alt="transfer proof" />
-                                            :
-                                            <img src={item.attachment} alt="transfer proof" />
-                                        }
-                                        <input type="file" name="attachment" onChange={handleChange} />
+                                        <img src={item.attachment} alt="transfer proof" />
+                                        <input type="file" name="attachment" />
                                     </div>
                                     <Gap height={12.63} />
                                     <Text variant="p" fontSize={13} lineHeight="15px" className="color-second">Upload payment proof</Text>
