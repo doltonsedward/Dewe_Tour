@@ -12,8 +12,8 @@ import {
 } from '@mui/material'
 
 const Register = ({ isOpen, setIsOpen }) => {
-    const [message, setMessage] = useState('Not found')
-    const [severity, setSeverity] = useState('success')
+    const [message, setMessage] = useState('Loading')
+    const [severity, setSeverity] = useState('info')
     const [open, setOpen] = useState(false);
 
     const [form, setForm] = useState({
@@ -54,7 +54,6 @@ const Register = ({ isOpen, setIsOpen }) => {
             }
 
         } catch (error) {
-            console.log(error)
             setMessage('Data already exist')
             setSeverity('error')
         }
