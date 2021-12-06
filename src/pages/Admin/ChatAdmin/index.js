@@ -40,23 +40,23 @@ const ChatAdmin = () => {
         loadConnectedUser()
 
         // notification
-        socket.on("generate notification", notifInString => {
+        if (messages.length > 0 && messages[messages.length - 1]?.idSender !== currentState.user.id) {
             if (!("Notification" in window)) {
                 alert("Your website doesnt support notification")
             } else if (Notification.permission === "granted") {
                 // if user accept notification
-                const notification = new Notification(notifInString)
+                const notification = new Notification(messages[messages.length - 1].message)
             // We need to ask the user for permission
             } else if (Notification.permission !== "denied") {
                 Notification.requestPermission()    
                     .then(function (permission) {
                         if (permission === "granted") {
-                            const notification = new Notification(notifInString)
+                            const notification = new Notification(messages[messages.length - 1].message)
                         }
                     })
                 // if user accept, lets create a notification
             }
-        })
+        }
 
         // listen error sent from server
         socket.on("connect_error", (error) => {
