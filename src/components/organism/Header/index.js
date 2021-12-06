@@ -2,7 +2,6 @@ import './Header.scss'
 import { dropDown } from '../../../utils'
 import { IconUser, IconBill, IconTrip } from '../../../assets'
 import store from '../../../store'
-
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { useState, useEffect } from 'react'
@@ -26,7 +25,6 @@ import IconButton from '@mui/material/IconButton';
 import MailIcon from '@mui/icons-material/Mail';
 import { Login, Register } from '../..'
 import { checkUser, setAuthToken } from '../../../config'
-
 
 const Header = ({logo}) => {
     const history = useHistory()

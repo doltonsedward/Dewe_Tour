@@ -6,7 +6,6 @@ const checkUser = async () => {
         const response = await API.get('/check-auth')
 
         if (response.status !== 200) {
-            console.log('auth error, nomor 9')
             return store.dispatch({
                 type: "AUTH_ERROR",
             });
@@ -21,7 +20,6 @@ const checkUser = async () => {
             payload
         })
     } catch (error) {
-        console.log('stop loading, nomor 24')
         store.dispatch({
             type: "STOP_LOADING",
         })

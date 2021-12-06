@@ -1,5 +1,3 @@
-import { setAuthToken } from "./config"
-
 const initialValue = {
     isLoading: true,
     isLogin: false,
@@ -12,8 +10,7 @@ const rootReducer = (state = initialValue, action) => {
     switch (type) {
         case 'USER_SUCCESS':
         case 'LOGIN':
-            const token = localStorage.setItem('token', payload.token)
-            setAuthToken(token)
+            localStorage.setItem('token', payload.token)
 
             return {
                 isLoading: false,
