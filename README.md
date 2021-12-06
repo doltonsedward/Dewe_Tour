@@ -6,6 +6,8 @@
 - Clean up code (almost done)
 - Add google oauth client 
 - Make danger zone maybe
+- Dynamic button loading when fetching data (done)
+- Dynamic booking button, only user can booking
 
 ## Done Slicing UI 
 - Login
