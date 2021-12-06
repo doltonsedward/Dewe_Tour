@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify'
 import store from '../../../store'
 
-import { API, checkUser } from '../../../config'
+import { API, checkUser, setAuthToken } from '../../../config'
 
 // mui component
 import { 
@@ -57,7 +57,11 @@ const Login = ({ isOpen, setIsOpen }) => {
                     type: 'LOGIN', 
                     payload: response.data.data
                 })    
+
+                setAuthToken(response.data.data.token)
             }
+
+            checkUser()
         } catch (error) {
             setMessage('Email or password are incorrect')
             setSeverity('error')
