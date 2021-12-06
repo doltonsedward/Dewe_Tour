@@ -1,4 +1,4 @@
-import './_Message.scss'
+import './Message.scss'
 import Avatar from '@mui/material/Avatar'
 import { Gap } from '../..'
 import { ImgInboxCleanUp } from '../../../assets'
