@@ -17,6 +17,7 @@
     --green-low: rgba(11, 220, 95, .15);
 
     /* section for color */
+    --color-success: var(--green);
     --color-warning: var(--red);
 
     /* section for border */
@@ -75,6 +76,7 @@
 
     /* section for shadow */
     --box-shadow-theme: 0 0 50px rgba(0, 0, 0, .3);
+    --box-shadow-theme-effect: 0 0 100px rgba(0, 0, 0, .3);
     --box-shadow-primary: 0 0 50px rgba(0, 0, 0, .6);
     --box-shadow-chat-theme: 0 0 40px #c3c5c9;
 
