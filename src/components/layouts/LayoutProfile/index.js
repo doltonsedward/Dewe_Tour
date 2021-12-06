@@ -42,13 +42,18 @@ const LayoutProfile = ({ getter, handler }) => {
     const filterApproval = dataTrans.filter(item => item.status === 'Approve')
     const filterCancel = dataTrans.filter(item => item.status === 'Cancel')
     
+    const handleUpdate = () => {
+        handleSubmit() 
+        handleEdit()
+    }
+    
     return (
         <div className="header-default">
             <div className="hero"></div>
             <Gap height={114} />
             <div style={{width: 785, margin: '0 auto', display: 'flex'}}>
-                <div className="mr-m"><Button variant="contained" onClick={handleEdit}>Edit</Button></div>
-                <Button variant={variant} onClick={handleSubmit}>Update</Button>
+                <Button variant="contained" sx={{ marginRight: 1 }} onClick={handleEdit}>Edit</Button>
+                <Button variant={variant} onClick={handleUpdate}>Update</Button>
             </div>
             <Gap height={20} />
             <PersonalInfoProfile 
