@@ -45,6 +45,16 @@ const Header = ({logo}) => {
         toast.success('Logout success, welcome back anytime')
     }
 
+    const handleSwitchOpenLogin = () => {
+        setIsLoginActive(true)
+        setIsRegisterActive(false)
+    }
+
+    const handleSwitchOpenRegis = () => {
+        setIsLoginActive(false)
+        setIsRegisterActive(true)
+    }
+
     useEffect(()=> {
         if (localStorage.token) {
             setAuthToken(localStorage.token)
@@ -151,8 +161,8 @@ const Header = ({logo}) => {
                     <Button className="btn-login" onClick={()=> setIsLoginActive(true)}>Login</Button>
                     <Button variant="contained" sx={{ marginLeft: 2 }} onClick={()=> setIsRegisterActive(true)}>Register</Button>
 
-                    <Login isOpen={isLoginActive} setIsOpen={setIsLoginActive} />
-                    <Register isOpen={isRegisterActive} setIsOpen={setIsRegisterActive} />
+                    <Login isOpen={isLoginActive} setIsOpen={setIsLoginActive} switchOpen={handleSwitchOpenRegis} />
+                    <Register isOpen={isRegisterActive} setIsOpen={setIsRegisterActive} switchOpen={handleSwitchOpenLogin} />
                 </div>
             </header>
         )
