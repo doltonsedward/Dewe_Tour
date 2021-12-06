@@ -1,13 +1,14 @@
 import { Gap, Group, Text, PersonalInfoProfile, TabsProfile } from '../../'
 
 // mui compnent
-import { 
+import { LoadingButton } from '@mui/lab'
+import {
     Button, 
     Box,
 } from '@mui/material'
 
 const LayoutProfile = ({ getter, handler }) => {
-    const { dataTrans, form, profile, isEditable, preview, variant, value } = getter
+    const { dataTrans, form, profile, isEditable, preview, variant, value, loading } = getter
     const { handleEdit, handleChange, handleMuiChange, handleSubmit } = handler
 
     // mui function
@@ -42,18 +43,19 @@ const LayoutProfile = ({ getter, handler }) => {
     const filterApproval = dataTrans.filter(item => item.status === 'Approve')
     const filterCancel = dataTrans.filter(item => item.status === 'Cancel')
     
-    const handleUpdate = () => {
-        handleSubmit() 
-        handleEdit()
-    }
-    
     return (
         <div className="header-default">
             <div className="hero"></div>
             <Gap height={114} />
             <div style={{width: 785, margin: '0 auto', display: 'flex'}}>
                 <Button variant="contained" sx={{ marginRight: 1 }} onClick={handleEdit}>Edit</Button>
-                <Button variant={variant} onClick={handleUpdate}>Update</Button>
+                <LoadingButton
+                    loading={loading}
+                    variant={variant} 
+                    onClick={handleSubmit}
+                >
+                    Update
+                </LoadingButton>
             </div>
             <Gap height={20} />
             <PersonalInfoProfile 
