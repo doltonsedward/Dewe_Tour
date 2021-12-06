@@ -73,6 +73,7 @@ $height: calc(100vh - 20vh);
     }
 
     .content-message {
+        position: relative;
         padding: 20px;
         width: 90%;
         height: 60vh;
