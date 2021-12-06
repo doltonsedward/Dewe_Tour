@@ -7,17 +7,21 @@ import { toast } from 'react-toastify'
 import { API } from '../../../config'
 
 // mui component
-import { Button } from '@mui/material'
-import Skeleton from '@mui/material/Skeleton'
-import Stack from '@mui/material/Stack'
+import { LoadingButton } from '@mui/lab'
+import { 
+    Button,
+    Skeleton,
+    Stack
+} from '@mui/material'
 
 import { useState } from 'react'
 
 const PaymentBox = ({name, country, type, count, status, item, value, fetching, ...rest}) => {
-    console.clear()
+    // console.clear()
     let boxStatus, textBoxStatus
 
     const [loading, setLoading] = useState(true)
+    const [buttonLoading, setButtonLoading] = useState(false)
     const [preview, setPreview] = useState('')
 
     const [form, setForm] = useState([
@@ -63,11 +67,11 @@ const PaymentBox = ({name, country, type, count, status, item, value, fetching, 
             let url = URL.createObjectURL(e.target.files[0])
             setPreview(url)
         }
-
     }
-    
 
     const handleSubmit = async () => {
+        setButtonLoading(true)
+
         try {
             const formData = new FormData()
             formData.set('status', form.status)
@@ -83,6 +87,7 @@ const PaymentBox = ({name, country, type, count, status, item, value, fetching, 
 
             const response = await API.patch('/transaction/' + item.id, body, config)
             fetching()
+            setButtonLoading(false)
             toast.success(response?.data.message)
         } catch (error) {
             const message = error?.response?.data?.message || error.message
@@ -100,8 +105,7 @@ const PaymentBox = ({name, country, type, count, status, item, value, fetching, 
 
             const body = JSON.stringify({ filled })
 
-            const response =  await API.patch('/trip/' + item.tripId, body, config)
-            toast.success(response?.data.message)
+            await API.patch('/trip/' + item.tripId, body, config)
         } catch (error) {
             const message = error?.response?.data?.message || error.message
             toast.error(message || 'Unknow error')
@@ -230,9 +234,14 @@ const PaymentBox = ({name, country, type, count, status, item, value, fetching, 
                 <p className="text-right">
                     {
                         status === 'Waiting payment' ?
-                        <Button variant="contained" sx={paymentButton} {...rest} onClick={handleSubmit}>
+                        <LoadingButton 
+                            variant="contained" 
+                            loading={buttonLoading}
+                            sx={paymentButton} 
+                            onClick={handleSubmit}
+                            {...rest} >
                             pay
-                        </Button>
+                        </LoadingButton>
                         :
                         null
                     }

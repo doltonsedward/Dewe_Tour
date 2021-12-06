@@ -7,9 +7,10 @@ import { toast } from 'react-toastify'
 import { API, checkUser } from '../../config'
 
 const Profile = () => {
+    console.clear()
     const [dataTrans, setDataTrans] = useState([])
     const [value, setValue] = useState(0)
-    
+    const [loading, setLoading] = useState(false)
     const [profile, setProfile] = useState({}) 
     const [isEditable, setIsEditable] = useState(false) 
     
@@ -55,7 +56,7 @@ const Profile = () => {
             setDataTrans(data)
         } catch (error) {
             const message = error?.response?.data?.message || error?.message
-            toast.success(message || 'Unknow error')
+            toast.error(message || 'Unknow error')
         }
     }
 
@@ -82,6 +83,8 @@ const Profile = () => {
     }
 
     const handleSubmit = async () => {
+        setLoading(true)
+
         try {
             const formData = new FormData()
             formData.set('fullName', form.fullName)
@@ -112,8 +115,12 @@ const Profile = () => {
                 toast.success(response.data.message)
             }
             
+            handleEdit()
+            getUser()
             checkUser()
+            setLoading(false)
         } catch (error) {
+            handleEdit()
             const message = error?.response?.data?.message || error?.message
             toast.error(message || 'Unknow error')
         }
@@ -124,11 +131,10 @@ const Profile = () => {
         setValue(newValue);
     }
 
-    const handler = { handleEdit, handleChange, handleMuiChange, handleSubmit }
     return (
         <LayoutProfile 
-            getter={{ dataTrans, form, profile, isEditable, variant, preview, value }}
-            handler={handler}
+            getter={{ dataTrans, form, profile, isEditable, variant, preview, value, loading }}
+            handler={{ handleEdit, handleChange, handleMuiChange, handleSubmit }}
         />
     )
 }
