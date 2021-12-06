@@ -57,7 +57,6 @@ const Trip = () => {
                         <div>
                             <Button variant="contained" sx={muiButton} onClick={()=> history.push('/add-trip')}>add trip</Button>
                             <Button variant="contained" sx={newMuiButton} onClick={()=> history.push('/add-country')}>add country</Button>
-                            <Button variant="contained" sx={newMuiButton} onClick={actionButton}>action</Button>
                         </div>
                     </Group>
                     <div className="row">
