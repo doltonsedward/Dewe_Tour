@@ -16,6 +16,8 @@
 - Detail tour
 - Graph in dashboard
 - Payment
+- Chat, in user and admin
 
 ## Bug fixed
 - Delay when fetching data profile, need watched (fixed)
+- Chat input cannot be fixed in Chat Box
