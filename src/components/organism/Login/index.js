@@ -9,15 +9,16 @@ import { API, checkUser, setAuthToken } from '../../../config'
 
 // mui component
 import { 
+    Button,
     Backdrop,
     Modal,
     Fade
 } from '@mui/material'
 
-const Login = ({ isOpen, setIsOpen }) => {
+const Login = ({ isOpen, setIsOpen, switchOpen }) => {
     const [open, setOpen] = useState(false)
-    const [message, setMessage] = useState('Not found')
-    const [severity, setSeverity] = useState('success')
+    const [message, setMessage] = useState('Loading..')
+    const [severity, setSeverity] = useState('info')
     
     const [form, setForm] = useState({
         email: "",
@@ -68,6 +69,12 @@ const Login = ({ isOpen, setIsOpen }) => {
         }
     }
 
+    const handleEnterPressed = (e) => {
+        if (e.keyCode === 13) {
+            loginSession()
+        }
+    }
+
     return (
         <>
             <Modal
@@ -89,15 +96,15 @@ const Login = ({ isOpen, setIsOpen }) => {
                                 <img className="icon-hibicus__login" src={IconHibicus2} alt="" />
                             </div>
                             <div className="content-modal">
-                                <form onSubmit={loginSession}>
+                                <form onSubmit={loginSession} onKeyDown={handleEnterPressed}>
                                     <p className="title">Login</p>
                                     <Input label="Email" fontSize={24} name="email" value={email} onChange={handleChange} required />
                                     <Gap height={20} />
                                     <Input label="Password" fontSize={24} name="password" value={password} type="password" onChange={handleChange} required />
                                     <Gap height={20} />
-                                    <button className="btn-warning full" onClick={handleClick} type="submit">Login</button>
+                                    <Button variant="contained" fullWidth className="btn-warning" onClick={handleClick} type="submit">Login</Button>
                                     <Gap height={23} />
-                                    <p className="text-center disclamer">Don't have an account? Klik Here</p>
+                                    <p className="text-center disclamer">Don't have an account? <span className="c-pointer" onClick={()=> switchOpen(true)}>Klik Here</span></p>
                                 </form>
                             </div>
                         </div>
