@@ -30,6 +30,7 @@ import { io } from 'socket.io-client'
 
 let socket
 const Dashboard = () => {
+    console.clear()
     const currentState = useSelector(state => state)
     
     const dataLoyalUser = []
@@ -88,9 +89,6 @@ const Dashboard = () => {
             console.log(error)
         }
     } 
-
-    console.log(dataUser, 'data user')
-    console.log(dataLoyalUser, 'data Loyal User')
 
     const dataUserAfterTrans = []
     for (let i = 0; i < trans.length; i++) {
