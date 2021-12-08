@@ -51,6 +51,7 @@ const Register = ({ isOpen, setIsOpen }) => {
 
             if (response?.status === 200) {
                 setMessage('Register success')
+                setSeverity('success')
             }
 
         } catch (error) {

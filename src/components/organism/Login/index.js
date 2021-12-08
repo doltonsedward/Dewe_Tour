@@ -92,8 +92,8 @@ const Login = ({ isOpen, setIsOpen, switchOpen }) => {
                     <div>
                         <div className="modal">  
                             <div className="heading-modal">
-                                <img className="icon-palm__login" src={IconPalm2} alt="" />
-                                <img className="icon-hibicus__login" src={IconHibicus2} alt="" />
+                                <img className="icon-palm__login" src={IconPalm2} alt="login with google" />
+                                <img className="icon-hibicus__login" src={IconHibicus2} alt="you can login with google here" />
                             </div>
                             <div className="content-modal">
                                 <form onSubmit={loginSession} onKeyDown={handleEnterPressed}>
@@ -102,7 +102,7 @@ const Login = ({ isOpen, setIsOpen, switchOpen }) => {
                                     <Gap height={20} />
                                     <Input label="Password" fontSize={24} name="password" value={password} type="password" onChange={handleChange} required />
                                     <Gap height={20} />
-                                    <Button variant="contained" fullWidth className="btn-warning" onClick={handleClick} type="submit">Login</Button>
+                                    <Button variant="contained" fullWidth  onClick={handleClick} type="submit">Login</Button>
                                     <Gap height={23} />
                                     <p className="text-center disclamer">Don't have an account? <span className="c-pointer" onClick={()=> switchOpen(true)}>Klik Here</span></p>
                                 </form>
