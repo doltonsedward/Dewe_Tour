@@ -1,40 +1,15 @@
 import { Gap, Group, Text, Input } from "../../../components"
 import { muiButton } from "../../../utils"
+import { useState } from "react"
+import { toast } from 'react-toastify'
 
 import { API } from "../../../config"
-import { useState } from "react"
 
 // MUI component
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import { Alert } from '@mui/material';
+import { Button } from '@mui/material'
 
 const AddCountry = () => {
     console.clear()
-    // MUI logic
-    const handleClick = () => setOpen(true)
-    const handleClose = () => setOpen(false)
-
-    const action = (
-        <>
-            <Button color="secondary" size="small" onClick={handleClose}>
-                CLOSE
-            </Button>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleClose}
-            >
-            </IconButton>
-        </>
-    )
-
-    const [open, setOpen] = useState(false)
-    const [message, setMessage] = useState('Not found')
-    const [severity, setSeverity] = useState('success')
-    // close MUI session
 
     const [form, setForm] = useState({
         name: '',
@@ -57,17 +32,13 @@ const AddCountry = () => {
 
             const body = JSON.stringify(form)
 
-            await API.post('/country', body, config)
+            const response = await API.post('/country', body, config)
 
-            handleClick()
-            setMessage('Add country success')
-            setSeverity('success')
+            const message = response?.data?.message
+            toast.success(message || 'Add trip success')
         } catch (error) {
-            console.log(error) 
-
-            handleClick()
-            setMessage('Add country failed')
-            setSeverity('error')
+            const message = error?.response?.data?.message || error?.message
+            toast.error(message || 'Unknow')
         }
     }
 
@@ -89,23 +60,6 @@ const AddCountry = () => {
             <Gap height={115} />
                 <p className="text-center"><Button variant="contained" sx={muiButton} onClick={handleSubmit}>add country</Button></p>
             <Gap height={100} />
-
-            <Snackbar sx={{
-                position: 'fixed',
-                bottom: 0,
-                zIndex: 99999999999,
-                transform: 'translate(50px, -25px) scale(1.2)',
-                boxShadow: '0 0 30px rgba(0,0,0,.25)'
-            }}
-                open={open}
-                autoHideDuration={6000}
-                onClose={handleClose}
-                action={action}
-            >
-                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
-                    {message}
-                </Alert>
-            </Snackbar>
         </div>
     )
 }
