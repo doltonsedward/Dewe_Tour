@@ -27,7 +27,7 @@ const ChatAdmin = () => {
     const [messages, setMessages] = useState([])
 
     useEffect(()=> {
-        socket = io("http://localhost:8080", {
+        socket = io(process.env.REACT_APP_SOCKET_URL || "http://localhost:8080", {
             auth: {
                 token: localStorage.getItem('token')
             },
