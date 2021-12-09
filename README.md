@@ -7,7 +7,7 @@
 - Add google oauth client 
 - Make danger zone maybe
 - Dynamic button loading when fetching data (done)
-- Dynamic booking button, only user can booking
+- Dynamic booking button, only user can booking (done)
 
 ## Done Slicing UI 
 - Login
@@ -23,3 +23,4 @@
 ## Bug fixed
 - Delay when fetching data profile, need watched (fixed)
 - Chat input cannot be fixed in Chat Box
+- Fix chatting in production
