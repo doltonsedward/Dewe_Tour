@@ -3,6 +3,7 @@ import { DashboardBox, Gap } from '../../../components'
 import { warningButton } from '../../../utils'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 
 // IMPORT API
 import { API } from '../../../config'
@@ -63,7 +64,8 @@ const Dashboard = () => {
             setUsersLength(data?.length)
             setDataUser(data)
         } catch (error) {
-            console.log(error)
+            const message = error?.message || error?.response?.data?.message
+            toast.error(message || 'Unknow error')
         } 
     } 
 
@@ -74,7 +76,8 @@ const Dashboard = () => {
 
             setTripsLength(data?.length)
         } catch (error) {
-            console.log(error)
+            const message = error?.message || error?.response?.data?.message
+            toast.error(message || 'Unknow error')
         } 
     } 
 
@@ -86,7 +89,8 @@ const Dashboard = () => {
             setTransLength(data.length)
             setTrans(data)
         } catch (error) {
-            console.log(error)
+            const message = error?.message || error?.response?.data?.message
+            toast.error(message || 'Unknow error')
         }
     } 
 
@@ -198,7 +202,6 @@ const Dashboard = () => {
                                             dataLoyalUser.push(true)
                                         }
 
-                                        console.log(totalTransByUser, 'trans by user')
                                         return (
                                             <TableRow>
                                                 <TableCell align="center">{item.fullName}</TableCell>

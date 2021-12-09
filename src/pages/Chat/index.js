@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Contact, Gap, Message } from '../../components'
 import { muiButton, playNotif } from '../../utils'
+import { toast } from 'react-toastify'
 
 // MUI 
 import * as React from 'react'
@@ -90,7 +91,7 @@ const Chat = () => {
 
         // listen error sent from server
         socket.on("connect_error", (error) => {
-            console.error(error.message) // not authorized
+            toast.error(error?.message || 'Now authorized') // not authorized
         })
 
         loadMessage()
@@ -104,8 +105,6 @@ const Chat = () => {
             socket.disconnect()
         }
     }, [messages])
-
-    console.log(messages, 'messages')
 
     // set message 
     const onClickContact = (data) => {

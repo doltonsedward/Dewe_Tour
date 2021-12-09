@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux'
 import { Contact, Gap, Message } from "../../../components"
+import { toast } from 'react-toastify'
 
 // MUI 
 import * as React from 'react'
@@ -60,7 +61,7 @@ const ChatAdmin = () => {
 
         // listen error sent from server
         socket.on("connect_error", (error) => {
-            console.error(error.message); // not authorized
+            toast.error(error?.message || 'Now authorized') // not authorized
         })
 
         loadMessages()
@@ -138,10 +139,6 @@ const ChatAdmin = () => {
         setContact(data)
         socket.emit("load messages", data.id)
     }
-
-    console.log(messages, 'message')
-
-    
 
     // handle when send message
     const onSendMessage = (e) => {
