@@ -27,13 +27,6 @@ const rootReducer = (state = initialValue, action) => {
                 user: {}
             }
 
-        case 'IS_CHANGGING':
-            return {
-                ...state,
-                isLoading: false,
-                isChangging: payload
-            }
-
         case 'STOP_LOADING':
             return {
                 ...state,
