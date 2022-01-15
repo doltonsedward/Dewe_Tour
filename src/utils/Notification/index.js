@@ -1,6 +1,6 @@
 const playNotif = (url) => {
-    const audio = new Audio(url)
-    audio.play()
-}
+  const audio = new Audio(url);
+  audio.play();
+};
 
-export { playNotif }
+export { playNotif };
