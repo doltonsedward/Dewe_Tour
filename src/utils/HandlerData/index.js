@@ -1,10 +1,9 @@
-const removeData = ({name}) => {
-    localStorage.removeItem(name)
-}
+const removeData = ({ name }) => {
+  localStorage.removeItem(name);
+};
 
 const setData = (name, data) => {
-    return localStorage.setItem(name, JSON.stringify(data))
-}
+  return localStorage.setItem(name, JSON.stringify(data));
+};
 
-export { removeData, setData }
-
+export { removeData, setData };
