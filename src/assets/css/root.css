@@ -1,86 +1,85 @@
 :root {
-    --white: #fff;
-    --white-second: rgba(255, 255, 255, 1);
-    --white-low: #E5E5E5;
-    --orange: #FFAF00;
-    --orange-low: #f0d69e;
-    --gray: #C4C4C4;
-    --gray-low: #D2D2D240;
-    --gray-second: #878787;
-    --gray-third: #B1B1B1;
-    --gray-fourth: #B7B7B7;
-    --gray-fifth: rgba(183, 183, 183, 0.5);
-    --gray-medium: #8A8C90;
-    --red: #FF0742;
-    --red-low: rgba(236, 122, 122, 0.15);
-    --green: #0ACF83;
-    --green-low: rgba(11, 220, 95, .15);
+  --white: #fff;
+  --white-second: rgba(255, 255, 255, 1);
+  --white-low: #e5e5e5;
+  --orange: #ffaf00;
+  --orange-low: #f0d69e;
+  --gray: #c4c4c4;
+  --gray-low: #d2d2d240;
+  --gray-second: #878787;
+  --gray-third: #b1b1b1;
+  --gray-fourth: #b7b7b7;
+  --gray-fifth: rgba(183, 183, 183, 0.5);
+  --gray-medium: #8a8c90;
+  --red: #ff0742;
+  --red-low: rgba(236, 122, 122, 0.15);
+  --green: #0acf83;
+  --green-low: rgba(11, 220, 95, 0.15);
 
-    /* section for color */
-    --color-success: var(--green);
-    --color-warning: var(--red);
+  /* section for color */
+  --color-success: var(--green);
+  --color-warning: var(--red);
 
-    /* section for border */
-    --border-trendy: 5px;
-    --border-smooth: 13px;
-    --border-circle: 50%;
+  /* section for border */
+  --border-trendy: 5px;
+  --border-smooth: 13px;
+  --border-circle: 50%;
 
-    /* section for theme  */
-    --color-primary: var(--white);
-    --color-theme: var(--orange);
-    --color-theme-two: var(--orange-low);
-    --bg-default: var(--white-low);
-    --bg-theme: var(--orange);
-    --bg-footer: var(--orange);
+  /* section for theme  */
+  --color-primary: var(--white);
+  --color-theme: var(--orange);
+  --color-theme-two: var(--orange-low);
+  --bg-default: var(--white-low);
+  --bg-theme: var(--orange);
+  --bg-footer: var(--orange);
 
-    /* section for input  */
-    --bg-input: var(--gray-low);
+  /* section for input  */
+  --bg-input: var(--gray-low);
 
-    /* section for button  */
-    --bg-btn-theme: var(--orange);
-    --bg-btn-warning: var(--orange);
-    --bg-btn-danger: var(--red);
-    --bg-btn-danger-outer: var(--red-low);
-    --bg-btn-success: var(--green);
-    --bg-btn-success-outer: var(--green-low);
-    
-    --bg-chat-theme: #EAEFFA;
+  /* section for button  */
+  --bg-btn-theme: var(--orange);
+  --bg-btn-warning: var(--orange);
+  --bg-btn-danger: var(--red);
+  --bg-btn-danger-outer: var(--red-low);
+  --bg-btn-success: var(--green);
+  --bg-btn-success-outer: var(--green-low);
 
-    /* section for text  */
-    --text-warning: var(--orange);
-    --text-danger: var(--red);
-    --text-success: var(--green);
+  --bg-chat-theme: #eaeffa;
 
-    /* section for font  */
-    --font-heading-default: 'Product Sans';
-    --font-heading: 'Product Sans Bold';
-    --font-subheading: 'Product Sans Thin';
-    --font-button: 18px;
+  /* section for text  */
+  --text-warning: var(--orange);
+  --text-danger: var(--red);
+  --text-success: var(--green);
 
-    /* section for heading */
-    --h1-size: 64px;
-    --h2-size: 48px;
+  /* section for font  */
+  --font-heading-default: "Product Sans";
+  --font-heading: "Product Sans Bold";
+  --font-subheading: "Product Sans Thin";
+  --font-button: 18px;
 
-    /* section for footer */
-    --color-footer: var(--white);
+  /* section for heading */
+  --h1-size: 64px;
+  --h2-size: 48px;
 
-    /* section  */
-    --card-theme: var(--white);
+  /* section for footer */
+  --color-footer: var(--white);
 
-    /* section for hero */
-    --hero-height: 547px;
-    --hero-height-alternate: calc(var(--hero-height) / 7);
+  /* section  */
+  --card-theme: var(--white);
 
-    /* section for main */
-    --main-padding: 0 104px;
+  /* section for hero */
+  --hero-height: 547px;
+  --hero-height-alternate: calc(var(--hero-height) / 7);
 
-    /* section for shadow */
-    --box-shadow-theme: 0 0 50px rgba(0, 0, 0, .3);
-    --box-shadow-theme-effect: 0 0 100px rgba(0, 0, 0, .3);
-    --box-shadow-primary: 0 0 50px rgba(0, 0, 0, .6);
-    --box-shadow-chat-theme: 0 0 40px #c3c5c9;
+  /* section for main */
+  --main-padding: 0 104px;
 
+  /* section for shadow */
+  --box-shadow-theme: 0 0 50px rgba(0, 0, 0, 0.3);
+  --box-shadow-theme-effect: 0 0 100px rgba(0, 0, 0, 0.3);
+  --box-shadow-primary: 0 0 50px rgba(0, 0, 0, 0.6);
+  --box-shadow-chat-theme: 0 0 40px #c3c5c9;
 
-    /* section for logic */
-    --z-index: 2;
+  /* section for logic */
+  --z-index: 2;
 }
