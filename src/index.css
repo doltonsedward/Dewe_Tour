@@ -4,17 +4,29 @@
   box-sizing: border-box;
 }
 
-@font-face { font-family: 'Product Sans Bold'; src: url('./assets/font/Product\ Sans\ Bold.ttf') }
-@font-face { font-family: 'Product Sans Thin'; src: url('./assets/font/Product\ Sans\ Thin.ttf') }
-@font-face { font-family: 'Product Sans'; src: url('./assets/font/Product\ Sans\ Regular.ttf') }
-@font-face { font-family: 'Avenir'; src: url('./assets/font/Avenir-Roman.otf') }
+@font-face {
+  font-family: "Product Sans Bold";
+  src: url("./assets/font/Product\ Sans\ Bold.ttf");
+}
+@font-face {
+  font-family: "Product Sans Thin";
+  src: url("./assets/font/Product\ Sans\ Thin.ttf");
+}
+@font-face {
+  font-family: "Product Sans";
+  src: url("./assets/font/Product\ Sans\ Regular.ttf");
+}
+@font-face {
+  font-family: "Avenir";
+  src: url("./assets/font/Avenir-Roman.otf");
+}
 
 /* shortcut */
 
 /* tutup */
 
 body {
-  font-family: 'Avenir', Arial, Helvetica, sans-serif;
+  font-family: "Avenir", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
@@ -22,32 +34,48 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-:focus { outline: none }
+:focus {
+  outline: none;
+}
 
 input {
   font-size: 18px;
   border-radius: var(--border-trendy);
 }
 
-b { display: block }
-ul:not(.primitive) li { list-style: none }
-
-input, button { 
-  border: none;
-  font-size: 18px;
-  font-family: 'Product Sans Bold' 
+b {
+  display: block;
+}
+ul:not(.primitive) li {
+  list-style: none;
 }
 
-label { font-size: 18px }
+input,
+button {
+  border: none;
+  font-size: 18px;
+  font-family: "Product Sans Bold";
+}
 
-button, input[type="file"] { cursor: pointer }
+label {
+  font-size: 18px;
+}
 
-h1 { font-size: var(--h1-size) }
-h2 { font-size: var(--h2-size) }
+button,
+input[type="file"] {
+  cursor: pointer;
+}
+
+h1 {
+  font-size: var(--h1-size);
+}
+h2 {
+  font-size: var(--h2-size);
+}
 
 .hero {
   position: relative;
@@ -56,7 +84,7 @@ h2 { font-size: var(--h2-size) }
   flex-direction: column;
   justify-content: center;
   height: var(--hero-height);
-  background: url('./assets/img/hero.jpg') no-repeat ;
+  background: url("./assets/img/hero.jpg") no-repeat;
   background-size: cover;
   z-index: var(--z-index);
 }
