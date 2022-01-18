@@ -1,40 +1,40 @@
 const initialValue = {
-    isLoading: true,
-    isLogin: false,
-    user: {}
-}
+  isLoading: true,
+  isLogin: false,
+  user: {},
+};
 
 const rootReducer = (state = initialValue, action) => {
-    const {type, payload} = action
-    
-    switch (type) {
-        case 'USER_SUCCESS':
-        case 'LOGIN':
-            localStorage.setItem('token', payload.token)
+  const { type, payload } = action;
 
-            return {
-                isLoading: false,
-                isLogin: true,
-                user: payload
-            }
-        case 'AUTH_ERROR':
-        case 'LOGOUT':
-            localStorage.removeItem('token')
-            
-            return {
-                isLoading: false,
-                isLogin: false,
-                user: {}
-            }
+  switch (type) {
+    case "USER_SUCCESS":
+    case "LOGIN":
+      localStorage.setItem("token", payload.token);
 
-        case 'STOP_LOADING':
-            return {
-                ...state,
-                isLoading: false
-            }
-        default:
-            return state
-    }
-}
+      return {
+        isLoading: false,
+        isLogin: true,
+        user: payload,
+      };
+    case "AUTH_ERROR":
+    case "LOGOUT":
+      localStorage.removeItem("token");
+
+      return {
+        isLoading: false,
+        isLogin: false,
+        user: {},
+      };
+
+    case "STOP_LOADING":
+      return {
+        ...state,
+        isLoading: false,
+      };
+    default:
+      return state;
+  }
+};
 
 export default rootReducer;
