@@ -1,23 +1,23 @@
-import './App.css'
-import { useEffect } from 'react'
-import { checkUser, Routes, setAuthToken } from '../config'
+import "./App.css";
+import { useEffect } from "react";
+import { checkUser, Routes, setAuthToken } from "../config";
 
 if (localStorage.token) {
-    setAuthToken(localStorage.token)
+  setAuthToken(localStorage.token);
 }
 
 const App = () => {
-    useEffect(()=> {
-        if (localStorage.token) {
-            setAuthToken(localStorage.token)
-        }
-    }, [])
+  useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+  }, []);
 
-    useEffect(()=> {
-        checkUser()
-    }, [])
-    
-    return <Routes />
-}
+  useEffect(() => {
+    checkUser();
+  }, []);
 
-export default App
+  return <Routes />;
+};
+
+export default App;
