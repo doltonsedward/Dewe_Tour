@@ -1,29 +1,28 @@
 .payment {
-    
-    .hero {
-        height: var(--hero-height-alternate);
-    }
+  .hero {
+    height: var(--hero-height-alternate);
+  }
 
-    .content__payment {
-        background-color: var(--color-primary);
-    }
+  .content__payment {
+    background-color: var(--color-primary);
+  }
 }
 
 .table-bold {
-    font-weight: 800;
+  font-weight: 800;
 }
 
 .empty-cases {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .testing {
-    width: 150px;
-    height: 50px;
-    color: #7aeca0;
-    background: rgba(0, 255, 106, 0.078);
+  width: 150px;
+  height: 50px;
+  color: #7aeca0;
+  background: rgba(0, 255, 106, 0.078);
 
-    &:hover {
-        background: rgba(0, 255, 106, 0.5);
-    }
+  &:hover {
+    background: rgba(0, 255, 106, 0.5);
+  }
 }
