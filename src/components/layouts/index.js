@@ -1,3 +1,3 @@
-import LayoutProfile from "./LayoutProfile"
+import LayoutProfile from "./LayoutProfile";
 
-export { LayoutProfile }
+export { LayoutProfile };

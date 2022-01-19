@@ -1,46 +1,45 @@
 .modal {
-    padding: 18px 20px;
-    width: 416px;
-    max-width: 90%;
+  padding: 18px 20px;
+  width: 416px;
+  max-width: 90%;
+  border-radius: var(--border-trendy);
+  background-color: var(--color-primary);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  .icon-palm__login {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .icon-hibicus__login {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .content-modal {
+    .title {
+      margin: 51px;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .disclamer {
+      color: var(--gray-third);
+    }
+  }
+
+  button {
+    color: var(--color-primary);
+    height: 50px;
     border-radius: var(--border-trendy);
-    background-color: var(--color-primary);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-
-    .icon-palm__login {
-        position: absolute;
-        top: 0;
-        left: 0;
-        
-    }
-
-    .icon-hibicus__login {
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-
-    .content-modal {
-        .title {
-            margin: 51px;
-            text-align: center;
-            font-size: 36px;
-            font-weight: 700;
-        }
-
-        .disclamer {
-            color: var(--gray-third);
-        }
-    }
-
-    button {
-        color: var(--color-primary);
-        height: 50px;
-        border-radius: var(--border-trendy);
-        font-size: 24px;
-        font-weight: 700;
-    }
+    font-size: 24px;
+    font-weight: 700;
+  }
 }
