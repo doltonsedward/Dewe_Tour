@@ -1,3 +1,3 @@
-import TabPanelProfile from "./TabPanelProfile"
+import TabPanelProfile from "./TabPanelProfile";
 
-export { TabPanelProfile }
+export { TabPanelProfile };

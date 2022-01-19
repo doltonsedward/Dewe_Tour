@@ -1,0 +1,21 @@
+.list-sidebar {
+  .wrappeer-icon__sidebar {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    > * {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  li.active {
+    .wrappeer-icon__sidebar {
+      border-radius: 5px;
+      color: var(--color-theme);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
