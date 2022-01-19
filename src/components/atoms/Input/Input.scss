@@ -1,65 +1,65 @@
 .wrapper-input {
+  p {
+    margin-bottom: 11px;
+  }
+
+  input {
+    padding: 20px;
+    width: 100%;
+    height: 50px;
+    display: block;
+    border-radius: var(--border-trendy);
+  }
+
+  .btn-submit__hero {
+    width: 136px;
+    color: var(--white-second);
+    font-size: var(--font-button);
+    letter-spacing: 0.2px;
+    border-radius: 0px 5px 5px 0px;
+  }
+
+  &.default {
     p {
-        margin-bottom: 11px;
+      font-weight: 800;
     }
 
-    input {
-        padding: 20px;
-        width: 100%;
-        height: 50px;
-        display: block;
-        border-radius: var(--border-trendy);
+    .input-theme {
+      font-weight: bold;
+      background-color: var(--bg-input);
     }
-
-    .btn-submit__hero {
-        width: 136px;
-        color: var(--white-second);
-        font-size: var(--font-button);
-        letter-spacing: .2px;
-        border-radius: 0px 5px 5px 0px;
-    }
-
-    &.default {
-        p {
-            font-weight: 800;
-        }
-
-        .input-theme {
-            font-weight: bold;
-            background-color: var(--bg-input);
-        }
-    }
+  }
 }
 
 .root--input-file {
-    button {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 18px;
-        padding: 0 9px;
-        text-align: left;
-        width: 312px;
-        max-width: 90%;
-        height: 49px;
-        position: relative;
-        color: var(--color-theme);
-        background-color: #C4C4C480;
-        border: 2px solid #B1B1B1;
-        border-radius: var(--border-trendy);
+  button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    padding: 0 9px;
+    text-align: left;
+    width: 312px;
+    max-width: 90%;
+    height: 49px;
+    position: relative;
+    color: var(--color-theme);
+    background-color: #c4c4c480;
+    border: 2px solid #b1b1b1;
+    border-radius: var(--border-trendy);
 
-        input {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-        }
+    input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
     }
+  }
 }
 
 .input-basic {
-    font-size: 14px;
-    height: 5px!important;
-    color: rgba($color: #000000, $alpha: .7);
-    border: 1px solid rgba($color: #000000, $alpha: .2);
+  font-size: 14px;
+  height: 5px !important;
+  color: rgba($color: #000000, $alpha: 0.7);
+  border: 1px solid rgba($color: #000000, $alpha: 0.2);
 }
