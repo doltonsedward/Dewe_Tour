@@ -1,4 +1,4 @@
-import "./_Trip.scss";
+import "./Trip.scss";
 
 import { useEffect, useState } from "react";
 import { Gap, Text, Group, ContentBox } from "../../../components";
