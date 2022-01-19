@@ -1,3 +1,3 @@
-import TabsProfile from "./TabsProfile"
+import TabsProfile from "./TabsProfile";
 
-export { TabsProfile }
+export { TabsProfile };
