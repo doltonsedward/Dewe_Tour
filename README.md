@@ -8,6 +8,7 @@
 - Make danger zone maybe
 - Dynamic button loading when fetching data (done)
 - Dynamic booking button, only user can booking (done)
+- Refactor Code
 
 ## Done Slicing UI 
 - Login
