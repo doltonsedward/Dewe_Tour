@@ -29,18 +29,20 @@ import {
 
 const Routes = () => {
   const currentState = useSelector((state) => state);
-  return currentState.isLoading ? (
-    <div className="loading-section">
-      <div className="loading">
-        <p>loading</p>
-        <span></span>
-      </div>
-    </div>
-  ) : (
+
+  return (
     <Router>
       <Header logo={Logo} />
       <Switch>
         <Route exact path="/">
+          {currentState.isLoading && (
+            <div className="loading-section">
+              <div className="loading">
+                <p>loading</p>
+                <span></span>
+              </div>
+            </div>
+          )}
           <Home />
         </Route>
         <Redirect path="/detail-trip/" to="/not-found" exact />
