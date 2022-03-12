@@ -1,4 +1,4 @@
-import "./_Search.scss";
+import "./Search.scss";
 
 import { ContentBox, Gap, Text } from "../../components";
 import { muiButton } from "../../utils";
