@@ -1,6 +1,6 @@
 import "./Home.scss";
-import { LogoGuarante, LogoHeart, LogoAgent, LogoSupport } from "../../assets/";
-import { IconPalm, IconHibicus } from "../../assets/";
+import { LogoGuarante, LogoHeart, LogoAgent, LogoSupport } from "../../assets";
+import { IconPalm, IconHibicus } from "../../assets";
 import { Gap, Input, CardBox, ContentBox } from "../../components";
 
 import { useHistory } from "react-router";
