@@ -1,4 +1,4 @@
-import { Gap, Group, Text, PersonalInfoProfile, TabsProfile } from "../../";
+import { Gap, Group, Text, PersonalInfoProfile, TabsProfile } from "../..";
 
 // mui compnent
 import { LoadingButton } from "@mui/lab";
