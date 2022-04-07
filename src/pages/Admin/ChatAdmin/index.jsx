@@ -49,16 +49,12 @@ const ChatAdmin = () => {
         alert("Your website doesnt support notification");
       } else if (Notification.permission === "granted") {
         // if user accept notification
-        const notification = new Notification(
-          messages[messages.length - 1].message
-        );
+        new Notification(messages[messages.length - 1].message);
         // We need to ask the user for permission
       } else if (Notification.permission !== "denied") {
         Notification.requestPermission().then(function (permission) {
           if (permission === "granted") {
-            const notification = new Notification(
-              messages[messages.length - 1].message
-            );
+            new Notification(messages[messages.length - 1].message);
           }
         });
         // if user accept, lets create a notification
