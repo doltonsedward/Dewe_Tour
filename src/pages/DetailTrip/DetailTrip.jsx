@@ -1,16 +1,11 @@
 import "./DetailTrip.scss";
 import { useHistory, useParams } from "react-router";
 import { Gap, Text } from "../../components";
-import {
-  IconHotel,
-  IconPlane,
-  IconMeal,
-  IconTime,
-  IconCalendar,
-} from "../../assets";
 import { muiButton, setData } from "../../utils";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import ListTourContainer from "./ListTourContainer";
+import BookingCountSection from "./BookingCountSection";
 
 import { API } from "../../config";
 
@@ -79,19 +74,10 @@ const DetailTrip = () => {
   const totalPriceInString = totalPrice
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  const priceInString = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   // for handling booking button
   const users = useSelector((state) => state);
   const userId = users.user.id;
-
-  // filter date
-  const filterDateTrip = dateTrip
-    ?.split(":")[0]
-    .split("T")[0]
-    .split("-")
-    .reverse()
-    .join("-");
 
   // for set data
   useEffect(() => {
@@ -170,96 +156,27 @@ const DetailTrip = () => {
               })}
             </ul>
             <Gap height={46.88} />
-            <div className="information__listTour">
-              <Text variant="bold" title="Information trip" />
-              <Gap height={20} />
-              <ul className="d-flex-between flex-responsive">
-                <li>
-                  <Text variant="p" className="color-second">
-                    Accomodation
-                  </Text>
-                  <div className="wrapper-iconic">
-                    <img src={IconHotel} alt="Hotel 4 Nights" />
-                    <Text variant="bold">{accomodation}</Text>
-                  </div>
-                </li>
-                <li>
-                  <Text variant="p" className="color-second">
-                    Transportation
-                  </Text>
-                  <div className="wrapper-iconic">
-                    <img src={IconPlane} alt="Qatar Airways" />
-                    <Text variant="bold">{transportation}</Text>
-                  </div>
-                </li>
-                <li>
-                  <Text variant="p" className="color-second">
-                    Eat
-                  </Text>
-                  <div className="wrapper-iconic">
-                    <img src={IconMeal} alt="Included as ltinerary" />
-                    <Text variant="bold">{eat}</Text>
-                  </div>
-                </li>
-                <li>
-                  <Text variant="p" className="color-second">
-                    Duration
-                  </Text>
-                  <div className="wrapper-iconic">
-                    <img src={IconTime} alt="6 Day 4 Night" />
-                    <Text variant="bold">
-                      {day} Day {night} Night
-                    </Text>
-                  </div>
-                </li>
-                <li>
-                  <Text variant="p" className="color-second">
-                    Date Trip
-                  </Text>
-                  <div className="wrapper-iconic">
-                    <img src={IconCalendar} alt="26 August 2020" />
-                    <Text variant="bold">{filterDateTrip}</Text>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <ListTourContainer
+              accomodation={accomodation}
+              transportation={transportation}
+              eat={eat}
+              day={day}
+              night={night}
+              dateTrip={dateTrip}
+            />
             <Gap height={48} />
             <Text variant="bold">Description</Text>
             <Text variant="p" fontSize={14} className="color-second">
               {description}
             </Text>
             <Gap height={26} />
-            <div className="group d-flex-between">
-              <div className="d-flex">
-                <Text
-                  variant="bold"
-                  fontSize={24}
-                  className="color-theme"
-                >{`${type} ${priceInString}`}</Text>
-                <Text variant="bold" fontSize={24} className="ml-s">
-                  / Person
-                </Text>
-              </div>
-              <div className="d-flex">
-                <Button
-                  variant="contained"
-                  sx={muiButton}
-                  onClick={() => (count === 1 ? "" : setCount(count - 1))}
-                >
-                  -
-                </Button>
-                <Text variant="bold" fontSize={24} className="total-count">
-                  {count}
-                </Text>
-                <Button
-                  variant="contained"
-                  sx={muiButton}
-                  onClick={() => (count === filled ? "" : setCount(count + 1))}
-                >
-                  +
-                </Button>
-              </div>
-            </div>
+            <BookingCountSection
+              type={type}
+              filled={filled}
+              price={price}
+              count={count}
+              onSetCount={setCount}
+            />
             <div className="group-total d-flex-between">
               <Text variant="bold" fontSize={24} className="total-count">
                 Total :
