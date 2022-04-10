@@ -1,10 +1,10 @@
-import { Text } from "../../../components";
-import { muiButton } from "../../../utils";
+import { Text } from "../../../../../components";
+import { muiButton } from "../../../../../utils";
 
 // mui component
 import Button from "@mui/material/Button";
 
-const BookingCountSection = ({ type, filled, price, count, onSetCount }) => {
+const BookingCountingSection = ({ type, filled, price, count, onSetCount }) => {
   const handleMaxCountPressed = () => count === 1 ? "" : onSetCount(count - 1);
   const handleCountWhenFilled = () => count === filled ? "" : onSetCount(count + 1);
   const priceInString = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -44,4 +44,4 @@ const BookingCountSection = ({ type, filled, price, count, onSetCount }) => {
   );
 };
 
-export default BookingCountSection;
+export default BookingCountingSection;

@@ -1,14 +1,14 @@
-import { Gap, Text } from "../../../components";
+import { Gap, Text } from "../../../../components";
 import {
   IconHotel,
   IconPlane,
   IconMeal,
   IconTime,
   IconCalendar,
-} from "../../../assets";
+} from "../../../../assets";
 import ListTourItem from "./components/ListTourItem";
 
-const BookingFooterContainer = ({
+const ListTourContainer = ({
   accomodation,
   transportation,
   eat,
@@ -41,4 +41,4 @@ const BookingFooterContainer = ({
   );
 };
 
-export default BookingFooterContainer;
+export default ListTourContainer;

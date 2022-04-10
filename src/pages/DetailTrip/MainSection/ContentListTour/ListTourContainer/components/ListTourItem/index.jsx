@@ -1,4 +1,4 @@
-import { Text } from "../../../../../components";
+import { Text } from "../../../../../../../components";
 
 const ListTourItem = ({ icon, title, contentText }) => (
   <li>

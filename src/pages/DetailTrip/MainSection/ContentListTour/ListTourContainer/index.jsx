@@ -1,23 +1,20 @@
-import { Gap, Text } from "../../../components";
+import { Gap, Text } from "../../../../../components";
 import {
   IconHotel,
   IconPlane,
   IconMeal,
   IconTime,
   IconCalendar,
-} from "../../../assets";
+} from "../../../../../assets";
 import ListTourItem from "./components/ListTourItem";
 
 const ListTourContainer = ({
   accomodation,
   transportation,
   eat,
-  day,
-  night,
+  tourDateTime,
   dateTrip,
 }) => {
-  const listTourDatetimeFormat = `${day} Day ${night} Night`
-    
   // filter date
   const filterDateTrip = dateTrip
     ?.split(":")[0]
@@ -34,7 +31,7 @@ const ListTourContainer = ({
         <ListTourItem icon={IconHotel} title="Accomodation" contentText={accomodation} />
         <ListTourItem icon={IconPlane} title="Transportation" contentText={transportation} />
         <ListTourItem icon={IconMeal} title="Eat" contentText={eat} />
-        <ListTourItem icon={IconTime} title="Duration" contentText={listTourDatetimeFormat} />
+        <ListTourItem icon={IconTime} title="Duration" contentText={tourDateTime} />
         <ListTourItem icon={IconCalendar} title="Date Trip" contentText={filterDateTrip} />
       </ul>
     </div>
